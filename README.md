@@ -21,11 +21,11 @@ Attain new skills based on [development lifecycle](https://en.wikibooks.org/wiki
 
 ### Rules
 
-- [] Listen to everyone’s opinions
-- [] If your late buy a box of 20 timbits
-- [] When stuck on decisions, debate for about 5 minutes and if no conclusion is reached, roll a dice.
-- [] Shouldn't say "We should have done…" if we are not going back to do it.
-- [] ***ASK FOR HELP!!!***
+- [ ] Listen to everyone’s opinions
+- [ ] If your late buy a box of 20 timbits
+- [ ] When stuck on decisions, debate for about 5 minutes and if no conclusion is reached, roll a dice.
+- [ ] Shouldn't say "We should have done…" if we are not going back to do it.
+- [ ] ***ASK FOR HELP!!!***
 
 ### Naming 
 
@@ -33,8 +33,9 @@ No spaces for easier command line operations.
 
 e.g.
 
-| `Group 9.html` | X |
-| `Group-9.html` | O |
+| X              | O              |
+|----------------|----------------|
+| `Group 9.html` | `Group-9.html` |
 
 ### Commit messages
 
@@ -46,10 +47,10 @@ Recommendation: [Semantic commit messages](https://seesparkbox.com/foundry/seman
 
 > Divide up based on individuals level.
 
-- [] Set a goal for each day
-- [] Share the goal & progress/current status with everyone
-- []
-- [] 
+- [ ] Set a goal for each day
+- [ ] Share the goal & progress/current status with everyone
+- [ ] 
+- [ ] 
 
 
 ## Languages
