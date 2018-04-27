@@ -16,29 +16,34 @@
 </html>
 
 <script>
+var rec = "recipeName";
 
 
 var site = 'http://127.0.0.1:3000';
-$.ajax({
-    type: 'GET',
-    crossDomain: true,
-    dataType: 'jsonp',                             
-    url: site,
-    
-});
+
+   
+$.getJSON(site, function(json) {
+    $('#id01').html('<p> totalMatchCount: ' + json.totalMatchCount + '</p>');
+
+    document.getElementById("id01").innerHTML = json;
+})
 
 
 
-function myFunction(arr) {
+    function myFunction(json) {
     var out = "";
     var i;
     for(i = 0; i < arr.length; i++) {
         out += '<a href="' + arr[i].url + '">' + 
         arr[i].display + '</a><br>';
     }
-    document.getElementById("id01").innerHTML = out;
-    document.getElementById("id02").innerHTML = i;
+
 }
+
+
+
+
+
 </script>
 
 

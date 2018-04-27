@@ -32,7 +32,8 @@ http.get(url, res => {
 
 // Created Server thats expecting response
 const server = http.createServer((req, res) => {
-  res.statusCode = 200;
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
   res.end(body);
 });
