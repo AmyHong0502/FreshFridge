@@ -1,3 +1,19 @@
+/*Jumbotron*/
+.jumbotron {
+    background-position: center;
+    background-image: url("FreshFridge.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+    
+
+}
+/*Logo in Jumbotron*/
+#logo {
+    height: 50px;
+   
+
+}
 /* The search field */
 #fridgeFilter {
   border-box: box-sizing;
@@ -8,6 +24,8 @@
   padding: 14px 20px 12px 45px;
   border: none;
   border-bottom: 1px solid #ddd;
+  height: 40px;
+  width: 300px;
 }
 
 /* The search field when it gets focus/clicked on */
@@ -40,3 +58,41 @@
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {background-color: #f1f1f1}
 
+/* Add ingredients button style */
+#btnadd {
+    position: relative;
+    top: 25px;
+    left: 310px;
+    background-color: grey;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.5s;
+    margin: 5px;
+    transition: all 0.5s;
+}
+#btndis {
+    position: relative;
+    top: 25px;
+    left: 310px;
+    background-color: grey;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.5s;
+    margin: 5px;
+    transition: all 0.5s; 
+    
+}
+/* Add ingredients button hover */
+.button:hover {
+    background-color: green;
+}
+
+.container-fluid{
+      width: 100%
+ }

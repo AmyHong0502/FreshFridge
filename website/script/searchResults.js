@@ -15,3 +15,25 @@ function filterFunction() {
 		
 	}
 }
+
+var x = 0;
+var array = Array();
+
+function add_element_to_array()
+{
+ array[x] = document.getElementById("fridgeFilter").value;
+ alert("Ingredient: " + array[x] + " has been added");
+ x++;
+ document.getElementById("fridgeFilter").value = "";
+}
+
+function display_array()
+{
+   var e = "<hr/>";   
+    
+   for (var y=0; y<array.length; y++)
+   {
+     e += "Ingredient " + (y + 1) + " = " + array[y] + "<br/>";
+   }
+   document.getElementById("Result").innerHTML = e;
+}
