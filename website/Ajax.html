@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<header>
+	<title>Ajax</title>
+	<script src="Script/jquery-1.5.2.min.js" type="text/javascript"></script>
+	<script src="Script/jquery.tmpl.min.js" type="text/javascript"></script>
+</header>
+<body>
+<input type="button" onclick="myFunction()" value="check">      
+
+<p id="id01"></p>
+<p id="id02"></p>
+
+
+</body>
+</html>
+
+<script>
+var rec = "recipeName";
+
+
+var site = 'http://127.0.0.1:3000';
+
+   
+$.getJSON(site, function(json) {
+    $('#id01').html('<p> totalMatchCount: ' + json.totalMatchCount + '</p>');
+
+    document.getElementById("id01").innerHTML = json;
+})
+
+
+
+    function myFunction(json) {
+    var out = "";
+    var i;
+    for(i = 0; i < arr.length; i++) {
+        out += '<a href="' + arr[i].url + '">' + 
+        arr[i].display + '</a><br>';
+    }
+
+}
+
+
+
+
+
+</script>
+
+
