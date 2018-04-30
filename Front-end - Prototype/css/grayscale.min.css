@@ -135,19 +135,7 @@ body{
          font-size:22px 
     }
 }
- .content-section{
-     padding-top:150px;
-     padding-bottom:150px;
-}
- .about-section {
-     background:url(../img/chopping-board.jpg) no-repeat center center scroll;
-     padding-top:150px;
-     padding-bottom:150px;
-     -webkit-background-size:cover;
-     -moz-background-size:cover;
-     -o-background-size:cover;
-     background-size:cover 
-}
+
  .btn{
      font-family:Cabin,'Helvetica Neue',Helvetica,Arial,sans-serif;
      font-weight:400;
@@ -234,4 +222,28 @@ body{
      top: -3px;
      padding: 12px 16px 12px 16px;
 }
+/* Styles the content section */
+ .content-section{
+     padding-top:150px;
+     padding-bottom: 300px;
+     
+}
+/* Styles the contact section */
+ .contact-section{
+     padding-top:150px;
+     padding-bottom:150px;
+}
+/* Styles the about section */
+ .about-section {
+     background:url(../img/Capture.PNG) no-repeat center center scroll;
+     padding-top:150px;
+     padding-bottom:150px;
+     -webkit-background-size:cover;
+     -moz-background-size:cover;
+     -o-background-size:cover;
+     background-size:cover ;
+}
 
+#about p{
+       font-size:18px 
+}
