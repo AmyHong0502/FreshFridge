@@ -8,7 +8,7 @@ app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
-})
+});
 
 
 // Setting protocols
@@ -23,29 +23,23 @@ let body = "";
 
 // Fetches information from Yummly given certain constrains
 http.get(url, res => {
-  res.setEncoding("utf8");
-  res.on("data", data => {
-    body += data;
-    console.log(body);
-  });
+    res.setEncoding("utf8");
+    res.on("data", data => {
+        body += data;
+        console.log(body);
+    });
 });
 
 // Created Server thats expecting response
 const server = http.createServer((req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end(body);
+    res.setHeader('Content-Type', 'text/plain');
+    res.end(body);
 });
 
 
 server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+    console.log(`Server running at http://${hostname}:${port}/`);
 });
-
-
-  
- 
-
-
 

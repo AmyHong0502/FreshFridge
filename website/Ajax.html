@@ -1,49 +1,79 @@
 <!DOCTYPE html>
 <html>
 <header>
-	<title>Ajax</title>
-	<script src="Script/jquery-1.5.2.min.js" type="text/javascript"></script>
-	<script src="Script/jquery.tmpl.min.js" type="text/javascript"></script>
+    <title>Ajax</title>
+    <script src="Script/jquery-1.5.2.min.js" type="text/javascript"></script>
+    <script src="Script/jquery.tmpl.min.js" type="text/javascript"></script>
 </header>
 <body>
-<input type="button" onclick="myFunction()" value="check">      
+<input type="button" onclick="myFunction()" value="check">
 
+<h3>Allowed Ingredient: </h3><h3>garlic</h3>
 <p id="id01"></p>
 <p id="id02"></p>
+<p id="id03"></p>
 
-
-</body>
-</html>
+<div id="recipe">
+   <!-- <img src="https://lh3.googleusercontent.com/9QO6qqs0rwBEjg-IjLl1KbUIqlimuXHuWJBFD0i2K9iTDKsbN35KVJVFoY7bhuoEF0OBD2sGrj1M4vcODRDfxFI=s90-c" />-->
+</div>
 
 <script>
-var rec = "recipeName";
+    let rec = "recipeName";
 
+    const site = 'http://127.0.0.1:3000';
 
-var site = 'http://127.0.0.1:3000';
+    let jsonData;
 
-   
-$.getJSON(site, function(json) {
-    $('#id01').html('<p> totalMatchCount: ' + json.totalMatchCount + '</p>');
+    $.getJSON(site, function (json) {
+      //  $('#id01').html('<p> totalMatchCount: ' + json.totalMatchCount + '</p>');
 
-    document.getElementById("id01").innerHTML = json;
-})
+        // document.getElementById("id01").innerHTML = json;
+        jsonData = json;
+    });
 
-
-
-    function myFunction(json) {
-    var out = "";
-    var i;
-    for(i = 0; i < arr.length; i++) {
-        out += '<a href="' + arr[i].url + '">' + 
-        arr[i].display + '</a><br>';
+    function myFunction() {
+        walk(jsonData);
     }
-
-}
-
-
-
-
-
 </script>
 
+<script>
+    // TODO: Change this function to work in recursive way if possible
+    function walk(jsonData) {
+        for (let firstKey in jsonData) {
+            if (jsonData.hasOwnProperty(firstKey)) {
+                let firstValue = jsonData[firstKey];
 
+                let print1 = "1. Key: " + firstKey + ", value: " + firstValue + "\n\n";
+                document.getElementById("id03").innerHTML = document.getElementById("id03").innerText + print1;
+
+                for (let secondKey in firstValue) {
+                    if (typeof firstValue == 'object' && firstValue.hasOwnProperty(secondKey)) {
+                        let secondValue = firstValue[secondKey];
+                        console.log("2.   Key: " + secondKey + ", value: " + secondValue + "\n");
+
+                        for (let thirdKey in secondValue) {
+                            if (typeof secondValue == 'object' && secondValue.hasOwnProperty(thirdKey)) {
+                                let thirdValue = secondValue[thirdKey];
+                                console.log("3.     Key: " + thirdKey + ", value: " + thirdValue + "\n");
+
+                                for (let fourthKey in thirdValue) {
+                                    if (typeof thirdValue == 'object' && thirdValue.hasOwnProperty(fourthKey)) {
+                                        let fourthValue = thirdValue[fourthKey];
+                                        console.log("4.       Key: " + fourthKey + ", value: " + fourthValue + "\n");
+
+                                        if (thirdKey === "imageUrlsBySize" && fourthKey === "90") {
+                                          //  console.log("FOUND\n\n\n" + fourthValue);
+                                           // document.getElementById("recipe-pic").innerHTML = "<img src=\"" + fourthValue + "\" />";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>
