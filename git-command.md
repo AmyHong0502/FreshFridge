@@ -50,7 +50,7 @@ git status
 
 If it was successful, it will not show the files' names anymore.
 
-6. Push the files. (If this is the first time you're using the branch, see [here](https://github.com/AmyHong0502/COMP2910-Group9/blob/back-end/git-command.md#initial-setup) instead of this step.)
+6. Push the files. (If this is the first time you're using the branch, see [here](https://github.com/AmyHong0502/COMP2910-Group9/blob/master/git-command.md#initial-setup) instead of this step.)
 
 ```bash
 git push
