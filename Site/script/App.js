@@ -3,6 +3,10 @@ const hostname = '127.0.0.1';
 const port = 3000;
 var body = "";
 
+
+var url = "http://api.yummly.com/v1/api/recipes?_app_id=e486debb&_app_key=b7696375acec2618961fcedc1562f8af&allowedIngredient[]=tomato";
+
+
 const server = http.createServer((req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.statusCode = 200;
@@ -10,12 +14,11 @@ const server = http.createServer((req, res) => {
     res.end(body);
 });
 
+
 server.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
 });
 
-
-var url = "http://api.yummly.com/v1/api/recipes?_app_id=e486debb&_app_key=b7696375acec2618961fcedc1562f8af&allowedIngredient[]=tomato";
 
 http.get(url, res => {
     res.setEncoding("utf8");
@@ -25,11 +28,13 @@ http.get(url, res => {
     });
     res.on("end", () => {
         body = JSON.parse(body);
-     
-         "'" + JSON.stringify(body) + "'";
+         JSON.stringify(body);
+         walk(body);
   
     });
 });
+
+
 
 // TODO: Change this function to work in recursive way if possible
 function walk(jsonData) {
