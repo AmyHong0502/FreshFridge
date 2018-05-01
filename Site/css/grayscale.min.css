@@ -107,18 +107,33 @@ body{
      text-align:center;
      color:#fff;
      background:url(../img/board-brunch.jpg) no-repeat bottom center scroll;
-     -- Photo by Lukas from Pexels background-color:#000;
+     -- Photo by Lukas from Pexels
      -webkit-background-size:cover;
      -moz-background-size:cover;
      -o-background-size:cover;
      background-size:cover 
 }
+
+#logo {
+       
+     background:url(../img/logo.PNG) no-repeat bottom center scroll;
+         background-size: 1200px 1200px;
+  position: relative;
+
+  
+  
+
+}
  .masthead .intro-body{
      display:table-cell;
-     vertical-align:middle 
+     vertical-align:middle;
+
+     
+
 }
  .masthead .intro-body .brand-heading{
-     font-size:50px 
+     font-size:50px;
+
 }
  .masthead .intro-body .intro-text{
      font-size:18px 
@@ -130,6 +145,9 @@ body{
     }
      .masthead .intro-body .brand-heading{
          font-size:100px; 
+
+    
+}
          
 
     }
@@ -249,3 +267,4 @@ body{
 #about p{
        font-size:18px 
 }
+
