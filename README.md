@@ -17,6 +17,21 @@ Learn project management and successfully create a mobile web application.
 
 Attain new skills based on [development lifecycle](https://en.wikibooks.org/wiki/Introduction_to_Computer_Information_Systems/Program_Development)
 
+
+## Structure
+
+```
++ Home
+   + Search Recipes
++ Tips            // NOT RECIPES but other tips to use your food
++ About           // Introduce our topic & goal
++ Contact Us 
+   + Our Team
+   + Contact Form // Sends an email to 
+                  // contact@freshfridge.tk
++ Login
+```
+
 ## Rules
 
 ### Rules
