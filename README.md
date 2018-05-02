@@ -24,6 +24,8 @@ Attain new skills based on [development lifecycle](https://en.wikibooks.org/wiki
 + Home
    + Search Recipes
 + Tips            // NOT RECIPES but other tips to use your food
++ My Fridge       // Users List whats in their fridge
++ Shopping List
 + About           // Introduce our topic & goal
 + Contact Us 
    + Our Team
