@@ -18,6 +18,16 @@ body{
      text-transform:uppercase;
      color: black;
 }
+
+ h3 {
+	 font-family:Century Gothiv, sans-serif;
+	 font-weight:700;
+	 margin:0 0 35px;
+	 letter-spacing:1px;
+	 color:black;
+	 text-align: left;
+}
+ 
  p{
      font-size:16px;
      line-height:1.5;
@@ -191,26 +201,6 @@ body{
  img::-moz-selection{
      background:0 0 
 }
-
- img.a {
-     vertical-align: baseline;
- }
- 
-  img.b {
-     vertical-align: text-top;
- }
- 
-  img.c {
-     vertical-align: text-bottom;
- }
- 
-  img.d {
-     vertical-align: sub;
- }
- 
-  img.e {
-     vertical-align: super;
- }
  
  #ingredientsUL {
      margin: 0;
@@ -272,6 +262,43 @@ body{
 /* Styles the about section */
  .about-section {
      background:url(../img/Capture.PNG) no-repeat center center scroll;
+     padding-top:150px;
+     padding-bottom:150px;
+     -webkit-background-size:cover;
+     -moz-background-size:cover;
+     -o-background-size:cover;
+     background-size:cover ;
+}
+
+/* Styles the tips section */
+ .tips-intro-section {
+     background:url(../img/Capture.PNG) no-repeat center center scroll;
+     padding-top:150px;
+     padding-bottom:150px;
+     -webkit-background-size:cover;
+     -moz-background-size:cover;
+     -o-background-size:cover;
+     background-size:cover ;
+}
+
+ .tips-section {
+     padding-top:150px;
+     padding-bottom:150px;
+}
+
+#tips p{
+	font-size: 15px;
+}
+
+#tipsLi{
+	text-align: left;
+	color: black;
+	font-size: 15px;
+	list-style-type: circle;
+}
+
+/* Styles the tips input section */
+ .tips-intro-section {
      padding-top:150px;
      padding-bottom:150px;
      -webkit-background-size:cover;
