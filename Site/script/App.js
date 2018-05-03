@@ -4,7 +4,7 @@ const port = 3000;
 var body = "";
 
 
-var url = "http://api.yummly.com/v1/api/recipes?_app_id=e486debb&_app_key=b7696375acec2618961fcedc1562f8af&allowedIngredient[]=tomato";
+var url = "http://api.yummly.com/v1/api/recipes?_app_id=e486debb&_app_key=b7696375acec2618961fcedc1562f8af&allowedIngredient[]=tomato&allowedIngredient[]=garlic";
 
 
 const server = http.createServer((req, res) => {
