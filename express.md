@@ -12,7 +12,7 @@ Note:
     app.js
     /bin
         www        // sets up some of the application error handling 
-                   //and then loads app.js to do the rest of the work
+                   // and then loads app.js to do the rest of the work
     package.json   // defines the application dependencies and other information
     /node_modules
         [about 4,500 subdirectories and files]
