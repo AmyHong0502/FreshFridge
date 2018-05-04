@@ -21,17 +21,24 @@ Attain new skills based on [development lifecycle](https://en.wikibooks.org/wiki
 ## Structure
 
 ```
-+ Home
-   + Search Recipes
-+ Tips            // NOT RECIPES but other tips to use your food
-+ My Fridge       // Users List whats in their fridge
-+ Shopping List
-+ About           // Introduce our topic & goal
-+ Contact Us 
-   + Our Team
-   + Contact Form // Sends an email to 
-                  // contact@freshfridge.tk
-+ Login
+freshfridge.tk/                     // default page
+                                    // stores
+                                    // - about
+                                    //   - our web-app & our team
+                                    //   - our topic & goal
+                                    // - contact us 
+                                    //   - form to send an email if we have time
+                                    //   - contact@freshfridge.tk if there's time
+              /i/                   // my page 
+                                    // everything under this page needs login.
+              /i/fridge/            // Users list whats in their fridge
+              /i/shopping-list/      
+              /tips/                // not only recipes & cooking tips
+                                    // but also things you can do 
+                                    // to reduce food waste
+              /login/               // separate page for now
+                                    // planning to use Google Login
+              /recipe/
 ```
 
 ## Rules
