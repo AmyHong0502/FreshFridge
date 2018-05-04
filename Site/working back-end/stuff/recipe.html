@@ -3,69 +3,86 @@
 <head>
     <title>Ajax</title>
      <meta charset="utf-8"/>
+     <script src="jquery.min.js"></script>
+
 </head>
 <body>
   <p id="p1"></p>
   <table id="recipes">
   </table>
+</body>
+</html>
 
-
-
-
-    <script src="jquery.min.js"></script>
-    <script>
+<script>
+    
+    
+    
     // to start server http-server . -o
     // Global data for GET request
     var gl_data = [];
 
     /*<![CDATA[*/
-        $(document).ready(function() {
-            $.ajax({
-                url: "http://127.0.0.1:3000/recipes",
-                dataType: "json",
-                type: "GET",
-                success: function(data) {
-                //alert(data['matches'][1]["sourceDisplayName"]);
+    // Gets data when given specific recipe contraint
+    $(document).ready(function() {
+        $.ajax({
+            url: "http://127.0.0.1:3000/recipes",
+            dataType: "json",
+            type: "GET",
+            success: function(data) {
+                <!-- alert(data['matches'][1]["sourceDisplayName"]); Used for debugging -->
 
-                    gl_data = data;
-                    var listData = "";
-                    ProcessRequest(data)
-                    for(var key in data) {
-                        listData += "<tr><td>" + key + "</td><td>" + data[key] + "</td></tr>";
-                    }
-                   
+                gl_data = data;
+                var listData = "";
+                processRequest(data);
 
-
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    $("#p1").text(jqXHR.statusText);
-                }
-            });
-
-  
-
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                $("#p1").text(jqXHR.statusText);
+            }
         });
+
+    });
     /*]]>*/
-    
-    function ProcessRequest(data){
-    var i;
-    var table = $('#recipes');
-    var len = data['matches'].length;
-        for (i = 0; i < len; i++) { 
-    var img = data['matches'][i]['smallImageUrls'];
 
-
-    table.append("<tr><td>" + "Recipe Name: " + data['matches'][i]["recipeName"]);
-    table.append("<tr><td>" + "Ingredients: " + data['matches'][i]["ingredients"] + "</td></tr>");
-    table.append("<img src='" + img + "'/>" );
-    table.append("<tr><td>" + "--------------------------------" + "</td></tr>");
-    
-}
-       
-
+    // Processes JSON object and appends it to HTML Elements
+    function processRequest(data) {
+        var i;
+        var table = $('#recipes');
+        var arrLength = data['matches'].length;
+        for (i = 0; i < arrLength; i++) {
+            var img = data['matches'][i]['smallImageUrls'];
+            var link = "default.asp";
+            table.append("<tr><td>" + "Recipe Name: " + data['matches'][i]["recipeName"]);
+            table.append("<tr><td>" + "Ingredients: " + data['matches'][i]["ingredients"] + "</td></tr>");
+            table.append("<a id=" + i + "  onClick='replyClick(this.id)' '>" + "<img src='" + img + "'/>" + "</a>");
+            table.append("<tr><td>" + "--------------------------------" + "</td></tr>");
         }
-    
-    </script>
+    }
 
-</body>
-</html>
+    // Gets ID of <img> that was clicked
+    // Sends a specified recipe request when picture is clicked 
+    function replyClick(clicked_id) {
+ 
+    alert(gl_data['matches'][clicked_id]["id"]);
+        $.ajax({
+            url: "http://127.0.0.1:3000/recipesID",
+            dataType: "json",
+            type: "POST",
+            data: (gl_data['matches'][clicked_id]["id"]),
+            success: function(data) {
+              alert("hey");
+              
+           
+
+
+
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                $("#p1").text(jqXHR.statusText);
+            }
+        });
+    }
+    
+</script>
+
