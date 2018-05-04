@@ -31,3 +31,10 @@ Note:
         layout.pug
 ```
 
+## Notes
+
+We use Mongoose ODM (Object Data Model) as our DB.
+
+An ODM represents the website's data as JavaScript objects.
+
+A “collection” of “documents”, in a MongoDB database, is analogous to a “table” of “rows” in a relational database.
