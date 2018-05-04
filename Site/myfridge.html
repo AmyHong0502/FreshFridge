@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>FreshFridge</title>
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Plugin JavaScript -->
+		<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for this template -->
+    <script src="js/grayscale.min.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
+    <!-- Custom styles for this template -->
+		<link href="css/grayscale.min.css" rel="stylesheet">
+		<!-- Jonah's stuff -->
+		<script src="buttonFade.js" type="text/javascript"></script>
+		<link href= "imageFade.css" rel ="stylesheet">
+  </head>
+
+
+
+
+
+  <body id="page-top">
+	<script src="js/grayscale.min.js"></script>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg  fixed-top navbar-default" id="mainNav">
+      <div class="container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="myfridge.html">My Fridge</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href='login.html'>Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+		</nav>
+
+
+
+    <!-- Ingredients Section -->
+    <section id="functional" class="content-section text-center">
+        <div class="container">
+            <div class="col-lg-10 mx-auto">
+                    <h1>My Fridge</h1>
+                    <div class="input-group input-group-lg" id="myDIV" class="header">
+												<input type="text" name="add" class="form-control" id="myInput" placeholder="Search">
+												<button type="submit" name="add-to-list" onclick="newElement()"  class="btn btn-large btn-primary" id="btnadd">&#10010;</button>
+										</div>
+										<br>
+										<div id="flip1" class="trigger">Protein</div>
+										<div id="panel1" class="toggle">
+												<div class="row">
+														<div class="column">
+															<figure>
+																	<div class="itemSelector faded"><button class="button"><img src="img\icons\beef.png"></button></div>
+																	<figcaption>Beef</figcaption>
+															</figure>
+															<figure>
+																	<img src="img\icons\whole-chicken.png">
+																	<figcaption>Whole Chicken</figcaption>
+															</figure>
+															<figure>
+																	<img src="img\icons\pork.png">
+																	<figcaption>Pork</figcaption>
+															</figure>
+														</div>
+														<div class="column">
+																<figure>
+																		<img src="img\icons\salmon.png">
+																		<figcaption>Salmon</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\tuna.png">
+																		<figcaption>Tuna</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\chicken-leg.png">
+																		<figcaption>Chicken Leg</figcaption>
+																</figure>
+														</div>
+														<div class="column">
+																<figure>
+																		<img src="img\icons\turkey.png">
+																		<figcaption>Turkey</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\ham.png">
+																		<figcaption>Ham</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\sausage.png">
+																		<figcaption>Sausage</figcaption>
+																</figure>
+														</div>
+														<div class="column">
+																<figure>
+																		<img src="img\icons\shrimp.png">
+																		<figcaption>Shrimp</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\crab.png">
+																		<figcaption>Crab</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\salami.png">
+																		<figcaption>Salami</figcaption>
+																</figure>
+														</div>
+														<div class="column">
+																<figure>
+																		<img src="img\icons\oyster.png">
+																		<figcaption>Oyster</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\lobster.png">
+																		<figcaption>Lobster</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\squid.png">
+																		<figcaption>Squid</figcaption>
+																</figure>
+														</div>
+														<div class="column">
+																<figure>
+																		<img src="img\icons\sardine.png">
+																		<figcaption>Sardines</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\anchovy.png">
+																		<figcaption>Anchovy</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\halibut.png">
+																		<figcaption>Halibut</figcaption>
+																</figure>
+														</div>
+													</div>
+										</div>
+										<br>
+										<div id="flip2" class="trigger">Dairy</div>
+										<div id="panel2" class="toggle">
+												<div class="row">
+														<div class="column">
+																<figure>
+																		<img src="img\icons\milk.png">
+																		<figcaption>Milk</figcaption>
+																</figure>
+														</div>
+														<div class="column">
+																<figure>
+																		<img src="img\icons\yogurt.png">
+																		<figcaption>Yogurt</figcaption>
+																</figure>
+														</div>
+														<div class="column">
+																<figure>
+																		<img src="img\icons\egg.png">
+																		<figcaption>Eggs</figcaption>
+																</figure>
+														</div>
+														<div class="column">
+																<figure>
+																		<img src="img\icons\ice-cream.png">
+																		<figcaption>Ice Cream</figcaption>
+																</figure>
+														</div>
+														<div class="column">
+																<figure>
+																		<img src="img\icons\butter.png">
+																		<figcaption>Butter</figcaption>
+																</figure>
+														</div>
+														<div class="column">
+																<figure>
+																		<img src="img\icons\cheese.png">
+																		<figcaption>Cheese</figcaption>
+																</figure>
+														</div>
+													</div>
+										</div>
+										<br>
+										<div id="flip3" class="trigger">Fruits</div>
+										<div id="panel3" class="toggle">
+												<div class="row">
+														<div class="column">
+															<figure>
+																	<img src="img\icons\apple.png">
+																	<figcaption>Apple</figcaption>
+															</figure>
+															<figure>
+																	<img src="img\icons\bananas.png">
+																	<figcaption>Banana</figcaption>
+															</figure>
+															<figure>
+																	<img src="img\icons\orange.png">
+																	<figcaption>Oranges</figcaption>
+															</figure>
+														</div>
+														<div class="column">
+																<figure>
+																		<img src="img\icons\strawberry.png">
+																		<figcaption>Strawberry</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\blueberries.png">
+																		<figcaption>Blueberry</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\cherries.png">
+																		<figcaption>Cherry</figcaption>
+																</figure>
+														</div>
+														<div class="column">
+																<figure>
+																		<img src="img\icons\kiwi.png">
+																		<figcaption>Kiwi</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\grapes.png">
+																		<figcaption>Grape</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\watermelon.png">
+																		<figcaption>Watermelon</figcaption>
+																</figure>
+														</div>
+														<div class="column">
+																<figure>
+																		<img src="img\icons\pineapple.png">
+																		<figcaption>Pineapple</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\coconut.png">
+																		<figcaption>Coconut</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\peach.png">
+																		<figcaption>Peach</figcaption>
+																</figure>
+														</div>
+														<div class="column">
+																<figure>
+																		<img src="img\icons\raspberry.png">
+																		<figcaption>Raspberries</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\mango.png">
+																		<figcaption>Mango</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\papaya.png">
+																		<figcaption>Papaya</figcaption>
+																</figure>
+														</div>
+														<div class="column">
+																<figure>
+																		<img src="img\icons\pomegranate.png">
+																		<figcaption>Pomegranate</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\plum.png">
+																		<figcaption>Plums</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\lemon.png">
+																		<figcaption>Lemon</figcaption>
+																</figure>
+														</div>
+													</div>
+										</div>
+										<br>
+										<div id="flip4" class="trigger">Vegetables</div>
+										<div id="panel4" class="toggle">
+												<div class="row">
+														<div class="column">
+															<figure>
+																	<img src="img\icons\carrot.png">
+																	<figcaption>Carrot</figcaption>
+															</figure>
+															<figure>
+																	<img src="img\icons\lettuce.png">
+																	<figcaption>Lettuce</figcaption>
+															</figure>
+															<figure>
+																	<img src="img\icons\spinach.png">
+																	<figcaption>Spinach</figcaption>
+															</figure>
+														</div>
+														<div class="column">
+																<figure>
+																		<img src="img\icons\tomato.png">
+																		<figcaption>Tomato</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\broccoli.png">
+																		<figcaption>Broccoli</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\onion.png">
+																		<figcaption>Onion</figcaption>
+																</figure>
+														</div>
+														<div class="column">
+																<figure>
+																		<img src="img\icons\garlic.png">
+																		<figcaption>Garlic</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\potato.png">
+																		<figcaption>Potato</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\pepper.png">
+																		<figcaption>Bell Pepper</figcaption>
+																</figure>
+														</div>
+														<div class="column">
+																<figure>
+																		<img src="img\icons\corn.png">
+																		<figcaption>Corn</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\mushroom.png">
+																		<figcaption>Mushroom</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\ginger.png">
+																		<figcaption>Ginger</figcaption>
+																</figure>
+														</div>
+														<div class="column">
+																<figure>
+																		<img src="img\icons\celery.png">
+																		<figcaption>Celery</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\Cucumber.png">
+																		<figcaption>Cucumber</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\eggplant.png">
+																		<figcaption>Eggplant</figcaption>
+																</figure>
+														</div>
+														<div class="column">
+																<figure>
+																		<img src="img\icons\sweet-potato.png">
+																		<figcaption>Yam</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\radish.png">
+																		<figcaption>Radish</figcaption>
+																</figure>
+																<figure>
+																		<img src="img\icons\asparagus.png">
+																		<figcaption>Asparagus</figcaption>
+																</figure>
+														</div>
+													</div>
+										</div>
+										<br>
+										<div id="flip5" class="trigger">Grains</div>
+										<div id="panel5" class="toggle">
+												<div class="row">
+														<div class="row">
+																<div class="column">
+																		<figure>
+																				<img src="img\icons\rice.png">
+																				<figcaption>Rice</figcaption>
+																</figure>
+																<figure>
+																				<img src="img\icons\spaguetti.png">
+																				<figcaption>Pasta</figcaption>
+																</figure>
+																</div>
+																<div class="column">
+																		<figure>
+																				<img src="img\icons\noodles.png">
+																				<figcaption>Noodles</figcaption>
+																</figure>
+																<figure>
+																				<img src="img\icons\cracker.png">
+																				<figcaption>Cracker</figcaption>
+																</figure>
+																</div>
+																<div class="column">
+																		<figure>
+																				<img src="img\icons\quinoa.png">
+																				<figcaption>Quinoa</figcaption>
+																</figure>
+																<figure>
+																				<img src="img\icons\croissant.png">
+																				<figcaption>Croissant</figcaption>
+																</figure>
+																</div>
+																<div class="column">
+																		<figure>
+																				<img src="img\icons\cereals.png">
+																				<figcaption>Cereal</figcaption>
+																</figure>
+																<figure>
+																				<img src="img\icons\oat.png">
+																				<figcaption>Oats</figcaption>
+																</figure>
+																</div>
+																<div class="column">
+																		<figure>
+																				<img src="img\icons\bread.png">
+																				<figcaption>Bread</figcaption>
+																		</figure>
+																		<figure>
+																				<img src="img\icons\hebrew.png">
+																				<figcaption>Bagel</figcaption>
+																		</figure>
+																</div>
+																<div class="column">
+																		<figure>
+																				<img src="img\icons\flour.png">
+																				<figcaption>Flour</figcaption>
+																		</figure>
+																		<figure>
+																				<img src="img\icons\tortillas.png">
+																				<figcaption>Tortillas</figcaption>
+																		</figure>
+																</div>
+															</div>
+												</div>
+										</div>
+										<br>
+										<!-- <div id="flip6" class="trigger">Other</div>
+										<div id="panel6" class="toggle">
+										</div> -->
+										<br>
+										<br>
+										<div class="col-lg-10 mx-auto">
+											<h4 class="fridgeList">Current Items:</h4>
+													<ul id="ingredientsUL"></ul>
+										</div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+      <div class="container text-center">
+        <p>Copyright &copy; FreshFridge</p>
+      </div>
+    </footer>
+
+
+
+  </body>
+
+</html>
