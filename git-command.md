@@ -100,3 +100,21 @@ You're done!
 
 I would recommend to merge them on [Github](https://github.com/).  
 You can find a reference online with pictures. 
+
+## Undo push
+
+> **WARNING**: This is dangerous. It will delete the history and whole changes we made.
+
+If you're not sure about what you're doing, please share the problem through slack so that we can keep each one of our copy and safely find a way to fix the issue.
+
+
+The following code will completely remove the whole team's history after the revision ID.
+
+i.e. This code will delete all other people's work after the revision ID.
+
+```
+git reset --hard <revision_id_of_last_known_good_commit>
+git push --force
+```
+
+I intentionally don't put what revision_id_of_last_known_good_commit is because I want to help you if you ever need to remove any history. Please share the situation ASAP. Thanks!
