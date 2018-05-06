@@ -1,5 +1,5 @@
 $(document).ready(function () {
-	$(".button").click(function() {
-		$(".itemSelector").toggleClass("faded");
+	$(".itemButton").click(function() {
+		$(this).parent().toggleClass("faded");
 	});
 });
