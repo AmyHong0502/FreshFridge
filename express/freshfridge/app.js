@@ -7,10 +7,22 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var iRouter = require('./routes/i');
 var loginRouter = require('./routes/login');
+var recipeRouter = require('./routes/recipe');
+var tipsRouter = require('./routes/tips');
 
 var app = express();
+
+
+//Set up mongoose connection
+var mongoose = require('mongoose');
+var mongoDB = 'mongodb://dev2910:freshfridgetk@ds113200.mlab.com:13200/comp2910ff';
+mongoose.connect(mongoDB);
+mongoose.Promise = global.Promise;
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,8 +37,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/i', iRouter);
+app.use('/tips', tipsRouter);
 app.use('/login', loginRouter);
+app.use('/recipe', recipeRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
