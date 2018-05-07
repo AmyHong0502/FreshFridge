@@ -30,6 +30,8 @@ html
         // template comes with express.js
         link(rel='stylesheet', href='/stylesheets/style.css')
 
+        block googleLogin
+
     body#page-top
         // contents goes here
         // nav
@@ -61,6 +63,8 @@ html
                         li(class="nav-item")
                             a(class="nav-link js-scroll-trigger" href="/login") Login
         block content
+
+        // footer
         footer
             div(class='container text-center')
-                p Copyright &copy; FreshFridge
+                p Copyright &copy; #{title}
