@@ -6,38 +6,43 @@ block googleLogin
     script(src="https://apis.google.com/js/platform.js" async defer)
 
 block content
-    h1= title
-    p Login to #{title}
-    // login button
-    div(class="g-signin2" data-onsuccess="onSignIn" data-theme="dark")
+    header(class="masthead")
+        div(class="intro-body")
+            div(class="container")
+                div(class="row")
+                    div(class="col-lg-10 mx-auto")
+                        h2(class="brand-heading") #{title}
+                        h2 Login
+                        div#myDIV(class="header")
+                            // login button
+                            div(class="g-signin2" data-onsuccess="onSignIn" data-theme="dark")
 
-    // login function
-    script.
-        function onSignIn(googleUser) {
-            // Useful data for your client-side scripts:
-            var profile = googleUser.getBasicProfile();
-            console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-            console.log('Full Name: ' + profile.getName());
-            console.log('Given Name: ' + profile.getGivenName());
-            console.log('Family Name: ' + profile.getFamilyName());
-            console.log("Image URL: " + profile.getImageUrl());
-            console.log("Email: " + profile.getEmail());
+                            // login function
+                            script.
+                                function onSignIn(googleUser) {
+                                    // Useful data for your client-side scripts:
+                                    var profile = googleUser.getBasicProfile();
+                                    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+                                    console.log('Full Name: ' + profile.getName());
+                                    console.log('Given Name: ' + profile.getGivenName());
+                                    console.log('Family Name: ' + profile.getFamilyName());
+                                    console.log("Image URL: " + profile.getImageUrl());
+                                    console.log("Email: " + profile.getEmail());
 
-            // The ID token you need to pass to your backend:
-            var id_token = googleUser.getAuthResponse().id_token;
-            console.log("ID Token: " + id_token);
-        };
+                                    // The ID token you need to pass to your backend:
+                                    var id_token = googleUser.getAuthResponse().id_token;
+                                    console.log("ID Token: " + id_token);
+                                };
 
-    // sign-out button
-    a(href="#" onclick="signOut()") Logout-a<br />
-    button#signOut(onclick='signOut()') Logout-button
+                            // sign-out button
+                            a(href="#" onclick="signOut()") Logout-a
+                            button#signOut(onclick='signOut()') Logout-button
 
-    // sign-out function
-    script.
-        var signOut = function signOut() {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
-                console.log('User signed out.');
-            });
-        }
-
+                            // sign-out function
+                            script.
+                                var signOut = function signOut() {
+                                    var auth2 = gapi.auth2.getAuthInstance();
+                                    auth2.signOut().then(function () {
+                                        console.log('User signed out.');
+                                    });
+                                }
