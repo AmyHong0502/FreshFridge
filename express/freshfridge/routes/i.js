@@ -3,15 +3,15 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('My page. Respond with a resource.');
+  res.render('i', { title: 'FreshFridge', subtitle: 'Save food and save money.' });
 });
 
 router.get('/fridge', function(req, res, next) {
-  res.send('fridge page. Respond with a resource.');
+  res.render('fridge', { title: 'FreshFridge', subtitle: 'Save food and save money.' });
 });
 
 router.get('/shopping-list', function(req, res, next) {
-  res.send('shopping-list page. Respond with a resource.');
+  res.render('shopping-list', { title: 'FreshFridge', subtitle: 'Save food and save money.' });
 });
 
 module.exports = router;

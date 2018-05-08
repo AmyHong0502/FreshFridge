@@ -28,6 +28,8 @@ html
         link(href='/css/grayscale.min.css' rel='stylesheet')
 
         block googleLogin
+        block customCSS
+        block customJS
 
     body#page-top
         // contents goes here
@@ -42,7 +44,6 @@ html
                 aria-controls='navbarResponsive'
                 aria-expanded='false'
                 aria-label='Toggle navigation') Menu
-                i(class='fa fa-bars')
                 div#navbarResponsive(class="collapse navbar-collapse")
                     ul(class="navbar-nav ml-auto")
                         li(class="nav-item")
