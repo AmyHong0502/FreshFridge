@@ -8,21 +8,18 @@ const each = require('async-each');
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded());
 // All recipes containing specific ingredients
-var url = "http://api.yummly.com/v1/api/recipes?_app_id=e486debb&_app_key=b7696375acec2618961fcedc1562f8af&allowedIngredient[]=tomatoes";
+let url = "http://api.yummly.com/v1/api/recipes?_app_id=e486debb&_app_key=b7696375acec2618961fcedc1562f8af&allowedIngredient[]=tomatoes";
 // Once recipe is found, link to this
-var recipe = "http://api.yummly.com/v1/api/recipe/Southwest-Hummus-Wraps-2171837?_app_id=e486debb&_app_key=b7696375acec2618961fcedc1562f8af";
+let recipe = "http://api.yummly.com/v1/api/recipe/Southwest-Hummus-Wraps-2171837?_app_id=e486debb&_app_key=b7696375acec2618961fcedc1562f8af";
 app.use('/static', express.static('stuff'));
 
-
 // Sets up port for server
-const port = 3000
+const port = 3000;
 app.listen(port, () => console.log('My app listening on port ' + port));
 
 
-
-
 // On-load get information from API given the URL constraints
-app.get('/recipes', function(req, res) {
+app.get('/recipes', function (req, res, next) {
     // To allow Cross domain referencing (CORS)
     res.setHeader('Content-Type', 'application/json');
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -30,7 +27,7 @@ app.get('/recipes', function(req, res) {
 
     request(url, {
         json: true
-    }, function(err, re, body) {
+    }, function (err, re, body) {
         if (err) {
             console.log(err);
         }
@@ -44,10 +41,9 @@ app.get('/recipes', function(req, res) {
 });
 
 
-
-// Waits for POST request from Recipe.html (http://127.0.0.1:3000/recipesID) 
+// Waits for POST request from Recipe.html (http://127.0.0.1:3000/recipesID)
 // send Recipe API data
-app.post('/recipesID', function(req, res) {
+app.post('/recipesID', function (req, res, next) {
     // To allow Cross domain referencing (CORS)
     res.setHeader('Content-Type', 'application/text');
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -62,14 +58,14 @@ app.post('/recipesID', function(req, res) {
 });
 
 
-
-//Sends specific recipe ID to Yummly API, receives recipes specifics in JSON. 
+// Sends specific recipe ID to Yummly API, receives recipes specifics in JSON.
 // Appends responds to specific variable
-var specificIngredient;
+let specificIngredient;
+
 function sendRecipe(recipe) {
     request(recipe, {
         json: true
-    }, function(err, re, realRecipe) {
+    }, function (err, re, realRecipe) {
         if (err) {
             console.log(err);
         }
@@ -82,10 +78,9 @@ function sendRecipe(recipe) {
 }
 
 
-
-//Waits for GET request from http://127.0.0.1:3000/specifiedrecipe  /  
+//Waits for GET request from http://127.0.0.1:3000/specifiedrecipe  /
 // Sends specific variable with JSON data.
-app.get('/specifiedrecipe', function(req, res) {
+app.get('/specifiedrecipe', function (req, res) {
 
     // To allow Cross domain referencing (CORS)
     console.log("recieved another request");
@@ -97,36 +92,33 @@ app.get('/specifiedrecipe', function(req, res) {
 
 });
 
-
 // Waits for POST request from Recipe.html (http://127.0.0.1:3000/recipesURL) 
 // send Recipe API data
 constraintArray = [];
-app.post('/recipeURL', function(req, res) {
+app.post('/recipeURL', function (req, res) {
     // To allow Cross domain referencing (CORS)
     res.setHeader('Content-Type', 'application/text');
     res.setHeader("Access-Control-Allow-Origin", "*");
     console.log(req.body);
     constraintArray = (Object.keys(req.body));
+
     for (var i = 0; i < constraintArray.length; i++) {
         if (constraintArray[i].length == 0) {
             console.log(constraintArray[i]);
-            
+
         }
-        
-        
     }
- 
     res.end();
 });
 
 function filter_array(test_array) {
-    var index = -1,
+    let index = -1,
         arr_length = test_array ? test_array.length : 0,
         resIndex = -1,
         result = [];
 
     while (++index < arr_length) {
-        var value = test_array[index];
+        let value = test_array[index];
 
         if (value) {
             result[++resIndex] = value;
