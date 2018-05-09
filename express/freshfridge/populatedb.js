@@ -1,81 +1,124 @@
-#! /usr/bin/env node
-
 console.log('This script populates some test records to the database. Specified database as argument - e.g.: populatedb mongodb://your_username:your_password@your_dabase_url');
 
 // Get arguments passed on command line
-var userArgs = process.argv.slice(2);
+let userArgs = process.argv.slice(2);
 if (!userArgs[0].startsWith('mongodb://')) {
     console.log('ERROR: You need to specify a valid mongodb URL as the first argument');
     return
 }
 
-var async = require('async')
-var Record = require('./models/record')
+let async = require('async');
+let Fridge = require('./models/fridge');
+let ShoppingList = require('./models/shoppinglist');
 
 
-var mongoose = require('mongoose');
-var mongoDB = userArgs[0];
+let mongoose = require('mongoose');
+let mongoDB = userArgs[0];
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
-var db = mongoose.connection;
-mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
+let db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-var records = []
+var fridgeItems = [];
+var shoppingListItems = [];
 
-function recordCreate(record, cb) {
-  recordDetail = {record:record}
+function fridgeCreate(email, food, cb) {
+    let fridgeDetail = {email: email, food: food};
 
-  var rec = new Record(recordDetail);
-       
-  rec.save(function (err) {
-    if (err) {
-      cb(err, null)
-      return
-    }
-    console.log('New Record: ' + rec);
-    records.push(rec)
-    cb(null, rec)
-  }  );
+    let fridge = new Fridge(fridgeDetail);
+
+    fridge.save(function (err) {
+        if (err) {
+            cb(err, null);
+            return
+        }
+        console.log('New Fridge: ' + fridge);
+        fridgeItems.push(fridge);
+        cb(null, fridge)
+    });
 }
 
-function createRecords(cb) {
+function shoppingListCreate(email, food, cb) {
+    let shoppingListDetail = {email: email, food: food};
+
+    let shoppingList = new ShoppingList(shoppingListDetail);
+
+    shoppingList.save(function (err) {
+        if (err) {
+            cb(err, null);
+            return
+        }
+        console.log('New ShoppingList: ' + shoppingList);
+        shoppingListItems.push(shoppingList);
+        cb(null, shoppingList)
+    });
+}
+
+function createFridgeItems(cb) {
+    console.log("CF Called");
     async.parallel([
-        function(callback) {
-          recordCreate('tomato', callback);
-        },
-        function(callback) {
-          recordCreate('garlic', callback);
-        },
-        function(callback) {
-          recordCreate('lettuce', callback);
-        },
-        function(callback) {
-          recordCreate('carrot', callback);
-        },
-        function(callback) {
-          recordCreate('potato', callback);
-        },
-        function(callback) {
-          recordCreate('avocado', callback);
-        },
+            function (callback) {
+                fridgeCreate('randommail@gmail.com', 'Apple', callback);
+            },
+            function (callback) {
+                fridgeCreate('randommail@gmail.com', 'Beef', callback);
+            },
+            function (callback) {
+                fridgeCreate('sofresh@gmail.com', 'Sausage', callback);
+            },
+            function (callback) {
+                fridgeCreate('sofresh@gmail.com', 'Squid', callback);
+            },
+            function (callback) {
+                fridgeCreate('sofresh@gmail.com', 'Beef', callback);
+            },
         ],
         // optional callback
         cb);
+
+    console.log("CF Finished CB");
+}
+
+function createShoppingListItems(cb) {
+    console.log("CSL Called");
+    async.parallel([
+            function (callback) {
+                shoppingListCreate('randommail@gmail.com', 'Apple', callback);
+            },
+            function (callback) {
+                shoppingListCreate('contactff@gmail.com', 'Beef', callback);
+            },
+            function (callback) {
+                shoppingListCreate('contactff@gmail.com', 'Papaya', callback);
+            },
+            function (callback) {
+                shoppingListCreate('sofresh@gmail.com', 'Plum', callback);
+            },
+            function (callback) {
+                shoppingListCreate('sofresh@gmail.com', 'Spinach', callback);
+            },
+        ],
+        // optional callback
+        cb);
+    console.log("CSL Finished CB");
 }
 
 async.series([
-    createRecords
-],
+        createShoppingListItems,
+        createFridgeItems
+    ],
 // Optional callback
-function(err, results) {
-    if (err) {
-        console.log('FINAL ERR: '+err);
+    function (err, results) {
+        if (err) {
+            console.log('FINAL ERR: ' + err);
+        }
+        else {
+            console.log('fridgeItems: ' + fridgeItems + ', shoppingListItems: ' + shoppingListItems);
+
+        }
+        // All done, disconnect from database
+        mongoose.connection.close();
     }
-    else {
-        console.log('RECORDS: '+records);
-        
-    }
-    // All done, disconnect from database
-    mongoose.connection.close();
-});
+);
+
 
