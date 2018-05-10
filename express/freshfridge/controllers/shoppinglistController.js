@@ -1,6 +1,10 @@
-var ShoppingList = require('../models/shoppinglist');
+let ShoppingList = require('../models/shoppinglist');
 
-// Display list of all foods in this fridge.
+exports.index = function(req, res) {
+    res.send('NOT IMPLEMENTED: Shopping-list home page');
+};
+
+// Display list of all foods in this shoppinglist.
 exports.shoppinglist_list = function(req, res) {
     res.send('NOT IMPLEMENTED: shoppinglist list');
 };

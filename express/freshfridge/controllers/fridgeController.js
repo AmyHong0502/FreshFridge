@@ -1,4 +1,8 @@
-var Fridge = require('../models/fridge');
+let Fridge = require('../models/fridge');
+
+exports.index = function(req, res) {
+    res.send('NOT IMPLEMENTED: Fridge home page');
+};
 
 // Display list of all foods in this fridge.
 exports.fridge_list = function(req, res) {
