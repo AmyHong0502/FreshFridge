@@ -345,8 +345,31 @@ img {
     padding-right: 30px;
   }
 
-  figcaption{
+figcaption{
       color: black;
       font-family: Verdana, Geneva, Tahoma, sans-serif;
       font-size: 14px;
   }
+  
+/* Buttons styling and layout */
+.itemButton {
+    background-color: white;
+    border: none;
+    color: white;
+    padding: 1px 1px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.itemSelector {
+	-webkit-transition: opacity 400ms linear;
+    transition: opacity 400ms linear;   
+}
+
+.faded {
+	opacity: 0.5;
+}
