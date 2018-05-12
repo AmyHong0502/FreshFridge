@@ -29,13 +29,8 @@ let async = require('async');
 // Fridge Routes //
 router.get('/fridge', fridge_controller.fridge_list);
 
-router.get('/fridge/create', fridge_controller.fridge_create_get);
 router.post('/fridge/create', fridge_controller.fridge_create_post);
 
-router.get('/fridge/update', fridge_controller.fridge_update_get);
-router.post('/fridge/update', fridge_controller.fridge_update_post);
-
-router.get('/fridge/delete', fridge_controller.fridge_delete_get);
 router.post('/fridge/delete', fridge_controller.fridge_delete_post);
 
 // router.get('/fridge', function (req, res, next) {

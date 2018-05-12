@@ -120,18 +120,35 @@ block content
 
             script.
                 function putEmail(email) {
-                    document.getElementById('emailform').value = email;
+                    document.getElementById('emailformc').value = email;
+                    document.getElementById('emailformd').value = email;
                     console.log("Replaced with: " + email);
                 }
 
+            h3 form: CREATE
+
             form(method='POST' action='/i/fridge/create')
                 div.form-group
-                    label(for='foodform') Food:
-                    input#emailform.form-control(type='text' name='email' style='display: none;')
-                    input#foodform.form-control(type='text' name='food' value=(undefined === food ? '' : food))
+                    label(for='foodformc') Food:
+                    input#emailformc.form-control(type='text' name='email' style='display: none;')
+                    input#foodformc.form-control(type='text' name='food' value=(undefined === food ? '' : food))
                 button.btn.btn-primary(type='submit') Submit
 
             if errors
                 ul
                     for error in errors
                         li!= error.msg
+
+            h3 form: DELETE
+
+                form(method='POST' action='/i/fridge/delete')
+                    div.form-group
+                        label(for='foodformd') Food:
+                        input#emailformd.form-control(type='text' name='email' style='display: none;')
+                        input#foodformd.form-control(type='text' name='food' value=(undefined === food ? '' : food))
+                    button.btn.btn-primary(type='submit') Submit
+
+                if errors
+                    ul
+                        for error in errors
+                            li!= error.msg
