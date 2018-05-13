@@ -16,6 +16,8 @@ block googleLoginContent
     div(class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="display: none;")
 
     script.
+        let emailaddress;
+
         function onSignIn(googleUser) {
             // Useful data for your client-side scripts:
             var profile = googleUser.getBasicProfile();
@@ -25,6 +27,9 @@ block googleLoginContent
             console.log('Family Name: ' + profile.getFamilyName());
             console.log("Image URL: " + profile.getImageUrl());
             console.log("Email: " + profile.getEmail());
+
+            emailaddress = profile.getEmail();
+
 
             putEmail(profile.getEmail());
 
@@ -110,9 +115,13 @@ block content
                         each caption, imglink in {"rice.png": "Rice", "spaguetti.png": "Spaguetti", "noodles.png": "Noodles", "cracker.png": "Cracker", "quinoa.png": "Quinoa", "croissant.png": "Croissant", "cereals.png": "Cereals", "oat.png": "Oat", "bread.png": "Bread", "hebrew.png": "Hebrew", "flour.png": "Flour", "tortillas.png": "Tortillas"}
                             div(class = "column")
                                 figure(class="itemSelector faded")
-                                    button(class="itemButton")
-                                        img(src= "\\img\\icons\\" + imglink)
-                                    figcaption= caption
+                                    form(method='POST' action='/i/fridge/create')
+                                        div.form-group
+                                            input#emailformc.form-control(type='text' name='email' style='display: none;' class='placeemail')
+                                            input#foodformc.form-control(type='text' name='food' value= caption style='display: none;')
+                                        button(class="itemButton" type="submit")
+                                            img(src= "\\img\\icons\\" + imglink)
+                                        figcaption= caption
                 br
                 div(class="col-lg-10 mx-auto")
                     h3(class="fridgeList") Current Items:
@@ -120,9 +129,11 @@ block content
 
             script.
                 function putEmail(email) {
-                    document.getElementById('emailformc').value = email;
-                    document.getElementById('emailformd').value = email;
-                    console.log("Replaced with: " + email);
+                    let emailfields = document.getElementsByClassName("placeemail");
+
+                    for (let i = 0; i < emailfields.length; i++) {
+                        emailfields[i].value = emailaddress;
+                    }
                 }
 
             h3 form: CREATE
@@ -130,7 +141,7 @@ block content
             form(method='POST' action='/i/fridge/create')
                 div.form-group
                     label(for='foodformc') Food:
-                    input#emailformc.form-control(type='text' name='email' style='display: none;')
+                    input#emailformc.form-control(type='text' name='email' style='display: none;' class='placeemail')
                     input#foodformc.form-control(type='text' name='food' value=(undefined === food ? '' : food))
                 button.btn.btn-primary(type='submit') Submit
 
@@ -144,7 +155,7 @@ block content
                 form(method='POST' action='/i/fridge/delete')
                     div.form-group
                         label(for='foodformd') Food:
-                        input#emailformd.form-control(type='text' name='email' style='display: none;')
+                        input#emailformd.form-control(type='text' name='email' style='display: none;' class='placeemail')
                         input#foodformd.form-control(type='text' name='food' value=(undefined === food ? '' : food))
                     button.btn.btn-primary(type='submit') Submit
 
