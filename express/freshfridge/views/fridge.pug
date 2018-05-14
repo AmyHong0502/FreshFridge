@@ -27,6 +27,7 @@ block googleLoginContent
             console.log("Email: " + profile.getEmail());
 
             putEmail(profile.getEmail());
+            getData(profile.getEmail());
 
             // The ID token you need to pass to your backend:
             var id_token = googleUser.getAuthResponse().id_token;
@@ -55,10 +56,8 @@ block content
                     }
 
                 div#fromdb
-                    // - var profile = profile.getEmail();
-                    // each food in fridge_list
-                    //p email: #{food.email}, food: #{food.food}, login: #{profile}
-                    //p(class=food.toString()) 111
+                    each food in fridge_list
+                        input(type='text' class='jsonfromdb' value=food.toString() style='display: none;')
 
                 div#myDIV(class="input-group input-group-lg header")
                     input#myInput(type="text" name="add" class="form-control" placeholder="Search")
@@ -69,7 +68,7 @@ block content
                     div(class="row")
                         each caption, imglink in {"beef.png": "Beef", "whole-chicken.png": "Whole Chicken", "pork.png": "Pork", "salmon.png": "Salmon", "tuna.png": "Tuna", "chicken-leg.png": "Chicken Leg", "turkey.png": "Turkey", "ham.png": "Ham", "sausage.png": "Sausage", "shrimp.png": "Shrimp", "crab.png": "Crab", "salami.png": "Salami", "oyster.png": "Oyster", "lobster.png": "Lobster", "squid.png": "Squid", "sardine.png": "Sardine", "anchovy.png": "Anchovy", "halibut.png": "Halibut"}
                             div(class = "column")
-                                figure(class="itemSelector faded")
+                                figure(class="itemSelector faded foodFigure")
                                     button(class="itemButton")
                                         img(src= "\\img\\icons\\" + imglink)
                                     figcaption= caption
@@ -79,7 +78,7 @@ block content
                     div(class="row")
                         each caption, imglink in {"milk.png": "Milk", "yogurt.png": "Yogurt", "egg.png": "Egg", "ice-cream.png": "Ice Cream", "butter.png": "Butter", "cheese.png": "Cheese"}
                             div(class = "column")
-                                figure(class="itemSelector faded")
+                                figure(class="itemSelector faded foodFigure")
                                     button(class="itemButton")
                                         img(src= "\\img\\icons\\" + imglink)
                                     figcaption= caption
@@ -89,7 +88,7 @@ block content
                     div(class="row")
                         each caption, imglink in {"apple.png": "Apple", "bananas.png": "Banana", "orange.png": "Orange", "strawberry.png": "Strawberry", "blueberries.png": "Blueberry", "cherries.png": "Cherry", "kiwi.png": "Kiwi", "grapes.png": "Grape", "watermelon.png": "Watermelon", "pineapple.png": "Pineapple", "coconut.png": "Coconut", "peach.png": "Peach", "raspberry.png": "Raspberry", "mango.png": "Mango", "papaya.png": "Papaya", "pomegranate.png": "Pomegranate", "plum.png": "Plum", "lemon.png": "Lemon"}
                             div(class = "column")
-                                figure(class="itemSelector faded")
+                                figure(class="itemSelector faded foodFigure")
                                     button(class="itemButton")
                                         img(src= "\\img\\icons\\" + imglink)
                                     figcaption= caption
@@ -99,7 +98,7 @@ block content
                     div(class="row")
                         each caption, imglink in {"carrot.png": "Carrot", "lettuce.png": "Lettuce", "spinach.png": "Spinach", "tomato.png": "Tomato", "broccoli.png": "Broccoli", "onion.png": "Onion", "garlic.png": "Garlic", "potato.png": "Potato", "pepper.png": "Pepper", "corn.png": "Corn", "mushroom.png": "Mushroom", "ginger.png": "Ginger", "celery.png": "Celery", "cucumber.png": "Cucumber", "eggplant.png": "Eggplant", "sweet-potato.png": "Sweet Potato", "radish.png": "Radish", "asparagus.png": "Asparagus"}
                             div(class = "column")
-                                figure(class="itemSelector faded")
+                                figure(class="itemSelector faded foodFigure")
                                     button(class="itemButton")
                                         img(src= "\\img\\icons\\" + imglink)
                                     figcaption= caption
@@ -109,7 +108,7 @@ block content
                     div(class="row")
                         each caption, imglink in {"rice.png": "Rice", "spaguetti.png": "Spaguetti", "noodles.png": "Noodles", "cracker.png": "Cracker", "quinoa.png": "Quinoa", "croissant.png": "Croissant", "cereals.png": "Cereals", "oat.png": "Oat", "bread.png": "Bread", "hebrew.png": "Hebrew", "flour.png": "Flour", "tortillas.png": "Tortillas"}
                             div(class = "column")
-                                figure(class="itemSelector faded")
+                                figure(class="itemSelector faded foodFigure" caption= caption)
                                     form(method='POST' action='/i/fridge/process')
                                         div.form-group
                                             input#emailformc.form-control(type='text' name='email' style='display: none;' class='placeemail')
@@ -128,5 +127,40 @@ block content
 
                     for (let i = 0; i < emailFields.length; i++) {
                         emailFields[i].value = email;
+                    }
+                }
+
+                function getData(email) {
+                    let database = document.getElementsByClassName("jsonfromdb");
+                    let foodResults = [];
+
+                    for (let i = 0; i < database.length; i++) {
+                        let data = database[i].value;
+                        let extract = /.*food: '(.*)'.*/;
+
+                        if (data.includes(email)) {
+                            let value = data.replace(extract, "$1");
+                            foodResults.push(value);
+                        }
+                    }
+
+                    IterateDB(foodResults);
+                }
+
+                function IterateDB(foodsFromDB) {
+                    let foodItems = document.getElementsByClassName("foodFigure");
+
+                    for (let i = 0; i < foodItems.length; i++) {
+                        let food = foodItems[i];
+                        let caption = food.getElementsByTagName('figcaption')[0].innerHTML;
+
+                        for (let j = 0; j < foodsFromDB.length; j++) {
+                            let dbItem = foodsFromDB[j];
+
+                            if (caption.includes(dbItem)) {
+                                food.classList.remove('faded');
+                                console.log("removed faded: " + dbItem);
+                            }
+                        }
                     }
                 }
