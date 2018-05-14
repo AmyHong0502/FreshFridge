@@ -29,6 +29,10 @@ exports.fridge_process = function(req, res, next) {
         {email: req.body.email, food: req.body.food}
     );
 
+    if (req.body.email === "") {
+        res.redirect('/login');
+    }
+
     console.log("email: " + req.body.email);
     console.log("food: " + req.body.food);
 
