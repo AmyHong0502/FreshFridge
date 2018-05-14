@@ -23,7 +23,7 @@ exports.fridge_detail = function (req, res) {
 };
 
 // Handle Fridge create on POST
-exports.fridge_create_post = function (req, res) {
+exports.fridge_create_post = function (req, res,  next) {
     let fridge = new Fridge(
         {email: req.body.email, food: req.body.food}
     );
@@ -51,24 +51,8 @@ exports.fridge_create_post = function (req, res) {
     });
 };
 
-// // Display Fridge delete form on GET
-// exports.fridge_delete_get = function(req, res) {
-//     async.parallel({
-//         fridge: function (callback) {
-//             Fridge.findById(req.params.id).exec(callback);
-//         },
-//     }, function(err, results) {
-//         if (err) {return next(err); }
-//         if (results.email== null) { // no results
-//             res.redirect('/i/fridge');
-//         }
-//         // successful, so render
-//         res.render('fridge', {title: 'freshfridge: DELETE-GET result'});
-//     })
-// };
-
 // Handle Fridge delete on POST
-exports.fridge_delete_post = function (req, res) {
+exports.fridge_delete_post = function (req, res, next) {
     console.log("email: " + req.body.email);
     console.log("food: " + req.body.food);
 
@@ -83,4 +67,47 @@ exports.fridge_delete_post = function (req, res) {
         // successful, so render
         res.render('fridge', {title: 'freshfridge: DELETE-POST result'});
     })
+};
+
+exports.fridge_process = function(req, res, next) {
+    console.log("Start Process");
+
+    let fridge = new Fridge(
+        {email: req.body.email, food: req.body.food}
+    );
+
+    console.log("email: " + req.body.email);
+    console.log("food: " + req.body.food);
+
+    Fridge.findOne({
+        'email': req.body.email,
+        'food': req.body.food
+    }).exec(function (err, found_fridge) {
+        if (err) {
+            return next(err);
+        }
+        if (found_fridge) {
+            // food is in this fridge,
+            // send a message to tell the user it already exists.
+            Fridge.findOneAndRemove({
+                'email': req.body.email,
+                'food': req.body.food
+            }).exec(function(err, results) {
+                if (err) {
+                    return next(err);
+                }
+
+                // successful, return to /fridge
+                res.redirect('/i/fridge');
+            })
+        } else {
+            fridge.save(function (err) {
+                if (err) {
+                    return next(err);
+                }
+
+                res.redirect('/i/fridge');
+            })
+        }
+    });
 };

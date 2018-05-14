@@ -115,7 +115,7 @@ block content
                         each caption, imglink in {"rice.png": "Rice", "spaguetti.png": "Spaguetti", "noodles.png": "Noodles", "cracker.png": "Cracker", "quinoa.png": "Quinoa", "croissant.png": "Croissant", "cereals.png": "Cereals", "oat.png": "Oat", "bread.png": "Bread", "hebrew.png": "Hebrew", "flour.png": "Flour", "tortillas.png": "Tortillas"}
                             div(class = "column")
                                 figure(class="itemSelector faded")
-                                    form(method='POST' action='/i/fridge/create')
+                                    form(method='POST' action='/i/fridge/process')
                                         div.form-group
                                             input#emailformc.form-control(type='text' name='email' style='display: none;' class='placeemail')
                                             input#foodformc.form-control(type='text' name='food' value= caption style='display: none;')

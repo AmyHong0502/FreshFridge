@@ -29,6 +29,8 @@ let async = require('async');
 // Fridge Routes //
 router.get('/fridge', fridge_controller.fridge_list);
 
+router.post('/fridge/process', fridge_controller.fridge_process);
+
 router.post('/fridge/create', fridge_controller.fridge_create_post);
 
 router.post('/fridge/delete', fridge_controller.fridge_delete_post);
