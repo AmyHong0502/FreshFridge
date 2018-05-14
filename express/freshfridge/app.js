@@ -1,26 +1,26 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
+let createError = require('http-errors');
+let express = require('express');
+let path = require('path');
 // var favicon = require('serve-favicon'); // uncomment after placing our favicon in /public
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var bodyParser = require('body-parser');
+let cookieParser = require('cookie-parser');
+let logger = require('morgan');
+let bodyParser = require('body-parser');
 
-var indexRouter = require('./routes/index');
-var iRouter = require('./routes/i');
-var loginRouter = require('./routes/login');
-var recipeRouter = require('./routes/recipe');
-var tipsRouter = require('./routes/tips');
+let indexRouter = require('./routes/index');
+let iRouter = require('./routes/i');
+let tipsRouter = require('./routes/tips');
+let loginRouter = require('./routes/login');
+let recipeRouter = require('./routes/recipe');
 
-var app = express();
+let app = express();
 
 
 //Set up mongoose connection
-var mongoose = require('mongoose');
-var mongoDB = 'mongodb://dev2910:freshfridgetk@ds113200.mlab.com:13200/comp2910ff';
+let mongoose = require('mongoose');
+let mongoDB = 'mongodb://dev2910:freshfridgetk@ds113200.mlab.com:13200/comp2910ff';
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
-var db = mongoose.connection;
+let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 
