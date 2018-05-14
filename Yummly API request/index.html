@@ -92,18 +92,19 @@
                     <button type="submit" name="Submit-to-Node" onclick="submission()" class="btn btn-large btn-primary" id="btnsubmit" style="width:140px">Submit</button>
                 </div>
                 <div id="myDIV" class="header">
-                    <ul id="ingredientsUL"></ul>    
+                    <ul id="ingredientsUL"></ul>
                 </div>
                 <div>
-                    <table id="recipes" class="read-more-wrap"><table> //class="read-more-target"
-                    <label for="post-2" class="read-more-trigger"></label>
-                </div>
-                <div>
-                    <table id="newrecipe">
-                    </table>
+                    <div id="recipes" class="read-more-wrap">
+
+                        <label for="post-2" class="read-more-trigger"></label>
+                    </div>
+                    <div>
+                        <table id="newrecipe">
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
     </section>
 
 
@@ -170,11 +171,11 @@
 </html>
 <script>
     // to start server http-server . -o
-    
-    
+
+
     // Declaring http protocol request
     const xhttp = new XMLHttpRequest();
-    
+
     // Counts the amount of ingredients within ingredientArray.
     var ingredientCount = 0;
 
@@ -186,29 +187,38 @@
 
     // Global data for GET request
     var gl_data = [];
-    
+
     // Jquery var for HTML Id newrecipe
     var newTable = $('#newrecipe');
-    
+
     // Jquery var for HTML Id recipe
     var table = $('#recipes');
+    // Keeps track of the amount of times the "Show more" button has been clicked
+    var clickCount = 1
 
+    function clickMore() {
+        clickCount++;
+        submission(clickCount);
+
+
+
+
+    }
     // When submit button is clicked this function is called
     // Sends Array of ingredients to app2.JS Node*
     // POST to http://127.0.0.1:3000/recipeURL
     function submission() {
-        //console.log("unfiltered = " + ingredientArray);
         var submitArray;
         submitArray = filter_array(ingredientArray);
         //console.log("filtered = " + submitArray);
-        let url = "http://127.0.0.1:3000/recipeURL";
+        let url = "http://127.0.0.1:3000/recipeURL?clickMore=" + clickCount;
 
         xhttp.open("POST", url, true);
 
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
         xhttp.send(submitArray);
-       // console.log("filtering");
+        // console.log("filtering");
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 fetchingAllRecipes();
@@ -219,10 +229,42 @@
 
 
     }
-        // Once submission() is successful, this function is called.
+
+
+
+
+    // Remove ingredient from array and turns spot into undefined
+    function removeFruit(ingredientId) {
+        //alert(ingredientId);
+        var index = (ingredientId);
+        ingredientArray[index] = null;
+    }
+
+
+    // Removes undefined and null objects from Array. 
+    // Function is used before sending to node.
+    function filter_array(test_array) {
+        var temp = [];
+        var spotCounter = 0;
+        var i;
+        for (i = 0; i < test_array.length; i++) {
+            if (test_array[i] != undefined) {
+                temp[spotCounter] = test_array[i];
+                spotCounter++;
+
+            }
+
+
+
+        }
+        <!-- // Discretely passing clickCount through ingredientArray into Node Server -->
+        <!-- temp[spotCounter] = "!!clickCount " + clickCount; -->
+        return temp;
+    }
+    // Once submission() is successful, this function is called.
     // It fetches the recipes that are provided from the API
     function fetchingAllRecipes() {
-       // console.log("okay");
+        // console.log("okay");
         let url = "http://127.0.0.1:3000/recipes";
         xhttp.open("GET", url, true);
         xhttp.send();
@@ -233,8 +275,8 @@
         function processRequest() {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
 
-               // console.log("did it");
-               // console.log(xhttp.responseText);
+                // console.log("did it");
+                // console.log(xhttp.responseText);
                 var response = JSON.parse(xhttp.responseText);
                 gl_data = JSON.parse(xhttp.responseText);
                 appendRequest(response);
@@ -250,29 +292,28 @@
 
         }
     }
-    
-       // Processes initial JSON object and appends it to HTML Elements
+
+    // Processes initial JSON object and appends it to HTML Elements
     function appendRequest(data) {
-        var i;
-        var arrLength = data['matches'].length;
-        console.log(arrLength);
-        for (i = 0; i < arrLength; i++) {
-            var img = data['matches'][i]['imageUrlsBySize']
+        table.append("<div class='row' >");
+
+        for (var i = 0; i < data.matches.length; i++) {
+            var img = data['matches'][i]['imageUrlsBySize'];
             // Formats image size before sending request --
             var recipeId = "" + Object.keys(img).map(function(key) {
                 return img[key]
             });
+
             var res = recipeId.replace(/=s90-c/g, "=s240-c");
             // ----------------------------------------------
-           // console.log("appending");
-            table.append("<tr><td>" + "Recipe Name: " + data['matches'][i]["recipeName"]);
-            table.append("<a id=" + i + "  onClick='send_recipeURL(this.id)' '>" + "<img  src='" + res + "' class='hello' />" + "</a>");
-            table.append("<tr><td>" + "--------------------------------" + "</td></tr>");
+
+            table.append("<div class='col-md-4'>");
+            table.append("<a id='" + i + "'  onClick='send_recipeURL(this.id)' '>" + "<img src='" + res + "'  />" + "</a>");
+            table.append("</div>");
         }
-        $( "<input type='checkbox' class='read-more-state' id='post-2' onClick='clickMore()' />" ).insertBefore( ".read-more-wrap" );
+
+        $("<input type='checkbox' class='read-more-state' id='post-2' onClick='clickMore()' />").insertBefore(".read-more-wrap");
     }
-
-
 
 
 
@@ -294,9 +335,9 @@
             }
         };
     }
-    
-    
-     // Gets clicked Recipe Specifics
+
+
+    // Gets clicked Recipe Specifics
     function getSpecificRecipe() {
         let url = "http://127.0.0.1:3000/specifiedrecipe";
         xhttp.open("GET", url, true);
@@ -314,20 +355,22 @@
 
         };
     }
-    
-    
-     // Appends the clicked recipe specifics to the layout
-     function processRecipe(body) {
+
+
+    // Appends the clicked recipe specifics to the layout
+    function processRecipe(body) {
 
         var img = body['images'][0].hostedLargeUrl;
         console.log(body['name']);
-        newTable.append("<img  src='" + img + "' class='hello' />");
+        newTable.append("<img  src='" + img + " />");
         newTable.append("<tr><td>" + "Recipe name: " + body['name']);
         newTable.append("<tr><td>" + "Ingredients: " + body['ingredientLines']);
 
     }
 
- 
+
+
+
     // Error handling for xhttp requests.
     function handleError(status) {
         if (status === 400) {
@@ -339,14 +382,9 @@
         }
     }
 
-  function clickMore() {
-  
-  
-  }
 
 
-/// Everything to do with input is in grayscale.min.js
-/// This includes the dynamic array that is effected with UI changes ie ingredient is removed
 
- 
+    /// Everything to do with input is in grayscale.min.js
+    /// This includes the dynamic array that is effected with UI changes ie ingredient is removed
 </script>

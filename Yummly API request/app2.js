@@ -10,25 +10,23 @@ app.use(bodyParser.urlencoded());
 app.use('/static', express.static('stuff'));
 
 
-
-
 // Sets up port for server
 const port = 3000
 app.listen(port, () => console.log('My app listening on port ' + port));
 
 
-
-
-
-
 // Waits for POST request from Recipe.html (http://127.0.0.1:3000/recipesURL) 
 // send Recipe API data
+var clickCount;
 constraintArray = [];
 app.post('/recipeURL', function(req, res) {
     // To allow Cross domain referencing (CORS)
     res.setHeader('Content-Type', 'application/text');
     res.setHeader("Access-Control-Allow-Origin", "*");
     console.log(req.body);
+    
+    clickCount = req.query.clickMore;
+    console.log(clickCount);
     // Turns req.body into an array of index 0
     constraintArray = (Object.keys(req.body));
     // Turns splits the array with delimiter
@@ -36,8 +34,6 @@ app.post('/recipeURL', function(req, res) {
     format_array(temp);
     res.end();
 });
-
-
 
 
 // Waits for POST request from Recipe.html (http://127.0.0.1:3000/recipesID) 
@@ -132,10 +128,14 @@ function sendConstraintsAPI(callback) {
 
 }
 
+
+
 //Waits for GET request from http://127.0.0.1:3000/specifiedrecipe  
 // Gets all recipes from given constrains in JSON format 
 app.get('/recipes', function(req, res) {
     // To allow Cross domain referencing (CORS)
+  
+ 
     res.setHeader('Content-Type', 'application/json');
     res.setHeader("Access-Control-Allow-Origin", "*");
     sendConstraintsAPI(function(err, data) {
@@ -153,8 +153,17 @@ app.get('/recipes', function(req, res) {
 });
 
 
-
-
+   var clickedMore = 1
+app.post('/clickMore', function(req, res) {
+    // To allow Cross domain referencing (CORS)
+    res.setHeader('Content-Type', 'application/text');
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    console.log("Click count recieved");
+    clickedMore = (Object.keys(req.body)[0]);
+    console.log(req.body);
+    console.log("sending recipe");
+    res.end();
+});
 
 
 
@@ -173,54 +182,9 @@ function format_array(constraints) {
         }
 
     }
-    URL += concatenatedIngredients;
+        URL += concatenatedIngredients;
+    URL +=  "&maxResult=6&start=" + ((clickCount * 6) + 1)
+    console.log(URL);
 
 }
 
-
-
-
-
-
-
-
-// OLD CODE FOR RECIPE SPECIFICS DONT GET RID OF THIS
-///////////////////////////////////////////////////////
-
-
-
-
-//Sends specific recipe ID to Yummly API, receives recipes specifics in JSON. 
-// // Appends responds to specific variable
-// var specificIngredient;
-
-// function sendRecipe(recipe) {
-// request(recipe, {
-// json: true
-// }, function(err, re, realRecipe) {
-// if (err) {
-// console.log(err);
-// }
-// // console.log(realRecipe);
-// specificIngredient = realRecipe;
-// console.log(specificIngredient);
-// console.log("HEY");
-
-// });
-// }
-
-
-
-// //Waits for GET request from http://127.0.0.1:3000/specifiedrecipe  /  
-// // Sends specific variable with JSON data.
-// app.get('/specifiedrecipe', function(req, res) {
-
-// // To allow Cross domain referencing (CORS)
-// console.log("recieved another request");
-// res.setHeader('Content-Type', 'application/json');
-// res.setHeader("Access-Control-Allow-Origin", "*");
-// console.log("sending specific");
-// res.send(specificIngredient);
-// res.end();
-
-// });

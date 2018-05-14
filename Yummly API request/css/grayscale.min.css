@@ -270,19 +270,12 @@ color: black;
   transition: .25s ease;
 }
 
-.read-more-state:checked ~ .read-more-wrap .read-more-target {
-  opacity: 1;
-  font-size: inherit;
-  max-height: 999em;
-}
+
 
 .read-more-state ~ .read-more-trigger:before {
   content: 'Show more';
 }
 
-.read-more-state:checked ~ .read-more-trigger:before {
-  content: 'Show less';
-}
 
 /* Show more button styling */
 .read-more-trigger {
