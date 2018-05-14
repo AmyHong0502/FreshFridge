@@ -69,3 +69,115 @@ Start Bootstrap is based on the [Bootstrap](http://getbootstrap.com/) framework 
 ## Copyright and License
 
 Copyright 2013-2018 Blackrock Digital LLC. Code released under the [MIT](https://github.com/BlackrockDigital/startbootstrap-grayscale/blob/gh-pages/LICENSE) license.
+
+## File Structure
+
++ ajax.html
+  - JavaScript Files:
+    - Script/jquery-1.5.2.min.js
+    - Script/jquery.tmpl.min.js
+
+
++ index.html
+  - Template JavaScript Files:
+    - vendor/jquery/jquery.min.js
+    - vendor/bootstrap/js/bootstrap.bundle.min.js
+    - vendor/jquery-easing/jquery.easing.min.js
+    - vendor/bootstrap/css/bootstrap.min.css
+    
+  - Template CSS Files:
+    - vendor/font-awesome/css/font-awesome.min.css
+  
+  - Custom JavaScript Files:
+    - js/grayscale.min.js
+    
+  - Custom CSS Files:
+    - css/grayscale.min.css
+    
+    
++ login.html
+  - Template JavaScript Files:
+    - vendor/jquery/jquery.min.js
+    - vendor/bootstrap/js/bootstrap.bundle.min.js
+    - vendor/jquery-easing/jquery.easing.min.js
+    - vendor/bootstrap/css/bootstrap.min.css
+
+  - Template CSS Files:
+    - vendor/font-awesome/css/font-awesome.min.css
+
+  - Custom JavaScript Files:
+    - js/grayscale.min.js
+
+  - Custom CSS Files:
+    - css/grayscale.min.css
+    
+    
++ myfridge.html
+  - Template JavaScript Files:
+    - vendor/jquery/jquery.min.js
+    - vendor/bootstrap/js/bootstrap.bundle.min.js
+    - vendor/jquery-easing/jquery.easing.min.js
+    - vendor/bootstrap/css/bootstrap.min.css
+
+  - Template CSS Files:
+    - vendor/font-awesome/css/font-awesome.min.css
+
+  - Custom JavaScript Files:
+    - js/grayscale.min.js
+    - buttonFade.js
+
+  - Custom CSS Files:
+    - css/grayscale.min.css
+    - imageFade.css
+    
+    
++ myrecipes.html
+  - Template JavaScript Files:
+    - vendor/jquery/jquery.min.js
+    - vendor/bootstrap/js/bootstrap.bundle.min.js
+    - vendor/jquery-easing/jquery.easing.min.js
+    - vendor/bootstrap/css/bootstrap.min.css
+
+  - Template CSS Files:
+    - vendor/font-awesome/css/font-awesome.min.css
+
+  - Custom JavaScript Files:
+    - js/grayscale.min.js
+
+  - Custom CSS Files:
+    - css/grayscale.min.css
+    
+    
++ signup.html
+  - Template JavaScript Files:
+    - vendor/jquery/jquery.min.js
+    - vendor/bootstrap/js/bootstrap.bundle.min.js
+    - vendor/jquery-easing/jquery.easing.min.js
+    - vendor/bootstrap/css/bootstrap.min.css
+
+  - Template CSS Files:
+    - vendor/font-awesome/css/font-awesome.min.css
+
+  - Custom JavaScript Files:
+    - js/grayscale.min.js
+
+  - Custom CSS Files:
+    - css/grayscale.min.css
+   
++ tips.html
+  - Template JavaScript Files:
+    - vendor/jquery/jquery.min.js
+    - vendor/bootstrap/js/bootstrap.bundle.min.js
+    - vendor/jquery-easing/jquery.easing.min.js
+    - vendor/bootstrap/css/bootstrap.min.css
+
+  - Template CSS Files:
+    - vendor/font-awesome/css/font-awesome.min.css
+
+  - Custom JavaScript Files:
+    - js/grayscale.min.js
+
+  - Custom CSS Files:
+    - css/grayscale.min.css
+  
+  
