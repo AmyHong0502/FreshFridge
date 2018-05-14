@@ -46,19 +46,13 @@ router.post('/fridge/process', fridge_controller.fridge_process);
 //     });
 // });
 
-// router.get('/shopping-list', function (req, res, next) {
-//     async.parallel({
-//         shoppingList_count: function (callback) {
-//             ShoppingList.count({}, callback);
-//         }
-//     }, function (err, results) {
-//         res.render('shopping-list', {
-//             title: 'FreshFridge',
-//             subtitle: 'Save food and save money.',
-//             error: err,
-//             data: results
-//         });
-//     });
-// });
+
+router.get('/shopping-list', function (req, res, next) {
+    res.render('shopping-list', {
+        title: 'FreshFridge',
+        subtitle: 'Save food and save money.'
+    });
+});
+
 
 module.exports = router;
