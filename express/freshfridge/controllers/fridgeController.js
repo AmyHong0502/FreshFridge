@@ -22,53 +22,6 @@ exports.fridge_detail = function (req, res) {
     res.send('NOT IMPLEMENTED: Fridge detail: ' + req.params.id);
 };
 
-// Handle Fridge create on POST
-exports.fridge_create_post = function (req, res,  next) {
-    let fridge = new Fridge(
-        {email: req.body.email, food: req.body.food}
-    );
-
-    console.log("email: " + req.body.email);
-    console.log("food: " + req.body.food);
-
-    Fridge.findOne({
-        'email': req.body.email,
-        'food': req.body.food
-    }).exec(function (err, found_fridge) {
-        if (err) {
-            return next(err);
-        }
-        if (found_fridge) {
-            // food is in this fridge, send a message to tell the user it already exists.
-        } else {
-            fridge.save(function (err) {
-                if (err) {
-                    return next(err);
-                }
-                res.render('fridge', {title: 'FreshFridge: Result from Create-Post'});
-            })
-        }
-    });
-};
-
-// Handle Fridge delete on POST
-exports.fridge_delete_post = function (req, res, next) {
-    console.log("email: " + req.body.email);
-    console.log("food: " + req.body.food);
-
-    Fridge.findOneAndRemove({
-        'email': req.body.email,
-        'food': req.body.food
-    }).exec(function (err, results) {
-        if (err) {
-            return next(err);
-        }
-
-        // successful, so render
-        res.render('fridge', {title: 'freshfridge: DELETE-POST result'});
-    })
-};
-
 exports.fridge_process = function(req, res, next) {
     console.log("Start Process");
 

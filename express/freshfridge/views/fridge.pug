@@ -16,8 +16,6 @@ block googleLoginContent
     div(class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="display: none;")
 
     script.
-        let emailaddress;
-
         function onSignIn(googleUser) {
             // Useful data for your client-side scripts:
             var profile = googleUser.getBasicProfile();
@@ -27,9 +25,6 @@ block googleLoginContent
             console.log('Family Name: ' + profile.getFamilyName());
             console.log("Image URL: " + profile.getImageUrl());
             console.log("Email: " + profile.getEmail());
-
-            emailaddress = profile.getEmail();
-
 
             putEmail(profile.getEmail());
 
@@ -129,37 +124,9 @@ block content
 
             script.
                 function putEmail(email) {
-                    let emailfields = document.getElementsByClassName("placeemail");
+                    let emailFields = document.getElementsByClassName("placeemail");
 
-                    for (let i = 0; i < emailfields.length; i++) {
-                        emailfields[i].value = emailaddress;
+                    for (let i = 0; i < emailFields.length; i++) {
+                        emailFields[i].value = email;
                     }
                 }
-
-            h3 form: CREATE
-
-            form(method='POST' action='/i/fridge/create')
-                div.form-group
-                    label(for='foodformc') Food:
-                    input#emailformc.form-control(type='text' name='email' style='display: none;' class='placeemail')
-                    input#foodformc.form-control(type='text' name='food' value=(undefined === food ? '' : food))
-                button.btn.btn-primary(type='submit') Submit
-
-            if errors
-                ul
-                    for error in errors
-                        li!= error.msg
-
-            h3 form: DELETE
-
-                form(method='POST' action='/i/fridge/delete')
-                    div.form-group
-                        label(for='foodformd') Food:
-                        input#emailformd.form-control(type='text' name='email' style='display: none;' class='placeemail')
-                        input#foodformd.form-control(type='text' name='food' value=(undefined === food ? '' : food))
-                    button.btn.btn-primary(type='submit') Submit
-
-                if errors
-                    ul
-                        for error in errors
-                            li!= error.msg
