@@ -27,10 +27,10 @@ N/A
 
 #### /i/fridge (aka my fridge)
 - Custom JavaScript Files:
-  - buttonFade.js
+  - fridgeButton.js
 
 - Custom CSS Files:
-  - imageFade.css
+  - fridgeButton.css
 
 #### /i/shopping-list
 
