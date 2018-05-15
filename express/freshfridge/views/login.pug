@@ -1,10 +1,5 @@
 extends layout
 
-block googleLogin
-    meta(name='google-signin-scope' content='profile email')
-    meta(name="google-signin-client_id" content="725273597701-5g9etsbbnvq2hvjr25llshmcc4vfqav8.apps.googleusercontent.com")
-    script(src="https://apis.google.com/js/platform.js" async defer)
-
 block content
     header(class="masthead")
         div(class="intro-body")
@@ -16,6 +11,9 @@ block content
                         div#myDIV(class="header")
                             // login button
                             div(class="g-signin2" data-onsuccess="onSignIn" data-theme="dark")
+
+                            // login button 2
+                            div(class="g-signin2" data-onsuccess="onSignIn" )
 
                             // login function
                             script.
