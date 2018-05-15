@@ -90,10 +90,8 @@
                 <ul id="ingredientsUL"></ul>
             </div>
             <div>
-                <div id="recipes" class="read-more-wrap">
-                    <label for="post-2" class="read-more-trigger"></label>
-                </div>
-                <div>
+                <div id="recipes" ></div>
+                <div id="moreButton"  ></div>
                     <table id="newrecipe">
                     </table>
                 </div>
@@ -174,6 +172,9 @@
     // Jquery var for HTML Id newrecipe
     let newTable = $('#newrecipe');
 
+    
+    
+    let moreButton =$('#moreButton');
     // Jquery var for HTML Id recipe
     let table = $('#recipes');
     // Keeps track of the amount of times the "Show more" button has been clicked
@@ -264,20 +265,45 @@
         table.append("<div class='row' >");
 
         for (let i = 0; i < data.matches.length; i++) {
+            if ( i == 3) {
+            table.append("<div class='row' >");
+            
+            }
             let img = data['matches'][i]['imageUrlsBySize'];
             // Formats image size before sending request --
             let recipeId = "" + Object.keys(img).map(function (key) {
                 return img[key]
             });
-
+            let recipeTitle
             let res = recipeId.replace(/=s90-c/g, "=s240-c");
+            // ----------------------------------------------
+            let imageNode = document.createElement("img");
+            imageNode.src = res;
+            imageNode.setAttribute("id",i);
+            // ----------------------------------------------
+            imageNode.setAttribute("onClick", "send_recipeURL(this.id)");  
+            let cellNode = document.createElement("td");
+            cellNode.appendChild(imageNode);
+            // ----------------------------------------------
+            let titleNode = document.createElement("p");
+            titleNode.append(data['matches'][i]['recipeName']);
+            cellNode.appendChild(titleNode);
+            
+            
+            
+            table.append(cellNode);
 
-            table.append("<div class='col-md-4'>");
-            table.append("<a id='" + i + "'  onClick='send_recipeURL(this.id)' '>" + "<img src='" + res + "'  />" + "</a>");
-            table.append("</div>");
+
+        }
+        if (clickCount == 1) {
+        let buttonNode = document.createElement("button");
+        buttonNode.setAttribute("onClick","clickMore()");
+        buttonNode.setAttribute("value", "showMorebtn");
+        buttonNode.setAttribute("class","btn btn-primary");
+        buttonNode.append("Show more");
+        moreButton.append(buttonNode);
         }
 
-        $("<input type='checkbox' class='read-more-state' id='post-2' onClick='clickMore()'/>").insertBefore(".read-more-wrap");
     }
 
 
@@ -320,26 +346,30 @@
 
     // Appends the clicked recipe specifics to the layout
     function processRecipe(body) {
-        let imgURL = body['images'][0].hostedLargeUrl;
-        console.log(body['name']);
+        <!-- let imgURL = body['images'][0].hostedLargeUrl; -->
+        <!-- console.log(body['name']); -->
 
+        let recipeImage = body['images'][0].hostedLargeUrl;
+        let imageNode = document.createElement("img"); 
+        imageNode.src = recipeImage; 
+        newTable.append(imageNode);
+        <!-- let cellNode = document.createElement("td"); -->
 
-        let imageNode = document.createElement("img");
-        imageNode.src = imgURL;
+        <!-- let pNameNode = document.createElement("p"); -->
+        <!-- pNameNode.append("Recipe name: " + body['name']); -->
+        <!-- cellNode.appendChild(pNameNode); -->
+        <!-- let pIngredientsNode = document.createElement('p'); -->
+        <!-- pIngredientsNode.append("Recipe name: " + body['name']); -->
+        <!-- cellNode.appendChild(pIngredientsNode); -->
 
-        let cellNode = document.createElement("td");
+        <!-- cellNode.appendChild(imageNode); -->
 
-        let pNameNode = document.createElement("p");
-        pNameNode.append("Recipe name: " + body['name']);
-        cellNode.appendChild(pNameNode);
-        let pIngredientsNode = document.createElement('p');
-        pIngredientsNode.append("Recipe name: " + body['name']);
-        cellNode.appendChild(pIngredientsNode);
-
-        cellNode.appendChild(imageNode);
-
-        let rowNode = document.createElement("tr");
-        rowNode.appendChild(cellNode);
+        <!-- let rowNode = document.createElement("tr"); -->
+        <!-- rowNode.appendChild(cellNode); -->
+    
+     
+        newTable.append("<tr><td>" + "Recipe name: " + body['name']);
+        newTable.append("<tr><td>" + "Ingredients: " + body['ingredientLines']);
     }
 
 
