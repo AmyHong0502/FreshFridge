@@ -6,6 +6,7 @@ block customCSS
 
 block customJS
     script(src='/js/fridgeButton.js')
+    script(src='/js/fridge-bottom.js')
 
 block googleLogin
     meta(name='google-signin-scope' content='profile email')
@@ -161,6 +162,7 @@ block content
                     }
 
                     IterateDB(foodResults);
+                    writeFoodList(foodResults);
                 }
 
                 function IterateDB(foodsFromDB) {
