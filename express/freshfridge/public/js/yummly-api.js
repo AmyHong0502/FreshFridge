@@ -1,15 +1,4 @@
-// Declaring http protocol request
-const xhttp = new XMLHttpRequest();
-
-// Global data for GET request
-let gl_data = [];
-
-// Jquery var for HTML Id newrecipe
-let newTable = $('#newrecipe');
-
 let moreButton = $('#moreButton');
-// Jquery var for HTML Id recipe
-let table = $('#recipes');
 
 // Keeps track of the amount of times the "Show more" button has been clicked
 let clickCount = 1;
@@ -35,58 +24,52 @@ function extractUserIngredients() {
 }
 
 
-// Once submission() is successful, this function is called.
-// It fetches the recipes that are provided from the API
-function fetchingAllRecipes() {
-    // console.log("okay");
-    let url = "http://freshfridge.tk/recipes";
-    xhttp.open("GET", url, true);
-    xhttp.send();
-    xhttp.onreadystatechange = processRequest;
-
-    function processRequest() {
-        if (xhttp.readyState == 4 && xhttp.status == 200) {
-
-            // console.log("did it");
-            // console.log(xhttp.responseText);
-            let response = JSON.parse(xhttp.responseText);
-            gl_data = JSON.parse(xhttp.responseText);
-            appendRequest(response);
-            response = "";
-            xhttp.responseText = "";
-        } else {
-            handleError(xhttp.status);
-        }
-    }
-}
-
 // Processes initial JSON object and appends it to HTML Elements
-function appendRequest(data) {
-    table.append("<div class='row' >");
+function appendRequest() {
+    let data = document.getElementById('api-data-string').innerText;
+
+    if (data === null || data === "") {
+        return;
+    }
+
+    data = JSON.parse(data);
+    console.log(data);
+
+
+    let table = document.getElementById('api-recipes');
+    let row;
 
     for (let i = 0; i < data.matches.length; i++) {
-        if (i === 3) {
-            table.append("<div class='row' >");
-
+        if (i % 3 === 0) {
+            row = document.createElement('tr');
+            row.className = 'row';
+            table.append(row);
         }
-        let img = data['matches'][i]['imageUrlsBySize'];
-        // Formats image size before sending request --
-        let recipeId = "" + Object.keys(img).map(function (key) {
-            return img[key]
-        });
-        let recipeTitle = "";
-        let res = recipeId.replace(/=s90-c/g, "=s240-c");
+
+        // let img = data.matches.i.imageUrlsBySize[0];
+        // console.log(img);
+
+        console.log(data['matches'][i]['recipeName']);
+
+        let recipeName = data['matches'][i]['recipeName'];
+        let thumbnailURL = data['matches'][i]['imageUrlsBySize'][90];
+        let thumbnailURL2 = data['matches'][i]['smallImageUrls'][0];
+
+        // let res = recipeId.replace(/=s90-c/g, "=s240-c");
         // ----------------------------------------------
+
         let imageNode = document.createElement("img");
-        imageNode.src = res;
-        imageNode.setAttribute("id", i);
+        // imageNode.src = res;
+        imageNode.src = thumbnailURL;
+        imageNode.alt = recipeName;
         // ----------------------------------------------
-        imageNode.setAttribute("onClick", "send_recipeURL(this.id)");
+        // imageNode.setAttribute("onClick", "send_recipeURL(this.id)");
+
         let cellNode = document.createElement("td");
         cellNode.appendChild(imageNode);
-        // ----------------------------------------------
+
         let titleNode = document.createElement("p");
-        titleNode.append(data['matches'][i]['recipeName']);
+        titleNode.append(recipeName);
         cellNode.appendChild(titleNode);
 
         table.append(cellNode);
@@ -236,4 +219,5 @@ function countRecipes() {
 }
 
 countRecipes();
+appendRequest();
 console.log("yummly-api.js included");
