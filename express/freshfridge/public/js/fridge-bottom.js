@@ -26,6 +26,4 @@ function writeFoodList(items) {
             }
         }
     }
-
-
 }

@@ -15,8 +15,6 @@ exports.fridge_list = function (req, res, next) {
 };
 
 exports.fridge_process = function(req, res, next) {
-    console.log("Start Process");
-
     let fridge = new Fridge(
         {email: req.body.email, food: req.body.food}
     );

@@ -14,6 +14,12 @@ let recipeRouter = require('./routes/recipe');
 
 let app = express();
 
+const request = require('request');
+const each = require('async-each');
+app.use(bodyParser.urlencoded());
+app.use('/static', express.static('stuff'));
+
+
 
 //Set up mongoose connection
 let mongoose = require('mongoose');
@@ -32,7 +38,7 @@ app.set('view engine', 'pug');
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -43,19 +49,81 @@ app.use('/login', loginRouter);
 app.use('/recipe', recipeRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.use(function (req, res, next) {
+    next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use(function (err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
+
+
+// Recursively calls the API with a parsed URL that includes the recipe that was click in index.html
+// Only exits when theres an error or a proper response.
+let specificIngredient;
+
+function sendRecipe(callback) {
+    request(recipeURL, {
+        json: true
+    }, function (error, response, specifiedrecipe) {
+        if (!error && response.statusCode === 200) {
+            specificIngredients = specifiedrecipe;
+            if (callback) {
+                return callback(null, specificIngredients);
+            }
+        } else {
+            if (callback) {
+                return callback(error, null);
+            }
+        }
+    })
+}
+
+
+// Recursively calls the API with the URL of the recipe constraints
+// Only exits when theres an error or a proper response.
+function sendConstraintsAPI(callback) {
+    request(URL, {
+        json: true
+    }, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            result = body;
+
+            if (callback) {
+                return callback(null, result);
+            }
+        } else {
+            if (callback) {
+                return callback(error, null);
+            }
+        }
+    });
+}
+
+// Transforms the elements in an array and appends them to the yummly API URL format.
+// EX:   &allowedIngredient[]=
+let URL = "http://api.yummly.com/v1/api/recipes?_app_id=e486debb&_app_key=b7696375acec2618961fcedc1562f8af"
+function format_array(constraints) {
+    let concatenatedIngredients = "";
+
+    for (let i = 0; i < constraints.length; i++) {
+        if (constraints[i] !== "") {
+            let name = constraints[i];
+            constraintArray[i] = "&allowedIngredient[]=" + name;
+            concatenatedIngredients += constraintArray[i]
+        }
+    }
+    URL += concatenatedIngredients;
+    URL += "&maxResult=6&start=" + ((clickCount * 6) + 1);
+    console.log(URL);
+}
+
 
 module.exports = app;
