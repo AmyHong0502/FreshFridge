@@ -203,7 +203,7 @@ body{
 }
 
 /* Styles and positions ingredient input */
- #ingredientLi {
+ .ingredientLi {
      position: relative;
      padding-top: 6px;
      padding-bottom: 6px;
@@ -215,7 +215,7 @@ body{
      list-style-type: none;
 }
 /* Changes color of Ingredients Li */
- #ingredientLi:nth-child(odd) {
+ .ingredientLi:nth-child(odd) {
      background: #f9f9f9;
 }
 
