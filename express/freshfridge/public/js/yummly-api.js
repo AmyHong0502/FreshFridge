@@ -13,35 +13,12 @@ let table = $('#recipes');
 
 // Keeps track of the amount of times the "Show more" button has been clicked
 let clickCount = 1;
-
 function clickMore() {
     clickCount++;
     submission(clickCount);
 }
 
-// When submit button is clicked this function is called
-// Sends Array of ingredients to app2.JS Node*
-// POST to http://127.0.0.1:3000/recipeURL
-function submission() {
-    console.log("start submission");
-    //console.log("filtered = " + submitArray);
-    let url = "http://freshfridge.tk/recipeURL?clickMore=" + clickCount;
-
-    xhttp.open("POST", url, true);
-    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhttp.send(extractUserIngredients());
-
-    // console.log("filtering");
-    xhttp.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            fetchingAllRecipes();
-        } else {
-            handleError(xhttp.status);
-        }
-    };
-}
-
-// Returns the user's input from the <li class='ingredientLi'>.
+// Returns the user's input from every <li class='ingredientLi'>.
 function extractUserIngredients() {
     let userInputs = document.getElementsByClassName('ingredientLi');
     let ingredients = [];
@@ -154,7 +131,7 @@ function getSpecificRecipe() {
 
     function processRequest(e) {
         if (xhttp.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(xhttp.responseText);
+            let response = JSON.parse(xhttp.responseText);
             processRecipe(response);
         } else {
             handleError(xhttp.status);
@@ -164,14 +141,26 @@ function getSpecificRecipe() {
 
 // Appends the clicked recipe specifics to the layout
 function processRecipe(body) {
-    let recipeImage = body['images'][0].hostedLargeUrl;
-    let imageNode = document.createElement("img");
-    imageNode.src = recipeImage;
-    newTable.append(imageNode);
+    let imgURL = body['images'][0].hostedLargeUrl;
+    console.log(body['name']);
 
-    newTable.append("<tr><td>" + "Recipe name: " + body['name']);
-    newTable.append("<tr><td>" + "Ingredients: " + body['ingredientLines']);
+    let imageNode = document.createElement("img");
+    imageNode.src = imgURL;
+
+    let cellNode = document.createElement("td");
+    let pNameNode = document.createElement("p");
+    pNameNode.append("Recipe name: " + body['name']);
+    cellNode.appendChild(pNameNode);
+
+    let pIngredientsNode = document.createElement('p');
+    pIngredientsNode.append("Recipe name: " + body['name']);
+    cellNode.appendChild(pIngredientsNode);
+    cellNode.appendChild(imageNode);
+
+    let rowNode = document.createElement("tr");
+    rowNode.appendChild(cellNode);
 }
+
 
 // Error handling for xhttp requests.
 function handleError(status) {
@@ -187,6 +176,7 @@ function handleError(status) {
 
 // Create a new list item when clicking on the "Add" button
 // Adds new list item to array
+// Used at index.pug, not here.
 function listNewIngredient() {
     console.log("listNewIngredient called");
 
@@ -197,18 +187,13 @@ function listNewIngredient() {
     }
 
     let li = document.createElement("li");
-    li.setAttribute("class", "ingredientLi");
-
     let t = document.createTextNode(inputValue);
+    li.setAttribute("class", "ingredientLi");
     li.appendChild(t);
 
-    document.getElementById("ingredientsUL").appendChild(li);
-
-
     let span = document.createElement("SPAN");
-    span.className = "close";
-
     let txt = document.createTextNode("\u00D7");
+    span.className = "close";
     span.appendChild(txt);
     li.appendChild(span);
 
@@ -219,7 +204,36 @@ function listNewIngredient() {
         }
     }
 
+
+    let inputElement = document.createElement("input");
+    inputElement.type = "text";
+    inputElement.style = "display: none;";
+    inputElement.name = 'ingredient';
+    inputElement.value = inputValue;
+
+    let ul = document.getElementById("ingredientsUL");
+    ul.appendChild(li);
+
+    let form = document.getElementById('request-recipe');
+    form.appendChild(inputElement);
+
     document.getElementById("myInput").value = "";
 }
 
+function countRecipes() {
+    let inputElement = document.createElement("input");
+    inputElement.type = 'number';
+
+    let recipeCount = 0;
+    // let recipeCount = document.getElementsByClassName('className');
+
+    inputElement.value = "" + recipeCount;
+    inputElement.name = 'recipeCount';
+    inputElement.style = "display: none;";
+
+    let formElement = document.getElementById('request-recipe');
+    formElement.appendChild(inputElement);
+}
+
+countRecipes();
 console.log("yummly-api.js included");

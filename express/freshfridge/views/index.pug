@@ -18,22 +18,18 @@ block content
             div(class="col-lg-10 mx-auto")
                 h2 Search Recipes by Ingredients
                 div(class="input-group input-group-lg header")
-                    //form(method='POST' action='/recipes')
-                    input#myInput(
-                    type="text" name="add" class="form-control"
+                    input#myInput(type="text" name="add" class="form-control"
                     placeholder="Enter Ingredients..")
-                    button#btnadd(
-                    name="add-to-list" onclick="listNewIngredient();"
+                    button#btnadd(name="add-to-list" onclick="listNewIngredient();"
                     class="btn btn-large btn-primary" style="width:140px") Add
-                    button#btnsubmit(type="submit" name="Submit-to-Node" onclick="submission();"
-                    class="btn btn-large btn-primary" style="width:140px") Submit
-                    button(onclick="extractUserIngredients();")
+                    form#request-recipe(method='POST' action='/recipes')
+                        button#btnsubmit(type="submit" class="btn btn-large btn-primary" style="width:140px") Submit
                 div#myDIV(class="header")
                     ul#ingredientsUL
-                div
-                    div#recipes
-                    div#moreButton
-                        table#newrecipe
+                div#recipes
+                div#moreButton
+                    table#newrecipe
+                p #{apidata}
 
     // About Section
     section#about(class="about-section text-center")

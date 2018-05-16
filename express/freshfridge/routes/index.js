@@ -6,7 +6,7 @@ let recipe_controller = require('../controllers/recipeController');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    res.render('index', {title: 'FreshFridge', subtitle: 'Save food and save money.'});
+    res.render('index', {title: 'FreshFridge', subtitle: 'Save food and save money.', apidata: ''});
 });
 
 // lookup recipes: 6 more recipes for each request
