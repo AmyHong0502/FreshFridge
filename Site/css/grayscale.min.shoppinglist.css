@@ -114,6 +114,7 @@ a:focus,a:hover{
     -o-background-size:cover;
     background-size:cover
 }
+
 .masthead .intro-body{
     display:table-cell;
     vertical-align:middle
@@ -306,7 +307,8 @@ label{
 
 .toggle {
    padding: 25px;
-   padding-bottom: 0px;
+   padding-top: 0px;
+   padding-bottom: 10px;
    display: none;
 }
 
@@ -325,15 +327,34 @@ label{
 }
 
 .add {
+   margin-top: 20px;
    margin-right: 8px;
    margin-bottom: 35px;
 }
 
 .browse {
+   margin-top: 20px;
    margin-left: 8px;
    margin-bottom: 35px;
 }
 
+.add-Item {
+    margin-top: 20px;
+    margin-left: 8px;
+    margin-bottom: 35px;
+}
+
+.delete {
+    margin-top: 20px;
+    margin-right: 8px;
+    margin-bottom: 35px;
+}
+
+.edit {
+    margin-top: 20px;
+    margin-left: 8px;
+    margin-bottom: 35px;
+}
 
 .table-borderless > tbody > tr > td,
 .table-borderless > tbody > tr > th,
@@ -342,10 +363,7 @@ label{
 .table-borderless > thead > tr > td,
 .table-borderless > thead > tr > th {
    color: black;
-   padding: 6px;
-   padding-right: 10px;
-   padding-left: 10px;
-   padding-bottom: 0px;
+   padding-bottom: 6px;
 }
 
 ::selection {
@@ -420,4 +438,35 @@ label{
 #editButton {
    width: 25px;
    height: 25px;
+}
+
+.itemQty {
+    text-align: left;
+    font-size: 16px;
+}
+
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 0px solid #dee2e6;
+}
+
+.qty {
+    text-align: left;
+    padding-bottom: 6px;
+}
+
+.editModal {
+    font-size: 14px;
+    width: 80px;
+    height: 40px;
+}
+
+#editModal {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.table {
+    margin-bottom: 0px;
 }
