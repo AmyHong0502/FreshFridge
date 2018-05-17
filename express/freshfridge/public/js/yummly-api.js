@@ -52,8 +52,6 @@ function showRecipes() {
     }
 
     data = JSON.parse(data);
-    console.log(data);
-
 
     let table = document.getElementById('api-recipes');
     let row;
@@ -65,32 +63,17 @@ function showRecipes() {
             table.append(row);
         }
 
-        // let img = data.matches.i.imageUrlsBySize[0];
-        // console.log(img);
+        let recipe = data['matches'][i];
 
-        console.log(data['matches'][i]['recipeName']);
+        let recipeName = recipe['recipeName'];
+        let thumbnailURL = recipe['imageUrlsBySize'][90];
+        let thumbnailURL2 = recipe['smallImageUrls'][0];
 
-        let recipeName = data['matches'][i]['recipeName'];
-        let thumbnailURL = data['matches'][i]['imageUrlsBySize'][90];
-        let thumbnailURL2 = data['matches'][i]['smallImageUrls'][0];
+        let cellNode = document.createElement('td');
+        let recipeDataSpan = generateDataSpan(thumbnailURL, recipeName);
+        let formNode = generateForm(recipe['id'], recipeDataSpan);
 
-        // let res = recipeId.replace(/=s90-c/g, "=s240-c");
-        // ----------------------------------------------
-
-        let imageNode = document.createElement("img");
-        // imageNode.src = res;
-        imageNode.src = thumbnailURL;
-        imageNode.alt = recipeName;
-        // ----------------------------------------------
-        // imageNode.setAttribute("onClick", "send_recipeURL(this.id)");
-
-        let cellNode = document.createElement("td");
-        cellNode.appendChild(imageNode);
-
-        let titleNode = document.createElement("p");
-        titleNode.append(recipeName);
-        cellNode.appendChild(titleNode);
-
+        cellNode.appendChild(formNode);
         row.append(cellNode);
 
         if (i % 3 === 2) {
@@ -108,41 +91,50 @@ function showRecipes() {
     // }
 }
 
+function generateForm(recipeID, recipeDataButton) {
+    let formNode = document.createElement('form');
+    let recipeIdInputNode = document.createElement('input');
+    let submitButton = recipeDataButton;
 
-// Gets ID of <img> that was clicked
-// Sends a specified recipe request to http://freshfridge.tk/recipesID depending on picture that was click.
-function send_recipeURL(clicked_id) {
-    alert(clicked_id);
-    let url = "http://freshfridge.tk/recipesID";
-    xhttp.open("POST", url, true);
-    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhttp.send(gl_data['matches'][clicked_id]["id"]);
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            alert("ready");
-            getSpecificRecipe();
-        } else {
-            handleError(xhttp.status);
-        }
-    };
+    formNode.method = 'post';
+    formNode.action = '/' + recipeID;
+    formNode.id = recipeID;
+    formNode.name = recipeID;
+
+    recipeIdInputNode.type = 'text';
+    recipeIdInputNode.name = 'recipeID';
+    recipeIdInputNode.value = recipeID;
+    recipeIdInputNode.style = 'display: none;';
+
+    // submitTrigger.setAttribute('onclick', recipeID + '.submit();');
+
+    formNode.appendChild(recipeIdInputNode);
+    formNode.appendChild(submitButton);
+
+    return formNode;
 }
 
+function generateDataSpan(imageURL, recipeName) {
+    let buttonNode = document.createElement('button');
+    let imageNode = document.createElement('img');
+    let titleNode = document.createElement('p');
 
-// Gets clicked Recipe Specifics
-function getSpecificRecipe() {
-    let url = "http://freshfridge.tk/specifiedrecipe";
-    xhttp.open("GET", url, true);
-    xhttp.send();
-    xhttp.onreadystatechange = processRequest;
+    buttonNode.type = 'submit';
 
-    function processRequest(e) {
-        if (xhttp.readyState == 4 && this.status == 200) {
-            let response = JSON.parse(xhttp.responseText);
-            processRecipe(response);
-        } else {
-            handleError(xhttp.status);
-        }
-    }
+    // let res = recipeId.replace(/=s90-c/g, "=s240-c");
+    // ----------------------------------------------
+
+    // imageNode.src = res;
+    imageNode.src = imageURL;
+    imageNode.alt = recipeName;
+    buttonNode.appendChild(imageNode);
+    // ----------------------------------------------
+    // imageNode.setAttribute("onClick", "send_recipeURL(this.id)");
+
+    titleNode.append(recipeName);
+    buttonNode.appendChild(titleNode);
+
+    return buttonNode;
 }
 
 // Appends the clicked recipe specifics to the layout
@@ -213,7 +205,6 @@ function listNewIngredient() {
 
     let ul = document.getElementById("ingredientsUL");
     ul.appendChild(li);
-
 
     generateIngredientInputs(extractUserIngredients());
 

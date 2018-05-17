@@ -25,16 +25,16 @@ exports.recipe_list = function(req, res, next) {
 };
 
 exports.recipe_detail = function (req, res, next) {
-    // console.log('recipeID: ' + req.body.recipeID);
-    // let baseURL = "http://api.yummly.com/v1/api/recipe/" + req.body.recipeID + "?_app_id=e486debb&_app_key=b7696375acec2618961fcedc1562f8af";
-    // console.log("sending recipe using: " + baseURL);
-    //
-    // request(baseURL, function(err, response, body) {
-    //     if (!err && response.statusCode === 200) {
-    //         console.log("Response: " + body);
-    //         res.render('recipe-details', {title: 'FreshFridge', subtitle: 'Save food and save money.', apidata: body});
-    //     } else {
-    return next(err);
-    //     }
-    // });
+    console.log('recipeID: ' + req.body.recipeID);
+    let baseURL = "http://api.yummly.com/v1/api/recipe/" + req.body.recipeID + "?_app_id=e486debb&_app_key=b7696375acec2618961fcedc1562f8af";
+    console.log("sending recipe using: " + baseURL);
+
+    request(baseURL, function(err, response, body) {
+        if (!err && response.statusCode === 200) {
+            console.log("Response: " + body);
+            res.render('recipe-details', {title: 'FreshFridge', subtitle: 'Save food and save money.', apidata: body});
+        } else {
+            return next(err);
+        }
+    });
 };
