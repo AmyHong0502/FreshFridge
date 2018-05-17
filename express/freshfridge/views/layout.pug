@@ -56,7 +56,7 @@ html
                             a(class="nav-link js-scroll-trigger" href="/recipe") Search Recipes
                         li(class="nav-item")
                             a(class="nav-link js-scroll-trigger" href="/i/fridge") My Fridge
-						li(class="nav-item")
+                        li(class="nav-item")
                             a(class="nav-link js-scroll-trigger" href="/i/shoppinglist") Shopping List
                         li(class="nav-item")
                             a(class="nav-link js-scroll-trigger" href="/tips") Tips
@@ -79,29 +79,12 @@ html
         div(class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="display: none;")
         script.
             function onSignIn(googleUser) {
-                // Useful data for your client-side scripts:
-                var profile = googleUser.getBasicProfile();
-                console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-                console.log('Full Name: ' + profile.getName());
-                console.log('Given Name: ' + profile.getGivenName());
-                console.log('Family Name: ' + profile.getFamilyName());
-                console.log("Image URL: " + profile.getImageUrl());
-                console.log("Email: " + profile.getEmail());
-
-                // The ID token you need to pass to your backend:
-                var id_token = googleUser.getAuthResponse().id_token;
-                console.log("ID Token: " + id_token);
-
-                if (profile.getId() !== '') {
-                    console.log("Logout button processing");
-
+                if (googleUser.getBasicProfile().getId() !== '') {
                     let loginButton = document.getElementById('login');
 
                     loginButton.href = '#';
                     loginButton.addEventListener('click', signOut);
                     loginButton.innerText = 'Logout';
-
-                    console.log("Convert successful");
                 }
             };
 
@@ -116,7 +99,6 @@ html
                 loginButton.removeEventListener('click', signOut);
                 loginButton.innerText = 'Login';
                 loginButton.addEventListener('click', addRedirection);
-                console.log("Convert successful");
             }
 
             function addRedirection() {

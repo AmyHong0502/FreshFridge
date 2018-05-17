@@ -7,57 +7,57 @@ block customJS
     script(src='/js/shoppinglist.js')
 
 block content
-	//Header Section
-	section#functional(class="content-section text-center")
+    //Header Section
+    section#functional(class="content-section text-center")
         div(class="container")
             div(class="col-lg-10 mx-auto")
                 h2 Shopping List
-				button(class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal")New List
-	
-	//List Modal
-	div#myModal(class="modal fade" tableindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
-		div(class="vertical-alignment-helper")
-			div(class="modal-dialog vertical-align-center")
-				div(class="modal-content")
-					div(class="modal-header)
-						h4#myModalLabel(class="modal-title") Create New List
-					div(class="modal-body")
-						form
-							div(class="form-group")
-								label(class="control-label" for="list-name") Name:
-								input#list-name(type="text" class="form-control")
-					div(class="modal-footer")
-						button#btn-close(type="button" class="btn btn-default" data-dismiss="modal") Close
-						button#btn-add(type="button" class="btn btn-primary" onclick="newElement()") Add
+                button(class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal")New List
 
-	//Edit Modal
-	div#myModal(class="modal fade" tableindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
-		div(class="vertical-alignment-helper")
-			div(class="modal-dialog vertical-align-center")
-				div(class="modal-content")
-					div(class="modal-header)
-						h4#myModalLabel(class="modal-title") Edit Item
-					div(class="modal-body")
-						form
-							div(class="form-group")
-								label(class="control-label" for="list-name") Product:
-								input#modal-prod(type="text" class="form-control")
-								
-								label(class="control-label" for="list-name") Quantity:
-								input#modal-qty(type="text" class="form-control")
-								
-								label(class="control-label" for="list-name") Unit:
-								select#modal-select(class="form-control")
-									option(value="pcs") pcs
-									option(value="bags") bags
-									option(value="kg") kg
-									option(value="lbs") lbs
-									option(value="mL") mL
-									option(value="oz") oz
-					div(class="modal-footer")
-						button#edit-close(type="button" class="btn btn-primary editModal" data-dismiss="modal") Close
-						button#edit-confirm(type="button" class="btn btn-success editModal" onclick="editTableRow()") Confirm
-		br
-		div#current-list(class="col-lg-10 mx-auto")
-			h4(class="fridgeList") Current Lists:
-			br
+    //List Modal
+    div#myModal(class="modal fade" tableindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+        div(class="vertical-alignment-helper")
+            div(class="modal-dialog vertical-align-center")
+                div(class="modal-content")
+                    div(class="modal-header)
+                        h4#myModalLabel(class="modal-title") Create New List
+                    div(class="modal-body")
+                        form
+                            div(class="form-group")
+                                label(class="control-label" for="list-name") Name:
+                                input#list-name(type="text" class="form-control")
+                    div(class="modal-footer")
+                        button#btn-close(type="button" class="btn btn-default" data-dismiss="modal") Close
+                        button#btn-add(type="button" class="btn btn-primary" onclick="newElement()") Add
+
+    //Edit Modal
+    div#myModal(class="modal fade" tableindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+        div(class="vertical-alignment-helper")
+            div(class="modal-dialog vertical-align-center")
+                div(class="modal-content")
+                    div(class="modal-header)
+                        h4#myModalLabel(class="modal-title") Edit Item
+                    div(class="modal-body")
+                        form
+                            div(class="form-group")
+                                label(class="control-label" for="list-name") Product:
+                                input#modal-prod(type="text" class="form-control")
+
+                                label(class="control-label" for="list-name") Quantity:
+                                input#modal-qty(type="text" class="form-control")
+
+                                label(class="control-label" for="list-name") Unit:
+                                select#modal-select(class="form-control")
+                                    option(value="pcs") pcs
+                                    option(value="bags") bags
+                                    option(value="kg") kg
+                                    option(value="lbs") lbs
+                                    option(value="mL") mL
+                                    option(value="oz") oz
+                    div(class="modal-footer")
+                        button#edit-close(type="button" class="btn btn-primary editModal" data-dismiss="modal") Close
+                        button#edit-confirm(type="button" class="btn btn-success editModal" onclick="editTableRow()") Confirm
+        br
+        div#current-list(class="col-lg-10 mx-auto")
+            h4(class="fridgeList") Current Lists:
+            br

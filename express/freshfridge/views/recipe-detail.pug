@@ -1,127 +1,132 @@
 extends layout
 
+block customCSS
+    link(href='/css/recipe-detail.css' rel='stylesheet')
+
 block content
     p#api-response(style='display: none;') #{apidata}
 
-    section#basics
-    section#recipe-info
+    div(class='container')
+        div(class="col-lg-10 mx-auto")
+            section#basics
+            section#recipe-info
 
-    script.
-        function printBasics(name, imageURL, source) {
-            let basics = document.getElementById('basics');
+            script.
+                function printBasics(name, imageURL, source) {
+                    let basics = document.getElementById('basics');
 
-            let recipeName = document.createElement('h3');
-            recipeName.innerText = name;
+                    let recipeName = document.createElement('h3');
+                    recipeName.innerText = name;
 
-            let image = document.createElement('img');
-            image.src = imageURL;
-            image.alt = name;
+                    let image = document.createElement('img');
+                    image.src = imageURL;
+                    image.alt = name;
 
-            let reference = document.createElement('div');
-            let srchref = document.createElement('a');
-            let srcRedirect = document.createElement('a');
+                    let reference = document.createElement('div');
+                    let srchref = document.createElement('a');
+                    let srcRedirect = document.createElement('a');
 
-            srchref.innerText = source['sourceDisplayName'];
-            srchref.href = 'http://' + source['sourceSiteUrl'];
-            srchref.target = "_blank";
+                    srchref.innerText = source['sourceDisplayName'];
+                    srchref.href = 'http://' + source['sourceSiteUrl'];
+                    srchref.target = "_blank";
 
-            srcRedirect.href = source['sourceRecipeUrl'];
-            srcRedirect.innerText = "Redirect to this recipe";
-            srcRedirect.target = "_blank";
+                    srcRedirect.href = source['sourceRecipeUrl'];
+                    srcRedirect.innerText = "Redirect to this recipe";
+                    srcRedirect.target = "_blank";
 
-            reference.appendChild(srchref);
-            reference.appendChild(srcRedirect);
+                    reference.appendChild(srchref);
+                    reference.appendChild(srcRedirect);
 
-            basics.appendChild(recipeName);
-            basics.appendChild(image);
-            basics.appendChild(reference);
-        }
+                    basics.appendChild(recipeName);
+                    basics.appendChild(image);
+                    basics.appendChild(reference);
+                }
 
-        function printRecipeInfo(ingredientLines, numOfServings, cookingTime, flavors, rating) {
-            let field = document.getElementById('recipe-info');
-            let info = document.createElement('table');
+                function printRecipeInfo(ingredientLines, numOfServings, cookingTime, flavors, rating) {
+                    let field = document.getElementById('recipe-info');
+                    let info = document.createElement('table');
 
-            info.appendChild(generateIngredientsRow(ingredientLines));
-            info.appendChild(generateRowWithNumber("Number of Servings", numOfServings));
-            info.appendChild(generateRowWithNumber("Total Cooking Time", cookingTime));
-            info.appendChild(generateFlavorsRow(flavors));
-            info.appendChild(generateRowWithNumber("Rating", rating));
+                    info.appendChild(generateIngredientsRow(ingredientLines));
+                    info.appendChild(generateRowWithNumber("Number of Servings", numOfServings));
+                    info.appendChild(generateRowWithNumber("Total Cooking Time", cookingTime));
+                    info.appendChild(generateFlavorsRow(flavors));
+                    info.appendChild(generateRowWithNumber("Rating", rating));
 
-            field.appendChild(info);
-        }
+                    field.appendChild(info);
+                }
 
-        function generateIngredientsRow(ingredientLines) {
-            let row = document.createElement('tr');
-            let leftCell = document.createElement('td');
-            let rightCell = document.createElement('td');
+                function generateIngredientsRow(ingredientLines) {
+                    let row = document.createElement('tr');
+                    let leftCell = document.createElement('td');
+                    let rightCell = document.createElement('td');
 
-            let ingredientP = document.createElement('p');
-            ingredientP.innerText = "Ingredients";
-            leftCell.appendChild(ingredientP);
-            row.appendChild(leftCell);
+                    let ingredientP = document.createElement('p');
+                    ingredientP.innerText = "Ingredients";
+                    leftCell.appendChild(ingredientP);
+                    row.appendChild(leftCell);
 
-            let ingredientOl = document.createElement('ol');
-            for (let i = 0; i < ingredientLines.length; i++) {
-                let ingredient = document.createElement('li');
-                ingredient.innerText = ingredientLines[i];
-                ingredientOl.appendChild(ingredient);
-            }
-            rightCell.appendChild(ingredientOl);
-            row.appendChild(rightCell);
+                    let ingredientOl = document.createElement('ol');
+                    for (let i = 0; i < ingredientLines.length; i++) {
+                        let ingredient = document.createElement('li');
+                        ingredient.innerText = ingredientLines[i];
+                        ingredientOl.appendChild(ingredient);
+                    }
+                    rightCell.appendChild(ingredientOl);
+                    row.appendChild(rightCell);
 
-            return row;
-        }
+                    return row;
+                }
 
-        function generateRowWithNumber(contentsInText, contentsInNumber) {
-            let row = document.createElement('tr');
-            let leftCell = document.createElement('td');
-            let rightCell = document.createElement('td');
+                function generateRowWithNumber(contentsInText, contentsInNumber) {
+                    let row = document.createElement('tr');
+                    let leftCell = document.createElement('td');
+                    let rightCell = document.createElement('td');
 
-            let text = document.createElement('p');
-            text.innerText = contentsInText;
-            leftCell.appendChild(text);
-            row.appendChild(leftCell);
+                    let text = document.createElement('p');
+                    text.innerText = contentsInText;
+                    leftCell.appendChild(text);
+                    row.appendChild(leftCell);
 
-            let number = document.createElement('p');
-            number.innerText = contentsInNumber;
-            rightCell.appendChild(number);
-            row.appendChild(rightCell);
+                    let number = document.createElement('p');
+                    number.innerText = contentsInNumber;
+                    rightCell.appendChild(number);
+                    row.appendChild(rightCell);
 
-            return row;
-        }
+                    return row;
+                }
 
-        function generateFlavorsRow(flavors) {
-            let row = document.createElement('tr');
-            let leftCell = document.createElement('td');
-            let rightCell = document.createElement('td');
+                function generateFlavorsRow(flavors) {
+                    let row = document.createElement('tr');
+                    let leftCell = document.createElement('td');
+                    let rightCell = document.createElement('td');
 
-            let text = document.createElement('p');
-            text.innerText = "Flavours";
-            leftCell.appendChild(text);
-            row.appendChild(leftCell);
+                    let text = document.createElement('p');
+                    text.innerText = "Flavours";
+                    leftCell.appendChild(text);
+                    row.appendChild(leftCell);
 
-            let flavourOl = document.createElement('ol');
-            for (let flavor in flavors) {
-                let listItem = document.createElement('li');
-                listItem.innerText = flavor + ": " + flavors[flavor];
-                flavourOl.appendChild(listItem);
-            }
-            rightCell.appendChild(flavourOl);
-            row.appendChild(rightCell);
+                    let flavourOl = document.createElement('ol');
+                    for (let flavor in flavors) {
+                        let listItem = document.createElement('li');
+                        listItem.innerText = flavor + ": " + flavors[flavor];
+                        flavourOl.appendChild(listItem);
+                    }
+                    rightCell.appendChild(flavourOl);
+                    row.appendChild(rightCell);
 
-            return row;
-        }
+                    return row;
+                }
 
-        let data = JSON.parse(document.getElementById('api-response').innerText);
+                let data = JSON.parse(document.getElementById('api-response').innerText);
 
-        let image = data['images']['0']['hostedLargeUrl'];
-        let name = data['name'];
-        let source = data['source'];
-        printBasics(name, image, source);
+                let image = data['images']['0']['hostedLargeUrl'];
+                let name = data['name'];
+                let source = data['source'];
+                printBasics(name, image, source);
 
-        let ingredients = data['ingredientLines'];
-        let numOfServings = data['numberOfServings'];
-        let totalTime = data['totalTime'];
-        let flavors = data['flavors'];
-        let rating = data['rating'];
-        printRecipeInfo(ingredients, numOfServings, totalTime, flavors, rating);
+                let ingredients = data['ingredientLines'];
+                let numOfServings = data['numberOfServings'];
+                let totalTime = data['totalTime'];
+                let flavors = data['flavors'];
+                let rating = data['rating'];
+                printRecipeInfo(ingredients, numOfServings, totalTime, flavors, rating);
