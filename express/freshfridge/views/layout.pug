@@ -1,0 +1,123 @@
+doctype html
+html
+    head
+        // metadata goes here
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+        title= title
+
+        // Bootstrap Core JavaScript
+        script(src='/vendor/jquery/jquery.min.js')
+        script(src='/vendor/bootstrap/js/bootstrap.bundle.min.js')
+
+        // Plugin JavaScript
+        script(src='/vendor/jquery-easing/jquery.easing.min.js')
+
+        // Custom scripts for this template
+        script(src='/js/grayscale.min.js')
+
+        // Bootstrap core CSS
+        link(href='/vendor/bootstrap/css/bootstrap.min.css' rel='stylesheet')
+
+        // Custom fonts for this template
+        link(href='/vendor/font-awesome/css/font-awesome.min.css' rel='stylesheet' type='text/css')
+        link(href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css')
+        link(href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css')
+
+        // Custom styles for this template
+        link(href='/css/grayscale.min.css' rel='stylesheet')
+
+        // Google login
+        meta(name='google-signin-scope' content='profile email')
+        meta(name="google-signin-client_id" content="725273597701-5g9etsbbnvq2hvjr25llshmcc4vfqav8.apps.googleusercontent.com")
+        script(src="https://apis.google.com/js/platform.js" async defer)
+
+        block customCSS
+        block customJS
+
+    body#page-top
+        // contents goes here
+        // nav
+        nav#mainNav(class='navbar navbar-expand-lg fixed-top navbar-default')
+            div(class='container')
+                button(
+                class='navbar-toggler navbar-toggler-right'
+                type='button'
+                data-toggle='collapse'
+                data-target='#navbarResponsive'
+                aria-controls='navbarResponsive'
+                aria-expanded='false'
+                aria-label='Toggle navigation') Menu
+                div#navbarResponsive(class="collapse navbar-collapse")
+                    ul(class="navbar-nav ml-auto")
+                        li(class="nav-item")
+                            a(class="nav-link js-scroll-trigger" href="/") Home
+                        li(class="nav-item")
+                            a(class="nav-link js-scroll-trigger" href="/recipe") Search Recipes
+                        li(class="nav-item")
+                            a(class="nav-link js-scroll-trigger" href="/i/fridge") My Fridge
+                        li(class="nav-item")
+                            a(class="nav-link js-scroll-trigger" href="/tips") Tips
+                        li(class="nav-item")
+                            a(class="nav-link js-scroll-trigger" href="/#about") About
+                        li(class="nav-item")
+                            a(class="nav-link js-scroll-trigger" href="/#team") The Team
+                        li(class="nav-item")
+                            a(class="nav-link js-scroll-trigger" href="/#contact") Contact Us
+                        li(class="nav-item")
+                            a#login(class="nav-link js-scroll-trigger" href="/login") Login
+        block content
+
+        // footer
+        footer
+            div(class='container text-center')
+                p Copyright &copy; FreshFridge
+
+        // Google Login
+        div(class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="display: none;")
+        script.
+            function onSignIn(googleUser) {
+                // Useful data for your client-side scripts:
+                var profile = googleUser.getBasicProfile();
+                console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+                console.log('Full Name: ' + profile.getName());
+                console.log('Given Name: ' + profile.getGivenName());
+                console.log('Family Name: ' + profile.getFamilyName());
+                console.log("Image URL: " + profile.getImageUrl());
+                console.log("Email: " + profile.getEmail());
+
+                // The ID token you need to pass to your backend:
+                var id_token = googleUser.getAuthResponse().id_token;
+                console.log("ID Token: " + id_token);
+
+                if (profile.getId() !== '') {
+                    console.log("Logout button processing");
+
+                    let loginButton = document.getElementById('login');
+
+                    loginButton.href = '#';
+                    loginButton.addEventListener('click', signOut);
+                    loginButton.innerText = 'Logout';
+
+                    console.log("Convert successful");
+                }
+            };
+
+            var signOut = function signOut() {
+                var auth2 = gapi.auth2.getAuthInstance();
+                auth2.signOut().then(function () {
+                    console.log('User signed out.');
+                });
+
+                let loginButton = document.getElementById('login');
+
+                loginButton.removeEventListener('click', signOut);
+                loginButton.innerText = 'Login';
+                loginButton.addEventListener('click', addRedirection);
+                console.log("Convert successful");
+            }
+
+            function addRedirection() {
+                console.log("listener Activated");
+                window.location = "http://freshfridge.tk/login";
+            }
