@@ -183,7 +183,7 @@ function format_array(constraints) {
 
     }
         URL += concatenatedIngredients;
-    URL +=  "&maxResult=6&start=" + ((clickCount * 6) + 1)
+    URL +=  "&maxResult=" + (clickCount * 6) + "&start=" + (clickCount * 6);
     console.log(URL);
 
 }
