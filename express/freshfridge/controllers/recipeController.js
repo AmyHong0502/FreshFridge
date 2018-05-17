@@ -32,7 +32,7 @@ exports.recipe_detail = function (req, res, next) {
     request(baseURL, function(err, response, body) {
         if (!err && response.statusCode === 200) {
             console.log("Response: " + body);
-            res.render('recipe-details', {title: 'FreshFridge', subtitle: 'Save food and save money.', apidata: body});
+            res.render('recipe-detail', {title: 'FreshFridge', subtitle: 'Save food and save money.', apidata: body});
         } else {
             return next(err);
         }
