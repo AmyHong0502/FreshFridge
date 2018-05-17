@@ -326,6 +326,11 @@ label{
    height: 40px;
 }
 
+.delete-selected {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
 .add {
    margin-top: 20px;
    margin-right: 8px;
@@ -354,6 +359,23 @@ label{
     margin-top: 20px;
     margin-left: 8px;
     margin-bottom: 35px;
+}
+
+.edit-list {
+    margin-top: 20px;
+    margin-left: 8px;
+    margin-bottom: 35px;
+}
+
+.deleteList {
+    margin-top: 17px;
+    width: 110px;
+    height: 50px;
+    text-align: center;
+}
+
+#editList-body {
+    padding-bottom: 0px;
 }
 
 .table-borderless > tbody > tr > td,
@@ -433,6 +455,10 @@ label{
 .listItem {
    text-align: center;
    font-size: 16px;
+}
+
+.header {
+    text-align: center;
 }
 
 #editButton {
