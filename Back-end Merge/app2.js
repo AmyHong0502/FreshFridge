@@ -141,8 +141,6 @@ app.get('/recipes', function(req, res) {
     sendConstraintsAPI(function(err, data) {
 
         if (!err) {
-            if (data
-            
             res.send(data);
             URL = "http://api.yummly.com/v1/api/recipes?_app_id=e486debb&_app_key=b7696375acec2618961fcedc1562f8af";
         } else {
@@ -155,7 +153,17 @@ app.get('/recipes', function(req, res) {
 });
 
 
-
+   var clickedMore = 1
+app.post('/clickMore', function(req, res) {
+    // To allow Cross domain referencing (CORS)
+    res.setHeader('Content-Type', 'application/text');
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    console.log("Click count recieved");
+    clickedMore = (Object.keys(req.body)[0]);
+    console.log(req.body);
+    console.log("sending recipe");
+    res.end();
+});
 
 
 
@@ -175,7 +183,7 @@ function format_array(constraints) {
 
     }
         URL += concatenatedIngredients;
-    URL +=  "&maxResult=6&start=" + ((clickCount * 6) + 1)
+    URL +=  "&maxResult=" + (clickCount * 6) + "&start=" + (clickCount * 6);
     console.log(URL);
 
 }

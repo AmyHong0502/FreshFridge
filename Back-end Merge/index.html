@@ -23,6 +23,8 @@
     <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
     <!-- Custom styles for this template -->
     <link href="css/grayscale.min.css" rel="stylesheet">
+    <link href="css/recipe.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -77,6 +79,7 @@
                 <h2>Search Recipes by ingredients</h2>
                 <div class="input-group input-group-lg" class="header">
                     <input type="text" name="add" class="form-control" id="myInput" placeholder="Ingredients..">
+                    
                     <button type="submit" name="add-to-list" onclick="newElement()" class="btn btn-large btn-primary" id="btnadd" style="width:140px">Add
                 </button>
                     <button type="submit" name="Submit-to-Node" onclick="submission()" class="btn btn-large btn-primary" id="btnsubmit" style="width:140px">Submit
@@ -85,59 +88,25 @@
                 <div id="myDIV" class="header">
                     <ul id="ingredientsUL"></ul>
                 </div>
+                <div id="ingredientsSection"></div>
+                  <table id="recipes"></table>
                 <div>
-                    <div id="recipes"></div>
-
-                    <div id="moreButton"></div>
-                    <table id="newrecipe">
-                    </table>
+                    
+                <div id="myModal" class="modal">
+					<div id="myModal" class="modal-content">
+                        <p id="selectedRecipe"></p>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
 
-    <!-- About Section -->
-    <section id="about" class="about-section text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h2>About FreshFridge</h2>
-                    <p>FreshFridge is a web-app which will allow users to <b>search up recipes on foods</b> they enter that are about to expire or they bought too much of. This not only <b>helps save money</b> but <b>reduces
-                        food waste</b> as well. </p>
-                </div>
-            </div>
-        </div>
-    </section>
+ 
 
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <h2>Contact District9</h2>
-                    <ul class="list-inline banner-social-buttons">
-                        <li class="list-inline-item">
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="https://github.com/BlackrockDigital/startbootstrap" class="btn btn-default btn-lg">
-                            <i class="fa fa-github fa-fw"></i>
-                            <span class="network-name">Github</span>
-                        </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg">
-                            <i class="fa fa-google-plus fa-fw"></i>
-                            <span class="network-name">Google+</span>
-                        </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Footer -->
     <footer>
@@ -147,7 +116,21 @@
     </footer>
 
     <script>
-        // to start server http-server . -o
+    var loading = false;
+$(window).scroll(function(){
+ 
+    if(loading ==false)
+    {
+        if ($(window).scrollTop() > $(document).height()-$(window).height()- 450)
+        {   
+            clickMore();
+            loading = true;
+
+        }
+    }
+});
+
+       // to start server http-server . -o
 
 
         // Declaring http protocol request
@@ -174,7 +157,14 @@
         // Jquery var for HTML Id recipe
         let table = $('#recipes');
         
+         // Jquery var for HTML Id newrecipe
+        var selectedRecipe = $('#selectedRecipe');
         
+        // Array of Recipe ID's to make sure theres no repeats 
+        var recipeIdList = [];
+
+        
+         var uniqueID = [];
         
         // Keeps track of the amount of times the "Show more" button has been clicked
         var clickCount = 1;
@@ -193,11 +183,10 @@
             var submitArray = filter_array(ingredientArray);
             for (var i = 0; i < submitArray.length; i++) {
                 if (submitArray[i] != comparison[i]) {
+                     uniqueID = [];
                     $('#recipes').empty();
                     $('#moreButton').empty();
-                    if (clickCount != 1) {
-                        createButton();
-                    }
+                    
 
                 }
             }
@@ -263,42 +252,80 @@
 
             }
         }
-
-        // Processes initial JSON object and appends it to HTML Elements
-        function appendRequest(data) {
-            table.append("<div class='row' >");
-
-            for (let i = 0; i < data.matches.length; i++) {
-                if (i == 3) {
-                    table.append("<div class='row' >");
-
+        function containsRecipe(str, arr)
+        {
+            for(var i=0; i<arr.length ;i++)
+            {
+                if(arr[i] == str)
+                {
+                    return true;
                 }
-                let img = data['matches'][i]['imageUrlsBySize'];
-                // Formats image size before sending request --
-                let recipeId = "" + Object.keys(img).map(function(key) {
-                    return img[key]
-                });
-                let recipeTitle
-                // Replaces the an area of recipeId to get a bigger size image
-                let res = recipeId.replace(/=s90-c/g, "=s240-c");
-                // ----------------------------------------------
-                let imageNode = document.createElement("img");
-                imageNode.src = res;
-                imageNode.id = i;
-                // ----------------------------------------------
-                imageNode.setAttribute("onClick", "send_recipeURL(this.id)");
-                let cellNode = document.createElement("td");
-                cellNode.appendChild(imageNode);
-                // ----------------------------------------------
-                let titleNode = document.createElement("p");
-                titleNode.append(data['matches'][i]['recipeName']);
-                cellNode.appendChild(titleNode);
-                table.append(cellNode);
+            }
+            return false;
+        }
+        // Processes initial JSON object and appends it to HTML Elements
+       
+
+        function appendRequest(data) {
+            if (clickCount == 1) {
+            let ingredientsSection = document.createElement("h4");
+            ingredientsSection.append("Results:");
+            table.append(ingredientsSection);
+            
+            }
+            table.append("<div class='row' >");
+            var j = 0;
+            for (let i = 0; i < data.matches.length; i++) {
+                if(j == 6)
+                {
+                    loading = false;
+                    return;
+                }
+                else
+                {
+                    if(containsRecipe(data['matches'][i]['id'],uniqueID ))
+                    {
+                        continue;
+                        
+                    }
+                    else
+                    {
+                        uniqueID[uniqueID.length] = data['matches'][i]['id'];
+                        j++;
+                        if (uniqueID.length % 3 == 1) {
+                            table.append("<div class='row' >");
+
+                        }
+                        let img = data['matches'][i]['imageUrlsBySize'];
+                        // Formats image size before sending request --
+                        let recipeId = "" + Object.keys(img).map(function(key) {
+                            return img[key]
+                        });
+                        let recipeTitle
+                        // Replaces the an area of recipeId to get a bigger size image
+                        let res = recipeId.replace(/=s90-c/g, "=s240-c");
+                        // ----------------------------------------------
+                        let tr  = document.createElement("tr");
+                        let td  = document.createElement("td")
+                        tr.appendChild(td);
+                        //-----------------------------------------------
+                        let imageNode = document.createElement("img");
+                        imageNode.src = res;
+                        imageNode.id = i;
+                        imageNode.setAttribute("onClick", "send_recipeURL(this.id)");
+                        td.appendChild(imageNode);
+                        // ----------------------------------------------
+                        let titleNode = document.createElement("p");
+                        titleNode.append(data['matches'][i]['recipeName']);
+                        imageNode.appendChild(titleNode);
+                        // ----------------------------------------------
+                        table.append(tr);
+                        table.append(titleNode);
+                    }
+                }
 
             }
-            if (clickCount == 1) {
-                createButton();
-            }
+          
 
         }
 
@@ -306,14 +333,12 @@
         // Gets ID of <img> that was clicked
         // Sends a specified recipe ID request to http://127.0.0.1:3000/recipesID for RecipeSpecifics
         function send_recipeURL(clicked_id) {
-            alert(clicked_id);
             let url = "http://127.0.0.1:3000/recipesID";
             xhttp.open("POST", url, true);
             xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhttp.send(gl_data['matches'][clicked_id]["id"]);
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    alert("ready");
                     getSpecificRecipe();
                 } else {
                     handleError(xhttp.status);
@@ -342,26 +367,52 @@
 
         // Appends the clicked recipe specifics to the layout
         function processRecipe(body) {
-            let recipeImage = body['images'][0].hostedLargeUrl;
-            let imageNode = document.createElement("img");
-            imageNode.src = recipeImage;
-            newTable.append(imageNode);
-            newTable.append("<tr><td>" + "Recipe name: " + body['name']);
-            newTable.append("<tr><td>" + "Ingredients: " + body['ingredientLines']);
+      		var i;
+		var modal = document.getElementById('myModal');
+		
+		modal.style.display = "block";	
+		
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+        
+        $('#selectedRecipe').empty();
+        let recipeImage = body['images'][0].hostedLargeUrl;
+        let imageNode = document.createElement("img"); 
+        imageNode.src = recipeImage;
+		imageNode.setAttribute("id", "srcImg");
+        //------------------------------------------------
+        let h4Node = document.createElement("h4");
+        h4Node.append(body['name']);
+        //------------------------------------------------
+        let pNode = document.createElement("p");
+        pNode.setAttribute("id", "ing");
+        pNode.append("Ingredients:");
+        selectedRecipe.append(imageNode);     
+        selectedRecipe.append(h4Node);
+        //------------------------------------------------
+        let totalTime = body['totalTimeInSeconds'];
+        let timeNode = document.createElement("p");
+        timeNode.append("Cooking time: " + totalTime/60 + " Minutes");
+        selectedRecipe.append(timeNode);
+		
+		for (i = 0; i < body['ingredientLines'].length; i++) {
+			if (body['ingredientLines'][i] != body['ingredientLines'][i-1]) {
+            
+            selectedRecipe.append("<ul><li id='items'>" + body['ingredientLines'][i] + "</li></ul>");
+            }
+		}
+        let source = body['source'].sourceRecipeUrl;
+        let  sourceNode = document.createElement("a");
+        sourceNode.append("Source: " + source);
+        sourceNode.setAttribute("href", source);
+        selectedRecipe.append(sourceNode);
+   
 
         }
-        // Creates a ShowMore button when called
-        function createButton() {
-            let buttonNode = document.createElement("button");
-            buttonNode.setAttribute("onClick", "clickMore()");
-            buttonNode.setAttribute("value", "showMorebtn");
-            buttonNode.setAttribute("class", "btn btn-primary");
-            buttonNode.append("Show more");
-            moreButton.append(buttonNode);
-
-
-
-        }
+     
 
         // Error handling for xhttp requests.
         function handleError(status) {
