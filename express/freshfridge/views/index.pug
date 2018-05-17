@@ -22,13 +22,14 @@ block content
                     placeholder="Enter Ingredients..")
                     button#btnadd(name="add-to-list" onclick="listNewIngredient();"
                     class="btn btn-large btn-primary" style="width:140px") Add
-                    form#request-recipe(method='POST' action='/recipes')
-                        button#btnsubmit(type="submit" class="btn btn-large btn-primary" style="width:140px") Submit
+                    form#request-recipe(method='POST' action='/')
+                        input#ingredients(style="display: none;" name='ingredients')
+                        button#btnsubmit(type="submit" class="btn btn-large btn-primary" onclick="extractUserIngredients();" style="width:140px") Submit
                 div#myDIV(class="header")
                     ul#ingredientsUL
                 div#recipes
-                div#moreButton
                     table#api-recipes
+                div#moreButton
                 p#api-data-string(style='display: none;') #{apidata}
 
     // About Section

@@ -1,18 +1,10 @@
 let moreButton = $('#moreButton');
 
-// Keeps track of the amount of times the "Show more" button has been clicked
-let clickCount = 1;
-function clickMore() {
-    clickCount++;
-    submission(clickCount);
-}
-
 // Returns the user's input from every <li class='ingredientLi'>.
 function extractUserIngredients() {
     let userInputs = document.getElementsByClassName('ingredientLi');
     let ingredients = [];
 
-    console.log("extractUserIngredients called");
     let pattern = /(.*)<span.*/;
 
     for (let i = 0; i < userInputs.length; i++) {
@@ -23,9 +15,36 @@ function extractUserIngredients() {
     return ingredients;
 }
 
+function keepIngredients() {
+    let data = document.getElementById('api-data-string').innerText;
+    let pattern = /.*allowedIngredient":\["(.*)"],"q".*/;
+
+    data = data.replace(pattern, "$1");
+    data = data.split('\",\"');
+    generateIngredientInputs(data);
+}
+
+
+function generateIngredientInputs(ingredients) {
+    let location = document.getElementById('ingredients');
+
+    while(location.firstChild) {
+        location.removeChild(location.firstChild);
+    }
+
+    for (let i = 0; i < ingredients.length; i++) {
+        let inputElement = document.createElement('input');
+        inputElement.name = 'ingredients';
+        inputElement.type = 'text';
+        inputElement.style = 'display: none;';
+        inputElement.value = ingredients[i];
+        location.appendChild(inputElement);
+    }
+}
+
 
 // Processes initial JSON object and appends it to HTML Elements
-function appendRequest() {
+function showRecipes() {
     let data = document.getElementById('api-data-string').innerText;
 
     if (data === null || data === "") {
@@ -72,17 +91,21 @@ function appendRequest() {
         titleNode.append(recipeName);
         cellNode.appendChild(titleNode);
 
-        table.append(cellNode);
+        row.append(cellNode);
+
+        if (i % 3 === 2) {
+            table.appendChild(row);
+        }
     }
 
-    if (clickCount === 1) {
-        let buttonNode = document.createElement("button");
-        buttonNode.setAttribute("onClick", "clickMore()");
-        buttonNode.setAttribute("value", "showMorebtn");
-        buttonNode.setAttribute("class", "btn btn-primary");
-        buttonNode.append("Show more");
-        moreButton.append(buttonNode);
-    }
+    // if (clickCount === 1) {
+    //     let buttonNode = document.createElement("button");
+    //     buttonNode.setAttribute("onClick", "clickMore()");
+    //     buttonNode.setAttribute("value", "showMorebtn");
+    //     buttonNode.setAttribute("class", "btn btn-primary");
+    //     buttonNode.append("Show more");
+    //     moreButton.append(buttonNode);
+    // }
 }
 
 
@@ -188,17 +211,11 @@ function listNewIngredient() {
     }
 
 
-    let inputElement = document.createElement("input");
-    inputElement.type = "text";
-    inputElement.style = "display: none;";
-    inputElement.name = 'ingredient';
-    inputElement.value = inputValue;
-
     let ul = document.getElementById("ingredientsUL");
     ul.appendChild(li);
 
-    let form = document.getElementById('request-recipe');
-    form.appendChild(inputElement);
+
+    generateIngredientInputs(extractUserIngredients());
 
     document.getElementById("myInput").value = "";
 }
@@ -219,5 +236,11 @@ function countRecipes() {
 }
 
 countRecipes();
-appendRequest();
+showRecipes();
+keepIngredients();
+
+// if (document.getElementById('td') !== undefined) {
+//     generateIngredientInputs(#{ingredients});
+// }
+
 console.log("yummly-api.js included");
