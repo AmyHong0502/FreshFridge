@@ -71,7 +71,7 @@
     <section id="functional" class="content-section text-center">
         <div class="container">
             <div class="col-lg-10 mx-auto">
-				<h2>Shopping List</h2>
+                <h2>Shopping List</h2>
 				<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">New List</button>
 
 				<!-- List Modal -->
@@ -97,6 +97,43 @@
 							</div>
 						</div>
 					</div>
+                </div>
+                <!-- Edit Modal -->
+				<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+					<div class="vertical-alignment-helper">
+						<div class="modal-dialog vertical-align-center">
+							<div class="modal-content">
+								<div class="modal-header">
+                                    <h4 class="modal-title" id="myModalLabel">Edit Item</h4>
+								</div>
+								<div class="modal-body">
+									<form>
+										<div class="form-group">
+											<label class="control-label" for="list-name">Product:</label>
+                                            <input type="text" class="form-control" id="modal-prod">
+
+                                            <label class="control-label" for="list-name">Quantity:</label>
+                                            <input type="text" class="form-control" id="modal-qty">
+
+                                            <label class="control-label" for="list-name">Unit:</label>
+                                            <select class="form-control" id="modal-select">
+                                                <option value="pcs">pcs</option>
+                                                <option value="bags">bags</option>
+                                                <option value="kg">kg</option>
+                                                <option value="lbs">lbs</option>
+                                                <option value="mL">mL</option>
+                                                <option value="oz">oz</option>
+                                            </select>
+										</div>
+									</form>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary editModal" data-dismiss="modal" id="edit-close">Close</button>
+									<button type="button" class="btn btn-success editModal" id="edit-confirm" onclick="editTableRow()">Confirm</button>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 		</div>
 		<br>
@@ -105,7 +142,6 @@
             <br>
 		</div>
     </section>
-
 
     <!-- Footer -->
     <footer>
