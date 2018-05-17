@@ -13,13 +13,17 @@ $(document).ready(function () {
 	});
 	
 	//Close button
-	$(document).on("click", "a.remove" , function() {
-		/*window.alert($(this).parent().contents().filter(function(){
-			return this.nodeType !== 1;
-		}).text());*/
-		$("figcaption:contains("+$(this).parent().contents().filter(function(){
-			return this.nodeType !== 1;
-		}).text()+")").parent().toggleClass("faded");
+	$(document).on("click", "a.remove", function() {
+		var selectedItem = $(this).parent().contents().filter(textFilter).text();
+		var presetFigure = $("figcaption:contains("+selectedItem+")").parent();
+		//var str = JSON.stringify(presetFigure, null, 4);
+		//window.alert(str);
+		presetFigure.toggleClass("faded");
         $(this).parent().remove();
     });
+	
+	function textFilter() {
+		return this.nodeType !== 1;
+	}
+	
 });
