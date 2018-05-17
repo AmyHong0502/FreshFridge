@@ -16,9 +16,8 @@ exports.recipe_list = function(req, res, next) {
     baseURL = baseURL + "&maxResult=6&start=" + req.body.recipeCount;
     request(baseURL, function(err, response, body) {
         if (!err && response.statusCode === 200) {
-            console.log("APIDATA: " + body);
             console.log("URL: " + baseURL);
-            res.render('index', {title: 'FreshFridge', subtitle: 'Save food and save money.', apidata: body, ingredients: ingredients});
+            res.render('index', {title: 'FreshFridge', subtitle: 'Save food and save money.', apidata: body});
         } else {
             return next(err);
         }
