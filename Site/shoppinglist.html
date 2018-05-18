@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -10,175 +10,189 @@
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Plugin JavaScript -->
-	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
     <!-- Custom scripts for this template -->
     <script src="js/shoppinglist.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom fonts for this template -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet"
+          type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
     <!-- Custom styles for this template -->
-	<link href="css/grayscale.min.shoppinglist.css" rel="stylesheet">
-  </head>
+    <link href="css/grayscale.min.shoppinglist.css" rel="stylesheet">
+</head>
 
-
-  <body id="page-top">
-
-
-	<!-- Navigation -->
-    <nav class="navbar navbar-expand-lg  fixed-top navbar-default" id="mainNav">
-      <div class="container">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fa fa-bars"></i>
+<body id="page-top">
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg  fixed-top navbar-default" id="mainNav">
+    <div class="container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
+            Menu
+            <i class="fa fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-			<li class="nav-item">
-				<a class="nav-link js-scroll-trigger" href="index.html">Home</a>
-			</li>
-            <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="index.html#functional">Search Recipes</a>
-            </li>
-			<li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="myfridge.html">My Fridge</a>
-            </li>
-			<li class="nav-item">
-				<a class="nav-link js-scroll-trigger" href="tips.html">Tips</a>
-			</li>
-            <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="index.html#about">About</a>
-            </li>
-			<li class="nav-item">
-				<a class="nav-link js-scroll-trigger" href="index.html#team">The Team</a>
-			</li>
-            <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="index.html#contact">Contact Us</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href='login.html'>Login</a>
-            </li>
-          </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="index.html#functional">Search Recipes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="myfridge.html">My Fridge</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="tips.html">Tips</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="index.html#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="index.html#team">The Team</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="index.html#contact">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href='login.html'>Login</a>
+                </li>
+            </ul>
         </div>
-      </div>
-    </nav>
+    </div>
+</nav>
 
 
+<!-- Ingredients Section -->
+<section id="functional" class="content-section text-center">
+    <div class="container">
+        <div class="col-lg-10 mx-auto">
+            <h2>Shopping List</h2>
+            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">New List</button>
 
-    <!-- Ingredients Section -->
-    <section id="functional" class="content-section text-center">
-        <div class="container">
-            <div class="col-lg-10 mx-auto">
-                <h2>Shopping List</h2>
-				<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">New List</button>
-
-				<!-- List Modal -->
-				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="vertical-alignment-helper">
-						<div class="modal-dialog vertical-align-center">
-							<div class="modal-content">
-								<div class="modal-header">
-										<h4 class="modal-title" id="myModalLabel">Create New List</h4>
-								</div>
-								<div class="modal-body">
-									<form>
-										<div class="form-group">
-											<label class="control-label" for="list-name">Name:</label>
-											<input type="text" class="form-control" id="list-name">
-										</div>
-									</form>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-primary" data-dismiss="modal" id="btn-close">Close</button>
-									<button type="button" class="btn btn-success" id="btn-add" onclick="newElement()">Add</button>
-								</div>
-							</div>
-						</div>
-					</div>
+            <!-- List Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+                <div class="vertical-alignment-helper">
+                    <div class="modal-dialog vertical-align-center">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Create New List</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label class="control-label" for="list-name">Name:</label>
+                                        <input type="text" class="form-control" id="list-name">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn-close">
+                                    Close
+                                </button>
+                                <button type="button" class="btn btn-success" id="btn-add" onclick="newElement()">Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!-- Individual Item Edit Modal -->
-				<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-					<div class="vertical-alignment-helper">
-						<div class="modal-dialog vertical-align-center">
-							<div class="modal-content">
-								<div class="modal-header">
-                                    <h4 class="modal-title" id="myModalLabel">Edit Item</h4>
-								</div>
-								<div class="modal-body">
-									<form>
-										<div class="form-group">
-											<label class="control-label" for="list-name">Product:</label>
-                                            <input type="text" class="form-control" id="modal-prod">
+            </div>
+            <!-- Individual Item Edit Modal -->
+            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+                 aria-hidden="true">
+                <div class="vertical-alignment-helper">
+                    <div class="modal-dialog vertical-align-center">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Edit Item</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label class="control-label" for="list-name">Product:</label>
+                                        <input type="text" class="form-control" id="modal-prod">
 
-                                            <label class="control-label" for="list-name">Quantity:</label>
-                                            <input type="text" class="form-control" id="modal-qty">
+                                        <label class="control-label" for="list-name">Quantity:</label>
+                                        <input type="text" class="form-control" id="modal-qty">
 
-                                            <label class="control-label" for="list-name">Unit:</label>
-                                            <select class="form-control" id="modal-select">
-                                                <option value="pcs">pcs</option>
-                                                <option value="bags">bags</option>
-                                                <option value="kg">kg</option>
-                                                <option value="lbs">lbs</option>
-                                                <option value="mL">mL</option>
-                                                <option value="oz">oz</option>
-                                            </select>
-										</div>
-									</form>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-primary editModal" data-dismiss="modal" id="edit-close">Close</button>
-									<button type="button" class="btn btn-success editModal" id="edit-confirm" onclick="editTableRow()">Confirm</button>
-								</div>
-							</div>
-						</div>
-					</div>
+                                        <label class="control-label" for="list-name">Unit:</label>
+                                        <select class="form-control" id="modal-select">
+                                            <option value="pcs">pcs</option>
+                                            <option value="bags">bags</option>
+                                            <option value="kg">kg</option>
+                                            <option value="lbs">lbs</option>
+                                            <option value="mL">mL</option>
+                                            <option value="oz">oz</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary editModal" data-dismiss="modal"
+                                        id="edit-close">Close
+                                </button>
+                                <button type="button" class="btn btn-success editModal" id="edit-confirm"
+                                        onclick="editTableRow()">Confirm
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!-- Shopping List Edit Modal -->
-				<div class="modal fade" id="editListModal" tabindex="-1" role="dialog" aria-labelledby="editListModalLabel" aria-hidden="true">
-					<div class="vertical-alignment-helper">
-						<div class="modal-dialog vertical-align-center">
-							<div class="modal-content">
-								<div class="modal-header">
-                                    <h4 class="modal-title" id="myModalLabel">Edit Shopping List</h4>
-								</div>
-								<div class="modal-body" id="editList-body">
-									<form>
-										<div class="form-group">
-											<label class="control-label" for="list-name">List Name:</label>
-                                            <input type="text" class="form-control" id="modal-listName">
-                                            <div style="text-align:center;">
-                                                <button type="button" class="btn btn-danger deleteList" id="edit-delete" onclick="removeList()">Delete</button>
-                                            </div>
-										</div>
-									</form>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-primary editModal" data-dismiss="modal" id="edit-close-list">Close</button>
-									<button type="button" class="btn btn-success editModal" id="edit-confirm-list" onclick="editShoppingList()">Confirm</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-		</div>
-		<br>
-		<div class="col-lg-10 mx-auto" id="current-list">
+            </div>
+            <!-- Shopping List Edit Modal -->
+            <div class="modal fade" id="editListModal" tabindex="-1" role="dialog" aria-labelledby="editListModalLabel"
+                 aria-hidden="true">
+                <div class="vertical-alignment-helper">
+                    <div class="modal-dialog vertical-align-center">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Edit Shopping List</h4>
+                            </div>
+                            <div class="modal-body" id="editList-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label class="control-label" for="list-name">List Name:</label>
+                                        <input type="text" class="form-control" id="modal-listName">
+                                        <div style="text-align:center;">
+                                            <button type="button" class="btn btn-danger deleteList" id="edit-delete"
+                                                    onclick="removeList()">Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary editModal" data-dismiss="modal"
+                                        id="edit-close-list">Close
+                                </button>
+                                <button type="button" class="btn btn-success editModal" id="edit-confirm-list"
+                                        onclick="editShoppingList()">Confirm
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="col-lg-10 mx-auto" id="current-list">
             <h4 class="fridgeList">Current Lists:</h4>
             <br>
-		</div>
-    </section>
+        </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-      <div class="container text-center">
+<!-- Footer -->
+<footer>
+    <div class="container text-center">
         <p>Copyright &copy; FreshFridge</p>
-      </div>
-    </footer>
+    </div>
+</footer>
 
 
-
-  </body>
+</body>
 
 </html>

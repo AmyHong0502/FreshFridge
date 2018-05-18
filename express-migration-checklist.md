@@ -7,14 +7,14 @@
 - [x] scss
 - [x] vendor
 - [x] fridgeButton.css
-- [ ] fridgeButton.js
 - [x] gulpfile.js
 - [x] imageFade.css
 - [x] index.html
-- [ ] login.html
-- [ ] myfridge.html
+- [x] login.html
 - [x] myFridge.js
-- [ ] myrecipes.html
+- [x] myrecipes.html
+- [ ] myfridge.html
+- [x] shoppinglist.html
+- [ ] fridgeButton.js
 - [ ] package.json
 - [ ] package-lock.json
-- [ ] shoppinglist.html
