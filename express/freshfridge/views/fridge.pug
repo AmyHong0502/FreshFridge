@@ -5,7 +5,7 @@ block customCSS
     link(href='/css/grayscale.min.myfridge.css' rel='stylesheet')
 
 block customJS
-    script(src='/js/fridgeButton.js')
+    //script(src='/js/fridgeButton.js')
     script(src='/js/fridge-bottom.js')
 
 block content
@@ -33,9 +33,9 @@ block content
                     each food in fridge_list
                         input(type='text' class='jsonfromdb' value=food.toString() style='display: none;')
 
-                div#myDIV(class="input-group input-group-lg header")
-                    input#myInput(type="text" name="add" class="form-control" placeholder="Search")
-                    button#btnadd(type="submit" name="add-to-list" onclick="newElement()" class="btn btn-large btn-primary") &#10010;
+                //div#myDIV(class="input-group input-group-lg header")
+                //    input#myInput(type="text" name="add" class="form-control" placeholder="Search")
+                //    button#btnadd(type="submit" name="add-to-list" onclick="newElement()" class="btn btn-large btn-primary") &#10010;
                 br
                 div#flip1(class="trigger") Protein
                 div#panel1(class="toggle")

@@ -2,6 +2,7 @@ let moreButton = $('#moreButton');
 
 // Returns the user's input from every <li class='ingredientLi'>.
 function extractUserIngredients() {
+    console.log("EUI called");
     let userInputs = document.getElementsByClassName('ingredientLi');
     let ingredients = [];
 
@@ -9,6 +10,7 @@ function extractUserIngredients() {
 
     for (let i = 0; i < userInputs.length; i++) {
         let ingredient = userInputs[i].innerHTML.replace(pattern, "$1");
+        console.log(ingredient);
         ingredients.push(ingredient);
     }
 
@@ -88,7 +90,7 @@ function generateForm(recipeID, recipeDataButton) {
     let submitButton = recipeDataButton;
 
     formNode.method = 'post';
-    formNode.action = '/' + recipeID;
+    formNode.action = '/recipe/' + recipeID;
     formNode.id = recipeID;
     formNode.name = recipeID;
 
@@ -186,6 +188,7 @@ function listNewIngredient() {
         let li = document.createElement("li");
         let t = document.createTextNode(inputValue);
         li.id = "ingredientLi";
+        li.className = "ingredientLi";
         li.appendChild(t);
 
         let span = document.createElement("SPAN");

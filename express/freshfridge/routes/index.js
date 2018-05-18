@@ -12,8 +12,8 @@ router.get('/', function (req, res) {
 // lookup recipes
 router.post('/', recipe_controller.recipe_list);
 
-router.get('/:recipeID', recipe_controller.recipe_detail);
-
-router.post('/:recipeID', recipe_controller.recipe_detail);
+// router.get('/:recipeID', recipe_controller.recipe_detail);
+//
+// router.post('/:recipeID', recipe_controller.recipe_detail);
 
 module.exports = router;

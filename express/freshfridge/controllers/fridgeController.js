@@ -9,6 +9,7 @@ exports.fridge_list = function (req, res, next) {
             if (err) {
                 return next(err);
             }
+
             // success, so render
             res.render('fridge', {title: 'FreshFridge: My Fridge', fridge_list: list_fridge});
         });
