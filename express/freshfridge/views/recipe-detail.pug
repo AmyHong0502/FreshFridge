@@ -11,35 +11,62 @@ block content
             section#basics
             section#recipe-info
 
+            div(class="row")
+                button(class="btn col align-self-end" onclick="goBack()") Go Back
+
+            br
+            br
+
+            section#poweredByYummly
+
+            br
+            br
+
             script.
+                function goBack() {
+                    window.history.back();
+                }
+
                 function printBasics(name, imageURL, source) {
                     let basics = document.getElementById('basics');
 
-                    let recipeName = document.createElement('h3');
-                    recipeName.innerText = name;
+                    let row = document.createElement('div');
+                    row.className = 'row';
+
+                    let leftCol = document.createElement('div');
+                    let rightCol = document.createElement('div');
+                    leftCol.className = 'col-6';
+                    rightCol.className = 'col-6';
 
                     let image = document.createElement('img');
                     image.src = imageURL;
                     image.alt = name;
 
-                    let reference = document.createElement('div');
+                    let recipeName = document.createElement('h3');
+                    recipeName.innerText = name;
+
                     let srchref = document.createElement('a');
                     let srcRedirect = document.createElement('a');
 
                     srchref.innerText = source['sourceDisplayName'];
                     srchref.href = 'http://' + source['sourceSiteUrl'];
                     srchref.target = "_blank";
+                    srchref.style = "float: right;";
 
                     srcRedirect.href = source['sourceRecipeUrl'];
                     srcRedirect.innerText = "Redirect to this recipe";
                     srcRedirect.target = "_blank";
+                    srcRedirect.className = 'redirect-recipe';
 
-                    reference.appendChild(srchref);
-                    reference.appendChild(srcRedirect);
+                    leftCol.appendChild(image);
+                    rightCol.appendChild(srchref);
+                    rightCol.appendChild(srcRedirect);
+
+                    row.appendChild(leftCol);
+                    row.appendChild(rightCol);
 
                     basics.appendChild(recipeName);
-                    basics.appendChild(image);
-                    basics.appendChild(reference);
+                    basics.appendChild(row);
                 }
 
                 function printRecipeInfo(ingredientLines, numOfServings, cookingTime, flavors, rating) {
@@ -105,16 +132,27 @@ block content
                     leftCell.appendChild(text);
                     row.appendChild(leftCell);
 
-                    let flavourOl = document.createElement('ol');
+                    let flavorUl = document.createElement('ul');
                     for (let flavor in flavors) {
                         let listItem = document.createElement('li');
                         listItem.innerText = flavor + ": " + flavors[flavor];
-                        flavourOl.appendChild(listItem);
+                        flavorUl.appendChild(listItem);
                     }
-                    rightCell.appendChild(flavourOl);
+                    rightCell.appendChild(flavorUl);
                     row.appendChild(rightCell);
 
                     return row;
+                }
+
+                function generateYummlys(attribution) {
+                    let field = document.getElementById('poweredByYummly');
+
+                    let text = document.createElement('p');
+                    text.className = 'text-muted';
+                    text.style = 'font-size: 0.8em; float: right;';
+                    text.innerText = attribution['text'];
+
+                    field.appendChild(text);
                 }
 
                 let data = JSON.parse(document.getElementById('api-response').innerText);
@@ -130,3 +168,8 @@ block content
                 let flavors = data['flavors'];
                 let rating = data['rating'];
                 printRecipeInfo(ingredients, numOfServings, totalTime, flavors, rating);
+
+                let attribution = data['attribution'];
+                generateYummlys(attribution);
+
+
