@@ -5,7 +5,7 @@ $(document).ready(function () {
 		$(this).parent().toggleClass("faded");
 		
 		if(!($(this).parent().hasClass("faded"))){
-			$("#ingredientsUL").append('<li id=' + $(this).next("figcaption").text() + ' class="ingredientLi">' + $(this).next("figcaption").text() +' <a class="remove">&times;</a></li>'); 
+			$("#ingredientsUL").append('<li id=' + $(this).next("figcaption").text() + ' class="ingredientLi">' + $(this).next("figcaption").text() +' <a class="close">&times;</a></li>'); 
 		}
 		else{
 			$('#ingredientsUL li:contains('+$(this).next("figcaption").text()+')').remove();
@@ -13,9 +13,9 @@ $(document).ready(function () {
 	});
 	
 	//Close button
-	$(document).on("click", "a.remove", function() {
+	$(document).on("click", "a.close", function() {
 		var selectedItem = $(this).parent().contents().filter(textFilter).text();
-		var presetFigure = $("figcaption:contains("+selectedItem+")").parent();
+		var presetFigure = $("figure").children("figcaption:contains("+selectedItem+")").parent();
 		//var str = JSON.stringify(presetFigure, null, 4);
 		//window.alert(str);
 		presetFigure.toggleClass("faded");
