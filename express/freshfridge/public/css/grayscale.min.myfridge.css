@@ -203,7 +203,7 @@ body{
 }
 
 /* Styles and positions ingredient input */
- #ingredientLi {
+ .ingredientLi {
      position: relative;
      padding-top: 6px;
      padding-bottom: 6px;
@@ -215,7 +215,7 @@ body{
      list-style-type: none;
 }
 /* Changes color of Ingredients Li */
- #ingredientLi:nth-child(odd) {
+ .ingredientLi:nth-child(odd) {
      background: #f9f9f9;
 }
 
@@ -341,12 +341,39 @@ img {
     max-width: 100%;
     height: auto;
     margin-bottom: 5px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
-  figcaption{
+figcaption{
       color: black;
       font-family: Verdana, Geneva, Tahoma, sans-serif;
       font-size: 14px;
   }
+
+/* Buttons styling and layout */
+.itemButton {
+    background-color: white;
+    border: none;
+    color: white;
+    padding: 1px 1px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.itemSelector {
+	-webkit-transition: opacity 400ms linear;
+    transition: opacity 400ms linear;
+}
+
+.faded {
+	opacity: 0.5;
+}
+
+h4 {
+    color: #000;
+}

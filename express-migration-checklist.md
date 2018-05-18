@@ -10,7 +10,7 @@
 - [ ] fridgeButton.js
 - [x] gulpfile.js
 - [x] imageFade.css
-- [ ] index.html
+- [x] index.html
 - [ ] login.html
 - [ ] myfridge.html
 - [x] myFridge.js

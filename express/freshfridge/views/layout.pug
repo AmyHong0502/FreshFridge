@@ -48,6 +48,7 @@ html
                 aria-controls='navbarResponsive'
                 aria-expanded='false'
                 aria-label='Toggle navigation') Menu
+                    i(class='fa fa-bars')
                 div#navbarResponsive(class="collapse navbar-collapse")
                     ul(class="navbar-nav ml-auto")
                         li(class="nav-item")
@@ -78,6 +79,7 @@ html
         // Google Login
         div(class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="display: none;")
         script.
+            // Change login button to logout button on sign-in.
             function onSignIn(googleUser) {
                 if (googleUser.getBasicProfile().getId() !== '') {
                     let loginButton = document.getElementById('login');
@@ -88,6 +90,7 @@ html
                 }
             };
 
+            // Google sign-out.
             var signOut = function signOut() {
                 var auth2 = gapi.auth2.getAuthInstance();
                 auth2.signOut().then(function () {
@@ -101,7 +104,7 @@ html
                 loginButton.addEventListener('click', addRedirection);
             }
 
+            // Add redirection to login page.
             function addRedirection() {
-                console.log("listener Activated");
                 window.location = "http://freshfridge.tk/login";
             }
