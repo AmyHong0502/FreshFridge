@@ -21,9 +21,13 @@
     <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
     <!-- Custom styles for this template -->
     <link href="css/grayscale.min.css" rel="stylesheet">
+    <!-- Google Map Api -->
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOI4oiKluCgU6OOqlxtHkrgWHzKT5ko8Y&callback=initMap">
+    </script>
   </head>
 
-  
+
   <body id="page-top">
 	<!-- Navigation -->
     <nav class="navbar navbar-expand-lg  fixed-top navbar-default" id="mainNav">
@@ -63,7 +67,7 @@
       </div>
     </nav>
 
-       
+
     <!-- Intro Header -->
     <header class="masthead">
       <div class="intro-body">
@@ -80,7 +84,7 @@
         </div>
       </div>
     </header>
- 
+
     <!-- Ingredients Section -->
     <section id="functional" class="content-section text-center">
         <div class="container">
@@ -95,26 +99,26 @@
                       <ul id="ingredientsUL" >
                 </ul>
                 </div >
-              
+
             </div>
         </div>
-    </section>   
-    
-	
+    </section>
+
+
     <!-- About Section -->
     <section id="about" class="about-section text-center">
       <div class="container">
         <div class="row">
           <div class="col-lg-10 mx-auto">
             <h2>About FreshFridge</h2>
-            <p>Our goal is to provide users with alternate methods of using the food rather than throwing it out. This not only 
+            <p>Our goal is to provide users with alternate methods of using the food rather than throwing it out. This not only
 			<b>helps save money</b> but <b>reduces food waste</b> as well. Let's work hard to decrease the amount of food waste.</p>
           </div>
         </div>
       </div>
     </section>
 
-    
+
     <!-- The Team Section -->
     <section id="team" class="team-section text-center">
       <div class="container">
@@ -136,20 +140,21 @@
         </div>
       </div>
     </section>
-    
-	
+
+
     <!-- Contact Section -->
     <section id="contact" class="contact-section text-center">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
             <h2>Contact Us</h2>
+            <div id="googleMap"></div>
             <ul class="list-inline banner-social-buttons">
               <li class="list-inline-item">
                 </a>
               </li>
               <li class="list-inline-item">
-                <a href="https://github.com/BlackrockDigital/startbootstrap" class="btn btn-default btn-lg">
+                <a href="https://github.com/BlackrockDigital/startbootstrap" class="btn btn-success btn-lg">
                   <i class="fa fa-github fa-fw"></i>
                   <span class="network-name">Github</span>
                 </a>
@@ -168,6 +173,6 @@
       </div>
     </footer>
 
-	
+
   </body>
 </html>

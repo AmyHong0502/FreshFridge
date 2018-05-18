@@ -1,9 +1,6 @@
 // Counter for the current number for shopping lists
 var counter = 0;
 
-// Current table to be appended to checkbox id
-var currentCheckBoxTable = 0;
-
 // Create a new list when clicking on the "Add" button
 function newElement() {
     var trigger = document.createElement("div");
@@ -38,7 +35,6 @@ function createRemoveSelected() {
     deleteSelectedBtn.setAttribute("id", "deleteSelectedmyTable" + counter);
     deleteSelectedBtn.setAttribute("class", "btn btn-danger btn-sm delete-selected");
     deleteSelectedBtn.setAttribute("style", "display: none;");
-    deleteSelectedBtn.setAttribute("onclick", "deleteRow()")
     deleteSelectedBtn.innerHTML = "Remove";
 
     var myBreak = document.createAttribute("br");
@@ -62,7 +58,6 @@ function addButton() {
     editListBtn.setAttribute("id", "browseItem " + counter);
     editListBtn.setAttribute("data-toggle", "modal");
     editListBtn.setAttribute("data-target", "#editListModal");
-
 
     var addItemBtn = document.createElement("button");
     var itemBtnNode = document.createTextNode("Add Item");
@@ -362,19 +357,19 @@ function checkIfClicked() {
     }
 }
 
-// Delete row(s) where checkbox is clicked
-function deleteRow()  {
-    var table = document.getElementById(currentTable);
-    var i;
-    for (i = 0; i < table.rows.length; i++){
-        if () {
-            
+// Deletes checked rows in the current table
+// BUG DETECTED : Not all checkboxed items are removed
+$(document).ready(function() {
+    $(document).on('click', '.delete-selected', function() {
+        var table = document.getElementById(currentTable);
+        for (var i = 1, row; row = table.rows[i]; i++){
+            if (row.cells[0].getElementsByTagName("label")[0].getElementsByTagName("span")[0].classList.contains("checked")) {
+                row.remove();
+            }
         }
-    }
-
-
-    document.getElementById("deleteSelected" + currentTable).setAttribute("style", "display: none;");
-}
+        document.getElementById("deleteSelected" + currentTable).setAttribute("style", "display: none;");
+    });
+});
 
 // Toggles the class of the checkbox
 $(document).ready(function() {
@@ -503,22 +498,6 @@ function panelClick() {
     });
 }
 
-// // Toggles display of the browse section in each Shopping List
-// $(document).ready(function() {
-//     $(document).on('click', '.browse', function() {
-//         var buttonNode = document.getElementById(this.id);
-//         var buttonText = buttonNode.innerHTML;
-//         if (buttonText === "Edit") {
-//             var textNode = document.createTextNode("Done");
-//             buttonNode.replaceChild(textNode, buttonNode.childNodes[0]);
-//         } else {
-//             var textNode = document.createTextNode("Edit");
-//             buttonNode.replaceChild(textNode, buttonNode.childNodes[0]);
-//         }
-//         $(this).next(".toggleBrowse").slideToggle("slow");
-//     });
-// });
-
 // Toggles display of the add item section in each Shopping List
 $(document).ready(function() {
     $(document).on('click', '.add', function() {
@@ -533,7 +512,6 @@ $(document).ready(function() {
             $(this).css("margin-top", "0px");
             nextButton.css("margin-top", "0px");
             nextButton.hide();
-
 
             addButton.show();
             addButton.css("margin-top", "0px");
