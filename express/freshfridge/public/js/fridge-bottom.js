@@ -18,12 +18,14 @@ function writeFoodList(items) {
 
             li.appendChild(span);
 
-            for (i = 0; i < close.length; i++) {
-                close[i].onclick = function() {
-                    let div = this.parentElement;
-                    div.style.display = "none";
-                }
-            }
+            console.log("Called writeFoodList");
+
+            // for (i = 0; i < close.length; i++) {
+            //     close[i].onclick = function() {
+            //         let div = this.parentElement;
+            //         div.style.display = "none";
+            //     }
+            // }
         }
     }
 }

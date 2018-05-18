@@ -10,7 +10,7 @@ router.get('/', function (req, res) {
 });
 
 // lookup recipes
-router.post('/', recipe_controller.recipe_list);
+// router.post('/', recipe_controller.recipe_list);
 
 // router.get('/:recipeID', recipe_controller.recipe_detail);
 //

@@ -1,4 +1,4 @@
-ol, ul {
+ol, ul, h5 {
     color: #000;
 }
 
@@ -12,7 +12,7 @@ td {
 
 .redirect-recipe {
     position: relative;
+    float: right;
     top: 100%;
     transform: translateY(-100%);
-    float: right;
 }

@@ -5,15 +5,77 @@ block customCSS
     link(href='/css/grayscale.min.myfridge.css' rel='stylesheet')
 
 block customJS
-    //script(src='/js/fridgeButton.js')
+    script(src='/js/fridgeButton.js')
     script(src='/js/fridge-bottom.js')
+
+block googleLogin
+    meta(name='google-signin-scope' content='profile email')
+    meta(name="google-signin-client_id" content="725273597701-5g9etsbbnvq2hvjr25llshmcc4vfqav8.apps.googleusercontent.com")
+    script(src="https://apis.google.com/js/platform.js" async defer)
+
+block googleLoginContent
+    div(class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="display: none;")
+
+    script.
+        function onSignIn(googleUser) {
+            // Useful data for your client-side scripts:
+            var profile = googleUser.getBasicProfile();
+            console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+            console.log('Full Name: ' + profile.getName());
+            console.log('Given Name: ' + profile.getGivenName());
+            console.log('Family Name: ' + profile.getFamilyName());
+            console.log("Image URL: " + profile.getImageUrl());
+            console.log("Email: " + profile.getEmail());
+
+            putEmail(profile.getEmail());
+            getData(profile.getEmail());
+
+            // The ID token you need to pass to your backend:
+            var id_token = googleUser.getAuthResponse().id_token;
+            console.log("ID Token: " + id_token);
+
+            let nameTitle = document.getElementById("nameTitle");
+            let titleWithName = profile.getGivenName() + "\'s Fridge";
+
+            nameTitle.innerText = titleWithName;
+
+            if (profile.getId() !== '') {
+                console.log("Logout button processing");
+
+                let loginButton = document.getElementById('login');
+
+                loginButton.href = '#';
+                loginButton.addEventListener('click', signOut);
+                loginButton.innerText = 'Logout';
+
+                console.log("Convert successful");
+            }
+        };
+
+        var signOut = function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+        });
+
+        let loginButton = document.getElementById('login');
+
+        loginButton.removeEventListener('click', signOut);
+        loginButton.innerText = 'Login';
+        loginButton.addEventListener('click', addRedirection);
+        console.log("Convert successful");
+        }
+        function addRedirection() {
+            console.log("listener Activated");
+            window.location = "http://freshfridge.tk/login";
+        }
 
 block content
     // Ingredients Section
     section#functional(class="content-section text-center")
         div(class="container")
             div(class="col-lg-10 mx-auto")
-                h2 My Fridge
+                h2#nameTitle My Fridge
                 div(data-onsuccess="testgetdb" data-theme="dark")
 
                 script.
@@ -33,9 +95,9 @@ block content
                     each food in fridge_list
                         input(type='text' class='jsonfromdb' value=food.toString() style='display: none;')
 
-                //div#myDIV(class="input-group input-group-lg header")
-                //    input#myInput(type="text" name="add" class="form-control" placeholder="Search")
-                //    button#btnadd(type="submit" name="add-to-list" onclick="newElement()" class="btn btn-large btn-primary") &#10010;
+                div#myDIV(class="input-group input-group-lg header")
+                    //input#myInput(type="text" name="add" class="form-control" placeholder="Search")
+                    //button#btnadd(type="submit" name="add-to-list" onclick="newElement()" class="btn btn-large btn-primary") &#10010;
                 br
                 div#flip1(class="trigger") Protein
                 div#panel1(class="toggle")
@@ -150,18 +212,8 @@ block content
 
                             if (caption.includes(dbItem)) {
                                 food.classList.remove('faded');
+                                console.log("removed faded: " + dbItem);
                             }
                         }
                     }
                 }
-
-            // Google Login
-            div(class = "g-signin2" data-onsuccess="populateData" data-theme = "dark" style = "display: none;")
-            script.
-                function populateData(googleUser) {
-                    // Useful data for your client-side scripts:
-                    var profile = googleUser.getBasicProfile();
-
-                    putEmail(profile.getEmail());
-                    getData(profile.getEmail());
-                };
