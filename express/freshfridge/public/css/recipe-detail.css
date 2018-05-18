@@ -1,0 +1,18 @@
+ol, ul, h5 {
+    color: #000;
+}
+
+body {
+    margin-top: 105px;
+}
+
+td {
+    padding: 15px;
+}
+
+.redirect-recipe {
+    position: relative;
+    float: right;
+    top: 100%;
+    transform: translateY(-100%);
+}

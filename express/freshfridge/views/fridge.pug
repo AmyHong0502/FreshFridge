@@ -1,0 +1,219 @@
+extends layout
+
+block customCSS
+    link(href='/css/fridgeButton.css' rel='stylesheet')
+    link(href='/css/grayscale.min.myfridge.css' rel='stylesheet')
+
+block customJS
+    script(src='/js/fridgeButton.js')
+    script(src='/js/fridge-bottom.js')
+
+block googleLogin
+    meta(name='google-signin-scope' content='profile email')
+    meta(name="google-signin-client_id" content="725273597701-5g9etsbbnvq2hvjr25llshmcc4vfqav8.apps.googleusercontent.com")
+    script(src="https://apis.google.com/js/platform.js" async defer)
+
+block googleLoginContent
+    div(class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="display: none;")
+
+    script.
+        function onSignIn(googleUser) {
+            // Useful data for your client-side scripts:
+            var profile = googleUser.getBasicProfile();
+            console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+            console.log('Full Name: ' + profile.getName());
+            console.log('Given Name: ' + profile.getGivenName());
+            console.log('Family Name: ' + profile.getFamilyName());
+            console.log("Image URL: " + profile.getImageUrl());
+            console.log("Email: " + profile.getEmail());
+
+            putEmail(profile.getEmail());
+            getData(profile.getEmail());
+
+            // The ID token you need to pass to your backend:
+            var id_token = googleUser.getAuthResponse().id_token;
+            console.log("ID Token: " + id_token);
+
+            let nameTitle = document.getElementById("nameTitle");
+            let titleWithName = profile.getGivenName() + "\'s Fridge";
+
+            nameTitle.innerText = titleWithName;
+
+            if (profile.getId() !== '') {
+                console.log("Logout button processing");
+
+                let loginButton = document.getElementById('login');
+
+                loginButton.href = '#';
+                loginButton.addEventListener('click', signOut);
+                loginButton.innerText = 'Logout';
+
+                console.log("Convert successful");
+            }
+        };
+
+        var signOut = function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+        });
+
+        let loginButton = document.getElementById('login');
+
+        loginButton.removeEventListener('click', signOut);
+        loginButton.innerText = 'Login';
+        loginButton.addEventListener('click', addRedirection);
+        console.log("Convert successful");
+        }
+        function addRedirection() {
+            console.log("listener Activated");
+            window.location = "http://freshfridge.tk/login";
+        }
+
+block content
+    // Ingredients Section
+    section#functional(class="content-section text-center")
+        div(class="container")
+            div(class="col-lg-10 mx-auto")
+                h2#nameTitle My Fridge
+                div(data-onsuccess="testgetdb" data-theme="dark")
+
+                script.
+                    function testgetdb(googleUser) {
+                        let useremail = googleUser.getBasicProfile().getEmail();
+                        console.log("\t\t\tEMAIL: " + useremail + "\n\n\n");
+                        let pelement = document.createElement(p);
+                        pelement.appendChild(useremail);
+                        console.log("p executed\n\n");
+
+                        let divelement = document.getElementById("fromdb");
+                        divelement.appendChild(pelement);
+                        console.log("div executed\n\n");
+                    }
+
+                div#fromdb
+                    each food in fridge_list
+                        input(type='text' class='jsonfromdb' value=food.toString() style='display: none;')
+
+                div#myDIV(class="input-group input-group-lg header")
+                    //input#myInput(type="text" name="add" class="form-control" placeholder="Search")
+                    //button#btnadd(type="submit" name="add-to-list" onclick="newElement()" class="btn btn-large btn-primary") &#10010;
+                br
+                div#flip1(class="trigger") Protein
+                div#panel1(class="toggle")
+                    div(class="row")
+                        each caption, imglink in {"beef.png": "Beef", "whole-chicken.png": "Whole Chicken", "pork.png": "Pork", "salmon.png": "Salmon", "tuna.png": "Tuna", "chicken-leg.png": "Chicken Leg", "turkey.png": "Turkey", "ham.png": "Ham", "sausage.png": "Sausage", "shrimp.png": "Shrimp", "crab.png": "Crab", "salami.png": "Salami", "oyster.png": "Oyster", "lobster.png": "Lobster", "squid.png": "Squid", "sardine.png": "Sardine", "anchovy.png": "Anchovy", "halibut.png": "Halibut"}
+                            div(class = "column")
+                                figure(class="itemSelector faded foodFigure" caption= caption)
+                                    form(method='POST' action='/i/fridge/process')
+                                        div.form-group
+                                            input#emailformc.form-control(type='text' name='email' style='display: none;' class='placeemail')
+                                            input#foodformc.form-control(type='text' name='food' value= caption style='display: none;')
+                                        button(class="itemButton" type="submit")
+                                            img(src= "\\img\\icons\\" + imglink)
+                                        figcaption= caption
+                br
+                div#flip2(class="trigger") Dairy
+                div#panel2(class="toggle")
+                    div(class="row")
+                        each caption, imglink in {"milk.png": "Milk", "yogurt.png": "Yogurt", "egg.png": "Egg", "ice-cream.png": "Ice Cream", "butter.png": "Butter", "cheese.png": "Cheese"}
+                            div(class = "column")
+                                figure(class="itemSelector faded foodFigure" caption= caption)
+                                    form(method='POST' action='/i/fridge/process')
+                                        div.form-group
+                                            input#emailformc.form-control(type='text' name='email' style='display: none;' class='placeemail')
+                                            input#foodformc.form-control(type='text' name='food' value= caption style='display: none;')
+                                        button(class="itemButton" type="submit")
+                                            img(src= "\\img\\icons\\" + imglink)
+                                        figcaption= caption
+                br
+                div#flip3(class="trigger") Fruits
+                div#panel3(class="toggle")
+                    div(class="row")
+                        each caption, imglink in {"apple.png": "Apple", "bananas.png": "Banana", "orange.png": "Orange", "strawberry.png": "Strawberry", "blueberries.png": "Blueberry", "cherries.png": "Cherry", "kiwi.png": "Kiwi", "grapes.png": "Grape", "watermelon.png": "Watermelon", "pineapple.png": "Pineapple", "coconut.png": "Coconut", "peach.png": "Peach", "raspberry.png": "Raspberry", "mango.png": "Mango", "papaya.png": "Papaya", "pomegranate.png": "Pomegranate", "plum.png": "Plum", "lemon.png": "Lemon"}
+                            div(class = "column")
+                                figure(class="itemSelector faded foodFigure" caption= caption)
+                                    form(method='POST' action='/i/fridge/process')
+                                        div.form-group
+                                            input#emailformc.form-control(type='text' name='email' style='display: none;' class='placeemail')
+                                            input#foodformc.form-control(type='text' name='food' value= caption style='display: none;')
+                                        button(class="itemButton" type="submit")
+                                            img(src= "\\img\\icons\\" + imglink)
+                                        figcaption= caption
+                br
+                div#flip4(class="trigger") Vegetables
+                div#panel4(class="toggle")
+                    div(class="row")
+                        each caption, imglink in {"carrot.png": "Carrot", "lettuce.png": "Lettuce", "spinach.png": "Spinach", "tomato.png": "Tomato", "broccoli.png": "Broccoli", "onion.png": "Onion", "garlic.png": "Garlic", "potato.png": "Potato", "pepper.png": "Pepper", "corn.png": "Corn", "mushroom.png": "Mushroom", "ginger.png": "Ginger", "celery.png": "Celery", "cucumber.png": "Cucumber", "eggplant.png": "Eggplant", "sweet-potato.png": "Sweet Potato", "radish.png": "Radish", "asparagus.png": "Asparagus"}
+                            div(class = "column")
+                                figure(class="itemSelector faded foodFigure" caption= caption)
+                                    form(method='POST' action='/i/fridge/process')
+                                        div.form-group
+                                            input#emailformc.form-control(type='text' name='email' style='display: none;' class='placeemail')
+                                            input#foodformc.form-control(type='text' name='food' value= caption style='display: none;')
+                                        button(class="itemButton" type="submit")
+                                            img(src= "\\img\\icons\\" + imglink)
+                                        figcaption= caption
+                br
+                div#flip5(class="trigger") Grains
+                div#panel5(class="toggle")
+                    div(class="row")
+                        each caption, imglink in {"rice.png": "Rice", "spaguetti.png": "Spaguetti", "noodles.png": "Noodles", "cracker.png": "Cracker", "quinoa.png": "Quinoa", "croissant.png": "Croissant", "cereals.png": "Cereals", "oat.png": "Oat", "bread.png": "Bread", "hebrew.png": "Hebrew", "flour.png": "Flour", "tortillas.png": "Tortillas"}
+                            div(class = "column")
+                                figure(class="itemSelector faded foodFigure" caption= caption)
+                                    form(method='POST' action='/i/fridge/process')
+                                        div.form-group
+                                            input#emailformc.form-control(type='text' name='email' style='display: none;' class='placeemail')
+                                            input#foodformc.form-control(type='text' name='food' value= caption style='display: none;')
+                                        button(class="itemButton" type="submit")
+                                            img(src= "\\img\\icons\\" + imglink)
+                                        figcaption= caption
+                br
+                div(class="col-lg-10 mx-auto")
+                    h3(class="fridgeList") Current Items:
+                    ul#ingredientsUL
+
+            script.
+                function putEmail(email) {
+                    let emailFields = document.getElementsByClassName("placeemail");
+
+                    for (let i = 0; i < emailFields.length; i++) {
+                        emailFields[i].value = email;
+                    }
+                }
+
+                function getData(email) {
+                    let database = document.getElementsByClassName("jsonfromdb");
+                    let foodResults = [];
+
+                    for (let i = 0; i < database.length; i++) {
+                        let data = database[i].value;
+                        let extract = /.*food: '(.*)'.*/;
+
+                        if (data.includes(email)) {
+                            let value = data.replace(extract, "$1");
+                            foodResults.push(value);
+                        }
+                    }
+
+                    IterateDB(foodResults);
+                    writeFoodList(foodResults);
+                }
+
+                function IterateDB(foodsFromDB) {
+                    let foodItems = document.getElementsByClassName("foodFigure");
+
+                    for (let i = 0; i < foodItems.length; i++) {
+                        let food = foodItems[i];
+                        let caption = food.getElementsByTagName('figcaption')[0].innerHTML;
+
+                        for (let j = 0; j < foodsFromDB.length; j++) {
+                            let dbItem = foodsFromDB[j];
+
+                            if (caption.includes(dbItem)) {
+                                food.classList.remove('faded');
+                                console.log("removed faded: " + dbItem);
+                            }
+                        }
+                    }
+                }
