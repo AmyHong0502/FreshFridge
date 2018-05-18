@@ -53,15 +53,11 @@ function showRecipes() {
 
     data = JSON.parse(data);
 
-    let table = document.getElementById('api-recipes');
-    let row;
+    let div = document.getElementById('api-recipes');
 
     for (let i = 0; i < data.matches.length; i++) {
-        if (i % 3 === 0) {
-            row = document.createElement('tr');
-            row.className = 'row';
-            table.append(row);
-        }
+        let cell = document.createElement('div');
+        cell.className = 'col-lg-3 col-md-4 col-sm-6';
 
         let recipe = data['matches'][i];
 
@@ -69,16 +65,11 @@ function showRecipes() {
         let thumbnailURL = recipe['imageUrlsBySize'][90];
         let thumbnailURL2 = recipe['smallImageUrls'][0];
 
-        let cellNode = document.createElement('td');
-        let recipeDataSpan = generateDataSpan(thumbnailURL, recipeName);
-        let formNode = generateForm(recipe['id'], recipeDataSpan);
+        let recipeDataButton = generateDataButton(thumbnailURL, recipeName);
+        let formNode = generateForm(recipe['id'], recipeDataButton);
 
-        cellNode.appendChild(formNode);
-        row.append(cellNode);
-
-        if (i % 3 === 2) {
-            table.appendChild(row);
-        }
+        cell.appendChild(formNode);
+        div.appendChild(cell);
     }
 
     // if (clickCount === 1) {
@@ -114,12 +105,13 @@ function generateForm(recipeID, recipeDataButton) {
     return formNode;
 }
 
-function generateDataSpan(imageURL, recipeName) {
+function generateDataButton(imageURL, recipeName) {
     let buttonNode = document.createElement('button');
     let imageNode = document.createElement('img');
     let titleNode = document.createElement('p');
 
     buttonNode.type = 'submit';
+    buttonNode.className = 'btn btn-link';
 
     // let res = recipeId.replace(/=s90-c/g, "=s240-c");
     // ----------------------------------------------

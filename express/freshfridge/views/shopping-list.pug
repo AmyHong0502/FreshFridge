@@ -57,18 +57,14 @@ block content
                                 div(class="modal-footer")
                                     button#edit-close(type="button" class="btn btn-primary editModal" data-dismiss="modal") Close
                                     button#edit-confirm(type="button" class="btn btn-success editModal" onclick="editTableRow()") Confirm
+
                 // Shopping List Edit Modal
-                div#current-list(class="col-lg-10 mx-auto")
-                    h4(class="fridgeList") Current Lists:
-                    br
-
-
                 div#editListModal(class="modal fade" tabindex="-1" role="dialog" aria-labelledby="editListModalLabel" aria-hidden="true")
                     div(class="vertical-alignment-helper")
                         div(class="modal-dialog vertical-align-center")
                             div(class="modal-content")
                                 div(class="modal-header")
-                                    h4#myModalLabel(class="modal-title")Edit Shopping List
+                                    h4#myModalLabel(class="modal-title") Edit Shopping List
                                 div class="modal-body" id="editList-body">
                                     form
                                         div(class="form-group")
@@ -79,6 +75,7 @@ block content
                                 div(class="modal-footer")
                                     button#edit-close-list(type="button" class="btn btn-primary editModal" data-dismiss="modal") Close
                                     button#edit-confirm-list(type="button" class="btn btn-success editModal" onclick="editShoppingList()") Confirm
+            br
             div#current-list(class="col-lg-10 mx-auto")
                 h4(class="fridgeList") Current Lists:
                 br

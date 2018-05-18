@@ -35,10 +35,12 @@ block content
                     form#request-recipe(method='POST' action='/')
                         input#ingredients(style="display: none;" name='ingredients')
                         button#btnsubmit(type="submit" class="btn btn-large btn-primary" onclick="extractUserIngredients();" style="width:140px") Submit
+                br
+                br
                 div#myDIV(class="header")
                     ul#ingredientsUL
                 div#recipes
-                    table#api-recipes
+                    div#api-recipes(class="row")
                 div#moreButton
                 p#api-data-string(style='display: none;') #{apidata}
 
