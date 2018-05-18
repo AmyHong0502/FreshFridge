@@ -91,14 +91,14 @@
 									</form>
 								</div>
 								<div class="modal-footer">
-									<button type="button" class="btn btn-default" data-dismiss="modal" id="btn-close">Close</button>
-									<button type="button" class="btn btn-primary" id="btn-add" onclick="newElement()">Add</button>
+									<button type="button" class="btn btn-primary" data-dismiss="modal" id="btn-close">Close</button>
+									<button type="button" class="btn btn-success" id="btn-add" onclick="newElement()">Add</button>
 								</div>
 							</div>
 						</div>
 					</div>
                 </div>
-                <!-- Edit Modal -->
+                <!-- Individual Item Edit Modal -->
 				<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
 					<div class="vertical-alignment-helper">
 						<div class="modal-dialog vertical-align-center">
@@ -130,6 +130,33 @@
 								<div class="modal-footer">
 									<button type="button" class="btn btn-primary editModal" data-dismiss="modal" id="edit-close">Close</button>
 									<button type="button" class="btn btn-success editModal" id="edit-confirm" onclick="editTableRow()">Confirm</button>
+								</div>
+							</div>
+						</div>
+					</div>
+                </div>
+                <!-- Shopping List Edit Modal -->
+				<div class="modal fade" id="editListModal" tabindex="-1" role="dialog" aria-labelledby="editListModalLabel" aria-hidden="true">
+					<div class="vertical-alignment-helper">
+						<div class="modal-dialog vertical-align-center">
+							<div class="modal-content">
+								<div class="modal-header">
+                                    <h4 class="modal-title" id="myModalLabel">Edit Shopping List</h4>
+								</div>
+								<div class="modal-body" id="editList-body">
+									<form>
+										<div class="form-group">
+											<label class="control-label" for="list-name">List Name:</label>
+                                            <input type="text" class="form-control" id="modal-listName">
+                                            <div style="text-align:center;">
+                                                <button type="button" class="btn btn-danger deleteList" id="edit-delete" onclick="removeList()">Delete</button>
+                                            </div>
+										</div>
+									</form>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary editModal" data-dismiss="modal" id="edit-close-list">Close</button>
+									<button type="button" class="btn btn-success editModal" id="edit-confirm-list" onclick="editShoppingList()">Confirm</button>
 								</div>
 							</div>
 						</div>

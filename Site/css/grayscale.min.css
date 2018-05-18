@@ -179,7 +179,8 @@ body{
      -moz-transition:all .3s ease-in-out;
      transition:all .3s ease-in-out;
      text-transform:uppercase;
-     border-radius:0 
+     border-radius:0; 
+	 max-width: 100%;
 }
  .btn-default{
      color:#42dca3;

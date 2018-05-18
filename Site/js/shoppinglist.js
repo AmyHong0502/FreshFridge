@@ -1,9 +1,14 @@
+// Counter for the current number for shopping lists
 var counter = 0;
+
+// Current table to be appended to checkbox id
+var currentCheckBoxTable = 0;
 
 // Create a new list when clicking on the "Add" button
 function newElement() {
     var trigger = document.createElement("div");
     trigger.setAttribute("class", "trigger");
+    trigger.setAttribute("id", "list-header" + counter);
     var inputValue = document.getElementById("list-name").value;
     var text = document.createTextNode(inputValue);
     trigger.appendChild(text);
@@ -11,6 +16,7 @@ function newElement() {
     toggle.setAttribute("class", "toggle");
     toggle.setAttribute("id", "panel " + counter);
     var myBreak = document.createElement("br");
+    myBreak.setAttribute("id", "break" + counter);
     if (inputValue === '') {
         alert("You must write something!");
     } else {
@@ -22,8 +28,22 @@ function newElement() {
         itemInput();
         addButton();
         createTable();
+        createRemoveSelected();
         counter++;
     }
+}
+
+function createRemoveSelected() {
+    var deleteSelectedBtn = document.createElement("button");
+    deleteSelectedBtn.setAttribute("id", "deleteSelectedmyTable" + counter);
+    deleteSelectedBtn.setAttribute("class", "btn btn-danger btn-sm delete-selected");
+    deleteSelectedBtn.setAttribute("style", "display: none;");
+    deleteSelectedBtn.setAttribute("onclick", "deleteRow()")
+    deleteSelectedBtn.innerHTML = "Remove";
+
+    var myBreak = document.createAttribute("br");
+
+    document.getElementById("panel " + counter).appendChild(deleteSelectedBtn);
 }
 
 // Add Buttons to the Dropdown List
@@ -35,12 +55,14 @@ function addButton() {
     itemBtn.setAttribute("class", "btn btn-primary btn-sm add");
     itemBtn.setAttribute("id", "showForm" + counter);
 
-    var browseBtn = document.createElement("button");
-    var browseText = "Edit";
-    var textNode = document.createTextNode(browseText);
-    browseBtn.appendChild(textNode);
-    browseBtn.setAttribute("class", "btn btn-primary btn-sm browse");
-    browseBtn.setAttribute("id", "browseItem " + counter);
+    var editListBtn = document.createElement("button");
+    var textNode = document.createTextNode("Edit");
+    editListBtn.appendChild(textNode);
+    editListBtn.setAttribute("class", "btn btn-primary btn-sm browse");
+    editListBtn.setAttribute("id", "browseItem " + counter);
+    editListBtn.setAttribute("data-toggle", "modal");
+    editListBtn.setAttribute("data-target", "#editListModal");
+
 
     var addItemBtn = document.createElement("button");
     var itemBtnNode = document.createTextNode("Add Item");
@@ -51,7 +73,7 @@ function addButton() {
     addItemBtn.setAttribute("style", "display:none;");
 
     document.getElementById("panel " + counter).appendChild(itemBtn);
-    document.getElementById("panel " + counter).appendChild(browseBtn);
+    document.getElementById("panel " + counter).appendChild(editListBtn);
     document.getElementById("panel " + counter).appendChild(addItemBtn);
 }
 
@@ -194,6 +216,46 @@ function itemInput() {
     document.getElementById("panel " + counter).appendChild(toggleDiv);
 }
 
+// Removes list from the current shopping lists
+function removeList() {
+    document.getElementById("edit-close-list").click();
+    document.getElementById("list-header" + currentPanelButton).remove();
+    document.getElementById("panel " + currentPanelButton).remove();
+    document.getElementById("break" + currentPanelButton).remove();
+}
+
+// Changes the shopping list name
+function editShoppingList() {
+    document.getElementById("edit-close-list").click();
+
+    var newListName = document.getElementById("modal-listName").value;
+
+    document.getElementById("list-header" + currentPanelButton).innerHTML = newListName;
+}
+
+// The current pannel of the button
+currentPanelButton = 0
+
+// Get's the current List and set's the currentPanelButton variable
+$(document).ready(function() {
+    $(document).on('click', '.browse', function() {
+        var btnID = $(this).attr("id");
+        console.log(btnID);
+
+        var splitID = btnID.split(" ");
+        currentPanelButton = splitID[1];
+
+        var currentListName = document.getElementById("list-header" + currentPanelButton).innerHTML;
+
+        occupyEditListModal(currentListName);
+    });
+});
+
+// Occupies the input in the edit list modal
+function occupyEditListModal(listName) {
+    document.getElementById("modal-listName").value = listName;
+}
+
 // Add's item to the current Shopping List
 function newItemClick(clicked_id) {
     var buttonId = clicked_id;
@@ -228,6 +290,7 @@ function newItemClick(clicked_id) {
 
         var spanCheckBox = document.createElement("span");
         spanCheckBox.setAttribute("class", "checkmark");
+        spanCheckBox.setAttribute("id", "myCheckBox");
 
         labelCheckBox.appendChild(inputCheckBox);
         labelCheckBox.appendChild(spanCheckBox);
@@ -274,6 +337,55 @@ function newItemClick(clicked_id) {
     }
 }
 
+// Boolean variable to see if checkboxes are clicked
+var isChecked = false;
+
+// Checks if any of the checkboxes are clicked
+function checkIfClicked() {
+    console.log("Current Table: " + currentTable);
+
+    var checkBox = document.getElementsByClassName("checkmark");
+    var i;
+    for (i = 0; i < checkBox.length; i++){
+        if (checkBox[i].classList.contains("checked")){
+            isChecked = true;
+            break;
+        } else {
+            isChecked = false;
+        }
+    }
+    console.log("Is Checked: " + isChecked);
+    if (isChecked) {
+        document.getElementById("deleteSelected" + currentTable).setAttribute("style", "");
+    } else {
+        document.getElementById("deleteSelected" + currentTable).setAttribute("style", "display: none;");
+    }
+}
+
+// Delete row(s) where checkbox is clicked
+function deleteRow()  {
+    var table = document.getElementById(currentTable);
+    var i;
+    for (i = 0; i < table.rows.length; i++){
+        if () {
+            
+        }
+    }
+
+
+    document.getElementById("deleteSelected" + currentTable).setAttribute("style", "display: none;");
+}
+
+// Toggles the class of the checkbox
+$(document).ready(function() {
+    $(document).on('click', '#myCheckBox', function() {
+        console.log("test");
+        $(this).toggleClass("checked");
+        $(this).parent().parent().click();
+        checkIfClicked();
+    });
+});
+
 // Occupies the modal box inputs with the data in the table row
 function occupyInput() {
     console.log("Current Row: " + currentRow);
@@ -319,7 +431,7 @@ function changeRowValue(name, quantity, unit) {
 // The current row of the selected table
 var currentRow = 0;
 
-// The current table
+// The current table's ID
 var currentTable = 0;
 
 // Get the row of the table on edit click
@@ -391,21 +503,21 @@ function panelClick() {
     });
 }
 
-// Toggles display of the browse section in each Shopping List
-$(document).ready(function() {
-    $(document).on('click', '.browse', function() {
-        var buttonNode = document.getElementById(this.id);
-        var buttonText = buttonNode.innerHTML;
-        if (buttonText === "Edit") {
-            var textNode = document.createTextNode("Done");
-            buttonNode.replaceChild(textNode, buttonNode.childNodes[0]);
-        } else {
-            var textNode = document.createTextNode("Edit");
-            buttonNode.replaceChild(textNode, buttonNode.childNodes[0]);
-        }
-        $(this).next(".toggleBrowse").slideToggle("slow");
-    });
-});
+// // Toggles display of the browse section in each Shopping List
+// $(document).ready(function() {
+//     $(document).on('click', '.browse', function() {
+//         var buttonNode = document.getElementById(this.id);
+//         var buttonText = buttonNode.innerHTML;
+//         if (buttonText === "Edit") {
+//             var textNode = document.createTextNode("Done");
+//             buttonNode.replaceChild(textNode, buttonNode.childNodes[0]);
+//         } else {
+//             var textNode = document.createTextNode("Edit");
+//             buttonNode.replaceChild(textNode, buttonNode.childNodes[0]);
+//         }
+//         $(this).next(".toggleBrowse").slideToggle("slow");
+//     });
+// });
 
 // Toggles display of the add item section in each Shopping List
 $(document).ready(function() {
