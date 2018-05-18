@@ -20,7 +20,6 @@ app.use(bodyParser.urlencoded());
 app.use('/static', express.static('stuff'));
 
 
-
 //Set up mongoose connection
 let mongoose = require('mongoose');
 let mongoDB = 'mongodb://dev2910:freshfridgetk@ds113200.mlab.com:13200/comp2910ff';
@@ -63,67 +62,5 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
-
-
-// Recursively calls the API with a parsed URL that includes the recipe that was click in index.html
-// Only exits when theres an error or a proper response.
-let specificIngredient;
-
-function sendRecipe(callback) {
-    request(recipeURL, {
-        json: true
-    }, function (error, response, specifiedrecipe) {
-        if (!error && response.statusCode === 200) {
-            specificIngredients = specifiedrecipe;
-            if (callback) {
-                return callback(null, specificIngredients);
-            }
-        } else {
-            if (callback) {
-                return callback(error, null);
-            }
-        }
-    })
-}
-
-
-// Recursively calls the API with the URL of the recipe constraints
-// Only exits when theres an error or a proper response.
-function sendConstraintsAPI(callback) {
-    request(URL, {
-        json: true
-    }, function (error, response, body) {
-        if (!error && response.statusCode === 200) {
-            result = body;
-
-            if (callback) {
-                return callback(null, result);
-            }
-        } else {
-            if (callback) {
-                return callback(error, null);
-            }
-        }
-    });
-}
-
-// Transforms the elements in an array and appends them to the yummly API URL format.
-// EX:   &allowedIngredient[]=
-let URL = "http://api.yummly.com/v1/api/recipes?_app_id=e486debb&_app_key=b7696375acec2618961fcedc1562f8af"
-function format_array(constraints) {
-    let concatenatedIngredients = "";
-
-    for (let i = 0; i < constraints.length; i++) {
-        if (constraints[i] !== "") {
-            let name = constraints[i];
-            constraintArray[i] = "&allowedIngredient[]=" + name;
-            concatenatedIngredients += constraintArray[i]
-        }
-    }
-    URL += concatenatedIngredients;
-    URL += "&maxResult=6&start=" + ((clickCount * 6) + 1);
-    console.log(URL);
-}
-
 
 module.exports = app;
