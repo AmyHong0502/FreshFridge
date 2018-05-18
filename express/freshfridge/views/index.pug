@@ -5,7 +5,6 @@ block customCSS
 
 block customJS
     script(src='/js/grayscale.min.js')
-    script(src='/js/searchRecipes.js')
 
     // Google Map API
     script(async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOI4oiKluCgU6OOqlxtHkrgWHzKT5ko8Y&callback=initMap")
@@ -27,14 +26,16 @@ block content
         div(class="container")
             div(class="col-lg-10 mx-auto")
                 h2 Search Recipes by Ingredients
-                div(class="input-group input-group-lg header")
-                    input#myInput(type="text" name="add" class="form-control"
-                    placeholder="Enter Ingredients..")
-                    button#btnadd(name="add-to-list" onclick="listNewIngredient();"
-                    class="btn btn-success" style="width:140px") Add
-                    form#request-recipe(method='POST' action='/')
-                        input#ingredients(style="display: none;" name='ingredients')
-                        button#btnsubmit(type="submit" class="btn btn-large btn-primary" onclick="extractUserIngredients();" style="width:140px") Submit
+                div(class="row input-group input-group-lg header" style="padding: 0px;")
+                    div(class="col-lg-8 col-md-6 col-xs-12" style="padding: 0px;")
+                        input#myInput(type="text" name="add" class="form-control"
+                        placeholder="Enter Ingredients..")
+                    div(class="col-lg-4 col-md-6 col-xs-12" style="padding: 0px;")
+                        button#btnadd(name="add-to-list" onclick="listNewIngredient();"
+                        class="btn btn-success" style="width: 50%;") Add
+                        form#request-recipe(method='POST' action='/' style="width: 50%;")
+                            input#ingredients(style="display: none;" name='ingredients')
+                            button#btnsubmit(type="submit" class="btn btn-large btn-primary" onclick="extractUserIngredients();" style="width: 100%;") Submit
                 br
                 br
                 div#myDIV(class="header")
