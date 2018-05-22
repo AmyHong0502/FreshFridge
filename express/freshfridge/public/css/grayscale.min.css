@@ -212,22 +212,6 @@ body{
      font-size:14px;
      margin:0
 }
- ::-moz-selection{
-     background:#fcfcfc;
-     background:rgba(255,255,255,.2);
-     text-shadow:none
-}
- ::selection{
-     background:#fcfcfc;
-     background:rgba(255,255,255,.2);
-     text-shadow:none
-}
- img::selection{
-     background:0 0
-}
- img::-moz-selection{
-     background:0 0
-}
 
  #ingredientsUL {
      margin: 0;
@@ -343,3 +327,8 @@ body{
     width: 100%;
     margin-bottom: 25px;
 }
+
+::selection {
+    background-color: #3297FD;
+    color: #fff;
+ }

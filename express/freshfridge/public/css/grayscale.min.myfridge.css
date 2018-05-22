@@ -393,3 +393,8 @@ h4 {
     padding-left: 0px;
     padding-right: 0px;
 }
+
+::selection {
+    background-color: #3297FD;
+    color: #fff;
+ }
