@@ -8,7 +8,7 @@ How to run localhost:
 
 2. Open CLI (Command line interface. Known as `cmd.exe`)
 
-3. Type `node app.js`
+3. Type `npm start`
 
 ```
 freshfridge/       # root folder
