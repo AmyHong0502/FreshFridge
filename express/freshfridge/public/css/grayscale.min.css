@@ -246,7 +246,7 @@ body{
 /* Styles the content section */
  .content-section{
      padding-top:150px;
-     padding-bottom: 300px;
+     padding-bottom: 150px;
 
 }
 /* Styles the contact section */
@@ -331,3 +331,21 @@ body{
     background-color: #3297FD;
     color: #fff;
  }
+
+ #loginHeader {
+     font-weight: 500;
+ }
+
+ .g-signin2{
+    width: 100%;
+  }
+
+  .g-signin2 > div{
+    margin: 0 auto;
+  }
+
+#logoutButton {
+    height: 50px;
+    width: 250px;
+    margin-top: 15px;
+}

@@ -319,7 +319,7 @@ img::-moz-selection {
 /* Styles the content section */
 .content-section {
     padding-top: 150px;
-    padding-bottom: 300px;
+    padding-bottom: 150px;
 }
 
 /* Styles the contact section */
