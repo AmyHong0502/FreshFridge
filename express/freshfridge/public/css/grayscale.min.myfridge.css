@@ -4,7 +4,6 @@ body{
      width:100%;
      height:100%;
      color:#fff;
-     <! background-color:#000
 }
  html{
      width:100%;
@@ -107,7 +106,7 @@ body{
      text-align:center;
      color:#fff;
      background:url(../img/board-brunch.jpg) no-repeat bottom center scroll;
-     -- Photo by Lukas from Pexels background-color:#000;
+     background-color:#000;
      -webkit-background-size:cover;
      -moz-background-size:cover;
      -o-background-size:cover;
