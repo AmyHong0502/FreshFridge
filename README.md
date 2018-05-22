@@ -5,7 +5,7 @@ FreshFridge. Save food and save money.
 ## Built With
 
 * [Express](https://expressjs.com/) - Web application framework
-* [Google Maps Platform](https://cloud.google.com/maps-platform/)
+* [Google Maps Platform](https://cloud.google.com/maps-platform/) - Maps API
 * [Google Sign-In for Websites](https://developers.google.com/identity/sign-in/web/) - Login API
 * [MongoDB](https://mlab.com/) - Database
 * [Pug](https://pugjs.org/api/getting-started.html) - Template engine to render HTML code
