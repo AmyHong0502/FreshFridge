@@ -1,5 +1,37 @@
 # File Structure
 
+## Express
+
+```
+freshfridge/       # root folder
+    bin/           
+        www        # This file is the one where everything begins.
+                   # You don't need to work on this file.
+                   # In case you want to know: port number is 80, not 3000. 
+                   # So if you want to run localhost, 
+                   # it's not localhost:3000. You can just use localhost.
+    controllers/   # Routes use controllers to specify 
+                   # what resource you want to use and
+                   # what action you want to do.
+                   # req: request
+                   # res: response
+                   # next parameter if there is one. (e.g. next(err);)
+    models/        # Used for database. 
+    node_modules/  # 7,000+ files are in this folder. These are multiple Node modules.
+                   # You can ignore this folder.
+    public/        # Every static files are in this folder.
+                   # e.g. JavaScript, CSS, SCSS, image files
+    routes/        # Routes specify what this web-app does with the given URL.
+                   # You need to tell app.js to use the route before writing any code,
+                   # but for now you don't need to worry about it. It's already done.
+    views/         # You can think of these files as multiple HTML files.
+    app.js
+    package.json
+    package-lock.json
+```
+
+---
+
 ## Layout (shared with ALL files)
 
 - Template JavaScript Files:
