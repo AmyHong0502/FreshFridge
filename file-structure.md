@@ -2,6 +2,14 @@
 
 ## Express
 
+How to run localhost: 
+
+1. Nevigate to `freshfridge/` folder
+
+2. Open CLI (Command line interface. Known as `cmd.exe`)
+
+3. Type `node app.js`
+
 ```
 freshfridge/       # root folder
     bin/           
@@ -29,6 +37,12 @@ freshfridge/       # root folder
     package.json
     package-lock.json
 ```
+
+### pug
+
+.pug files generates HTML code for us. We don't need to close every single tag and it's easier to find each tag's #ID.
+
+Syntax: [Documentation](https://pugjs.org/language/attributes.html)
 
 ---
 
