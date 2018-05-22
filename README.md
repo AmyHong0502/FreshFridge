@@ -1,111 +1,31 @@
-# COMP2910-Group9
+# FreshFridge
 
-## Goals
+FreshFridge. Save food and save money.
 
-> Build a mobile-responsive web application
+## Built With
 
-Main purpose: to reduce food waste by changing users' behaviour
+* [Express](https://expressjs.com/) - Web application framework
+* [Google Maps Platform](https://cloud.google.com/maps-platform/)
+* [Google Sign-In for Websites](https://developers.google.com/identity/sign-in/web/) - Login API
+* [MongoDB](https://mlab.com/) - Database
+* [Pug](https://pugjs.org/api/getting-started.html) - Template engine to render HTML code
+* [Yummly](https://www.yummly.com/about) - Recipe API
 
-This app will do:
-1. recipe suggestions based on leftover food
-2. tips & tricks
+## Sitemap
 
+| URL                                      | Contents                                       |
+|------------------------------------------|------------------------------------------------|
+| [freshfridge.tk](http://freshfridge.tk/) | Default, home page.                            |
+|                                          | Search Recipes (redirects to /recipe)          |
+|                                          | About FreshFridge & our team                   |
+|                                          | Contact Us                                     |
+| /recipe                                  | Search recipes by ingredients.                 |
+|                                          | Built with [Yummly](https://www.yummly.com/about). |
+| /i/fridge                                | My Fridge.                                     |
+|                                          | List of foods in the user's fridge.            |
+|                                          | This page needs login.                         |
+| /tips                                    | Not only recipes & cooking tips                |
+|                                          | but also things we can do to reduce food waste |
+| /login                                   | Login page.                                    |
+|                                          | Built with [Google Sign-In](https://developers.google.com/identity/sign-in/web/). |
 
-### End Goal
-
-Learn project management and successfully create a mobile web application. 
-
-Attain new skills based on [development lifecycle](https://en.wikibooks.org/wiki/Introduction_to_Computer_Information_Systems/Program_Development)
-
-
-## Structure
-
-```
-freshfridge.tk/                     // default page
-                                    // stores
-                                    // - about
-                                    //   - our web-app & our team
-                                    //   - our topic & goal
-                                    // - contact us 
-                                    //   - form to send an email if we have time
-                                    //   - contact@freshfridge.tk if there's time
-              /i/                   // my page 
-                                    // everything under this page needs login.
-              /i/fridge/            // Users list whats in their fridge
-              /i/shopping-list/      
-              /tips/                // not only recipes & cooking tips
-                                    // but also things you can do 
-                                    // to reduce food waste
-              /login/               // separate page for now
-                                    // planning to use Google Login
-              /recipe/
-```
-
-## Rules
-
-### Rules
-
-- [ ] Listen to everyone’s opinions
-- [ ] If your late buy a box of 20 timbits
-- [ ] When stuck on decisions, debate for about 5 minutes and if no conclusion is reached, roll a dice.
-- [ ] Shouldn't say "We should have done…" if we are not going back to do it.
-- [ ] ***ASK FOR HELP!!!***
-
-### Naming 
-
-No spaces for easier command line operations.
-
-e.g.
-
-| X              | O              |
-|----------------|----------------|
-| `Group 9.html` | `Group-9.html` |
-
-### Commit messages
-
-No rules.
-
-Recommendation: [Semantic commit messages](https://seesparkbox.com/foundry/semantic_commit_messages)
-
-### Tasks
-
-> Divide up based on individuals level.
-
-- [ ] Set a goal for each day
-- [ ] Share the goal & progress/current status with everyone
-- [ ] 
-- [ ] 
-
-
-## Languages
-
-Following lists are candidate languages for this project.
-
-### Front-end
-
-- HTML5
-- CSS3
-- Javascript
-- jQuery
-
-### Back-end
-
-- Node.js
-- Python
-
-### Framework
-
-- Express
-
-### Package manager
-
-- NPM
-
-### API
-
-- [Yummly](https://www.yummly.com/about)
-
-### Test
-
-- Mocha
-- Chai 
