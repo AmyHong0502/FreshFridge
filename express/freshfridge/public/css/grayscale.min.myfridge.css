@@ -75,8 +75,8 @@ body{
 }
  @media (min-width:992px){
      #mainNav{
-         padding-top:20px;
-         padding-bottom:20px;
+         padding-top:10px;
+         padding-bottom:10px;
          -webkit-transition:background .3s ease-in-out,padding-top .3s ease-in-out,padding-bottom .3s;
          -moz-transition:background .3s ease-in-out,padding-top .3s ease-in-out,padding-bottom .3s;
          transition:background .3s ease-in-out,padding-top .3s ease-in-out,padding-bottom .3s;

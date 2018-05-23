@@ -111,8 +111,8 @@ body{
 }
  @media (min-width:992px){
      #mainNav{
-         padding-top:20px;
-         padding-bottom:20px;
+         padding-top:10px;
+         padding-bottom:10px;
          -webkit-transition:background .3s ease-in-out,padding-top .3s ease-in-out,padding-bottom .3s;
          -moz-transition:background .3s ease-in-out,padding-top .3s ease-in-out,padding-bottom .3s;
          transition:background .3s ease-in-out,padding-top .3s ease-in-out,padding-bottom .3s;
@@ -321,12 +321,6 @@ body{
     font-size:18px
 }
 
-#googleMap {
-    height: 500px;
-    width: 100%;
-    margin-bottom: 25px;
-}
-
 ::selection {
     background-color: #3297FD;
     color: #fff;
@@ -348,4 +342,43 @@ body{
     height: 50px;
     width: 250px;
     margin-top: 15px;
+}
+
+.contactDetails {
+    font-weight: 500;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.glyphicon {
+    color: black;
+}
+
+#myContact {
+    margin: 7px;
+    text-align: left;
+}
+
+.red {
+    color:red;
+}
+.form-area {
+	padding: 10px 40px 60px;
+	margin: 10px 0px 60px;
+	border: 1px solid GREY;
+}
+
+#submitMsg {
+    height: 40px;
+    width: 125px;
+    border-radius: 4px;
+}
+
+#characterLeft {
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+.emailLink {
+    color: blue;
 }
