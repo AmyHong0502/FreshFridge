@@ -1,4 +1,4 @@
-extends layout
+extends layout-login
 
 block googleLogin
     meta(name='google-signin-scope' content='profile email')
@@ -11,11 +11,11 @@ block content
             div(class="container")
                 div(class="row")
                     div(class="col-lg-10 mx-auto")
-                        h2(class="brand-heading") #{title}
+                        h2#loginHeader(class="brand-heading") FreshFridge
                         h2 Login
                         div#myDIV(class="header")
                             // login button
-                            div(class="g-signin2" data-onsuccess="onSignIn" data-theme="dark")
+                            div(class="g-signin2" data-onsuccess="onSignIn" data-theme="light" data-width="250px" data-height="50px" data-longtitle="true")
 
                             // login function
                             script.
@@ -35,8 +35,11 @@ block content
                                 };
 
                             // sign-out button
-                            a(href="#" onclick="signOut()") Logout-a
-                            button#signOut(onclick='signOut()') Logout-button
+                            div(id="myDiv" class="header")
+                                button(onclick="signout()" class="btn btn-large btn-danger" id="logoutButton") Logout
+                            
+                            //- a(href="#" onclick="signOut()") Logout-a
+                            //- button#signOut(onclick='signOut()') Logout-button
 
                             // sign-out function
                             script.

@@ -4,7 +4,6 @@ body{
      width:100%;
      height:100%;
      color:#fff;
-     <! background-color:#000
 }
  html{
      width:100%;
@@ -43,7 +42,6 @@ body{
      color:#1d9b6c
 }
  #mainNav{
-     font-family:Cabin,'Helvetica Neue',Helvetica,Arial,sans-serif;
      margin-bottom:0;
      text-transform:uppercase;
      border-bottom:1px solid rgba(255,255,255,.3);
@@ -77,8 +75,8 @@ body{
 }
  @media (min-width:992px){
      #mainNav{
-         padding-top:20px;
-         padding-bottom:20px;
+         padding-top:10px;
+         padding-bottom:10px;
          -webkit-transition:background .3s ease-in-out,padding-top .3s ease-in-out,padding-bottom .3s;
          -moz-transition:background .3s ease-in-out,padding-top .3s ease-in-out,padding-bottom .3s;
          transition:background .3s ease-in-out,padding-top .3s ease-in-out,padding-bottom .3s;
@@ -108,7 +106,7 @@ body{
      text-align:center;
      color:#fff;
      background:url(../img/board-brunch.jpg) no-repeat bottom center scroll;
-     -- Photo by Lukas from Pexels background-color:#000;
+     background-color:#000;
      -webkit-background-size:cover;
      -moz-background-size:cover;
      -o-background-size:cover;
@@ -304,7 +302,15 @@ body{
   display: block !important;
 }
 .fridgeList {
+    font-size: 30px;
+    font-family: Century Gothic, sans-serif;
+    font-weight: 350;
+    margin:0 0 35px;
+    letter-spacing:1px;
+    color: black;
     margin-bottom: 17.5px;
+    margin-top: 17.5px;
+    text-align: center;
 }
 
 * {
@@ -377,3 +383,17 @@ figcaption{
 h4 {
     color: #000;
 }
+
+#nameTitle {
+    margin-bottom: 0px;
+}
+
+#myDivContainer {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+::selection {
+    background-color: #3297FD;
+    color: #fff;
+ }

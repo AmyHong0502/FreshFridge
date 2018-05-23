@@ -4,7 +4,6 @@ body{
      width:100%;
      height:100%;
      color:#fff;
-     <! background-color:#000
 }
  html{
      width:100%;
@@ -112,8 +111,8 @@ body{
 }
  @media (min-width:992px){
      #mainNav{
-         padding-top:20px;
-         padding-bottom:20px;
+         padding-top:10px;
+         padding-bottom:10px;
          -webkit-transition:background .3s ease-in-out,padding-top .3s ease-in-out,padding-bottom .3s;
          -moz-transition:background .3s ease-in-out,padding-top .3s ease-in-out,padding-bottom .3s;
          transition:background .3s ease-in-out,padding-top .3s ease-in-out,padding-bottom .3s;
@@ -143,7 +142,7 @@ body{
      text-align:center;
      color:#fff;
      background:url(../img/board-brunch.jpg) no-repeat bottom center scroll;
-     -- Photo by Lukas from Pexels background-color:#000;
+     background-color:#000;
      -webkit-background-size:cover;
      -moz-background-size:cover;
      -o-background-size:cover;
@@ -212,22 +211,6 @@ body{
      font-size:14px;
      margin:0
 }
- ::-moz-selection{
-     background:#fcfcfc;
-     background:rgba(255,255,255,.2);
-     text-shadow:none
-}
- ::selection{
-     background:#fcfcfc;
-     background:rgba(255,255,255,.2);
-     text-shadow:none
-}
- img::selection{
-     background:0 0
-}
- img::-moz-selection{
-     background:0 0
-}
 
  #ingredientsUL {
      margin: 0;
@@ -263,7 +246,7 @@ body{
 /* Styles the content section */
  .content-section{
      padding-top:150px;
-     padding-bottom: 300px;
+     padding-bottom: 150px;
 
 }
 /* Styles the contact section */
@@ -338,8 +321,64 @@ body{
     font-size:18px
 }
 
-#googleMap {
-    height: 500px;
+::selection {
+    background-color: #3297FD;
+    color: #fff;
+ }
+
+ #loginHeader {
+     font-weight: 500;
+ }
+
+ .g-signin2{
     width: 100%;
-    margin-bottom: 25px;
+  }
+
+  .g-signin2 > div{
+    margin: 0 auto;
+  }
+
+#logoutButton {
+    height: 50px;
+    width: 250px;
+    margin-top: 15px;
+}
+
+.contactDetails {
+    font-weight: 500;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.glyphicon {
+    color: black;
+}
+
+#myContact {
+    margin: 7px;
+    text-align: left;
+}
+
+.red {
+    color:red;
+}
+.form-area {
+	padding: 10px 40px 60px;
+	margin: 10px 0px 60px;
+	border: 1px solid GREY;
+}
+
+#submitMsg {
+    height: 40px;
+    width: 125px;
+    border-radius: 4px;
+}
+
+#characterLeft {
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+.emailLink {
+    color: blue;
 }

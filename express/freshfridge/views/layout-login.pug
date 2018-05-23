@@ -1,0 +1,38 @@
+doctype html
+html
+    head
+        // metadata goes here
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+        title= title
+
+        // Bootstrap Core JavaScript
+        script(src='/vendor/jquery/jquery.min.js')
+        script(src='/vendor/bootstrap/js/bootstrap.bundle.min.js')
+
+        // Plugin JavaScript
+        script(src='/vendor/jquery-easing/jquery.easing.min.js')
+
+        // Custom scripts for this template
+        script(src='/js/grayscale.min.js')
+
+        // Bootstrap core CSS
+        link(href='/vendor/bootstrap/css/bootstrap.min.css' rel='stylesheet')
+
+        // Custom fonts for this template
+        link(href='/vendor/font-awesome/css/font-awesome.min.css' rel='stylesheet' type='text/css')
+        link(href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css')
+        link(href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css')
+
+        // Custom styles for this template
+        link(href='/css/grayscale.min.css' rel='stylesheet')
+        link(rel="shortcut icon" type="image/png" href="\\img\\favicon.png")
+
+        block googleLogin
+        block customCSS
+        block customJS
+
+    body#page-top
+        // contents goes here
+        block content
+        block googleLoginContent
