@@ -13,16 +13,16 @@ block content
         div(class="container")
             div(class="col-lg-10 mx-auto")
                 h2 Search Recipes by Ingredients
-                div(class="row input-group input-group-lg header" style="padding: 0px;")
+                div(class="row input-group input-group-lg header" style="left:18px;")
                     div(class="col-md-8 col-xs-12" style="padding: 0px;")
                         input#myInput(type="text" name="add" class="form-control"
                         placeholder="Enter Ingredients..")
                     div(class="col-md-4 col-xs-12" style="padding: 0px;")
                         button#btnadd(name="add-to-list" onclick="listNewIngredient();"
-                        class="btn btn-success" style="width: 50%;") Add
+                        class="btn btn-large btn-primary" style="width: 50%;") Add
                         form#request-recipe(method='POST' action='/recipe' style="width: 50%;")
                             input#ingredients(style="display: none;" name='ingredients')
-                            button#btnsubmit(type="submit" class="btn btn-large btn-primary" onclick="extractUserIngredients();" style="width: 100%;") Submit
+                            button#btnsubmit(type="submit" class="btn btn-large btn-secondary" onclick="extractUserIngredients();" style="width: 100%;") Submit
                 br
                 br
                 div#myDIV(class="header")

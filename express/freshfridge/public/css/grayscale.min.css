@@ -154,7 +154,8 @@ body{
      vertical-align:middle
 }
  .masthead .intro-body .brand-heading{
-     font-size:50px
+     font-size:50px;
+   
 }
  .masthead .intro-body .intro-text{
      font-size:18px
@@ -240,7 +241,6 @@ body{
 /* Styles and positions ingredient input */
  #ingredientLi {
      position: relative;
-     padding-top: 12px;
      padding-right: 25;
      background: #eee;
      font-size: 18px;
@@ -268,7 +268,7 @@ body{
 }
 /* Styles the contact section */
  .contact-section{
-     background:url(../img/Capture.PNG) no-repeat center center scroll;
+     background-color: #EEEEEE;
      padding-top:150px;
      padding-bottom:150px;
      -webkit-background-size:cover;
@@ -343,3 +343,19 @@ body{
     width: 100%;
     margin-bottom: 25px;
 }
+
+
+
+#btnsubmit {
+  width: 100%;
+  right:25px;
+  left:10px; 
+    
+}
+
+#btnadd {
+    width: 50%;
+    right:20px
+    
+}
+
