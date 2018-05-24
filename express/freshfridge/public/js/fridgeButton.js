@@ -3,10 +3,10 @@ $(document).ready(function () {
         $(this).parent().toggleClass("faded");
 
         if(!($(this).parent().hasClass("faded"))){
-            $("#ingredientsUL").append('<li id=' + $(this).next("figcaption").html() + '>' + $(this).next("figcaption").html() +'</li>');
+            $("#ingredientsUL").append('<li id=' + $(this).next("figcaption").text() + ' class="ingredientLi">' + $(this).next("figcaption").text() +'</li>');
         }
         else{
-            $('#ingredientsUL #'+$(this).next("figcaption").html()).remove();
+            $('#ingredientsUL li:contains('+$(this).next("figcaption").text()+')').remove();
         }
     });
 });
