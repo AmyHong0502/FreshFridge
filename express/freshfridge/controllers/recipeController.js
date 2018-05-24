@@ -15,9 +15,10 @@ exports.recipe_list = function(req, res, next) {
     } else if ((typeof ingredients) === 'string') {
         baseURL = baseURL + "&allowedIngredient[]=" + ingredients.toLowerCase();
     }
-
-    baseURL = baseURL + "&maxResult=900&start=" + req.body.recipeCount;
+  
+    baseURL = baseURL + "&maxResult=300&start=" + req.body.recipeCount;
     console.log(baseURL);
+
     request(baseURL, function(err, response, body) {
         if (!err && response.statusCode === 200) {
             console.log("URL: " + baseURL);
@@ -42,3 +43,12 @@ exports.recipe_detail = function (req, res, next) {
         }
     });
 };
+
+
+
+exports.recipe_update = function(req, res, next) {
+    res.send("update");
+};
+
+
+

@@ -24,6 +24,7 @@
 	
 
 
+
     // When submit button is clicked this function is called
     // Sends Array of ingredients to app2.JS Node*
     // POST to http://127.0.0.1:3000/recipeURL
