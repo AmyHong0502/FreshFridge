@@ -54,10 +54,11 @@ h2 {
     font-size: 45px;
     font-family: Century Gothic, sans-serif;
     font-weight: 700;
-    margin: 0 0 35px;
     letter-spacing: 1px;
     text-transform: uppercase;
     color: black;
+    padding-left: 6px;
+    margin-bottom: 0px;
 }
 
 h3 {
@@ -113,6 +114,8 @@ a:focus, a:hover {
     text-transform: uppercase;
     border-bottom: 1px solid rgba(255, 255, 255, .3);
     background-color: black !important;
+    
+
 }
 
 #mainNav .navbar-toggler {
@@ -458,4 +461,32 @@ img#picture {
 p#ing {
     text-align: left;
     font-size: 20px;
+    
+   
 }
+
+@media only screen and (max-width: 600px) {
+#ingredientCell {
+padding-left: 18px;
+
+}
+}
+
+
+@media only screen and (max-width: 600px) {
+#titleNode  {
+padding-left: 20px;
+
+}
+}
+
+.col-lg-11 {
+    padding-left: 1px;
+    
+}
+
+#functional {
+padding-top: 100px; 
+    
+}
+

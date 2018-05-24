@@ -13,7 +13,7 @@ exports.recipe_list = function(req, res, next) {
         }
     }
 
-    baseURL = baseURL + "&maxResult=500&start=" + req.body.recipeCount;
+    baseURL = baseURL + "&maxResult=20&start=" + req.body.recipeCount;
     request(baseURL, function(err, response, body) {
         if (!err && response.statusCode === 200) {
             console.log("URL: " + baseURL);

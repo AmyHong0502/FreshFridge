@@ -65,6 +65,7 @@ function showRecipes() {
     for (let i = 0; i < data.matches.length; i++) {
         let cell = document.createElement('div');
         cell.className = 'col-lg-3 col-md-4 col-sm-6';
+
         
 
         let recipe = data['matches'][i];
@@ -102,7 +103,6 @@ function generateForm(recipeID, recipeDataButton) {
     formNode.action = '/recipe/' + recipeID;
     formNode.id = recipeID;
     formNode.name = recipeID;
-
     recipeIdInputNode.type = 'text';
     recipeIdInputNode.name = 'recipeID';
     recipeIdInputNode.value = recipeID;
@@ -123,11 +123,14 @@ function generateDataButton(imageURL, recipeName) {
 
     buttonNode.type = 'submit';
     buttonNode.className = 'btn btn-link';
+    
 
     // let res = recipeId.replace(/=s90-c/g, "=s240-c");
     // ----------------------------------------------
 
     // imageNode.src = res;
+    imageNode.setAttribute('id' , 'ingredientCell');
+
     imageNode.src = imageURL;
     imageNode.alt = recipeName;
     buttonNode.appendChild(imageNode);
@@ -135,6 +138,7 @@ function generateDataButton(imageURL, recipeName) {
     // imageNode.setAttribute("onClick", "send_recipeURL(this.id)");
 
     titleNode.append(recipeName);
+    titleNode.setAttribute('id' , 'titleNode');
     buttonNode.appendChild(titleNode);
 
     return buttonNode;
