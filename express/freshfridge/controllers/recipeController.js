@@ -9,11 +9,12 @@ exports.recipe_list = function(req, res, next) {
     for (let i = 0; i < ingredients.length; i++) {
         if (ingredients[i] !== "") {
             console.log(i + ': ' + ingredients[i]);
-            baseURL = baseURL + "&allowedIngredient[]=" + ingredients[i];
+            baseURL = baseURL + "&allowedIngredient[]=" + ingredients[i].toLowerCase();
         }
     }
 
     baseURL = baseURL + "&maxResult=900&start=" + req.body.recipeCount;
+    console.log(baseURL);
     request(baseURL, function(err, response, body) {
         if (!err && response.statusCode === 200) {
             console.log("URL: " + baseURL);
