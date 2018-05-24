@@ -29,7 +29,7 @@ block content
                         button#btnadd(name="add-to-list" onclick="listNewIngredient();"
                         class="btn btn-success" style="width: 50%;") Add
                         form#request-recipe(method='POST' action='/recipe' style="width: 50%;")
-                            input#ingredients(style="display: none;" name='ingredients')
+                            div#ingredients(style="display: none;")
                             button#btnsubmit(type="submit" class="btn btn-large btn-primary" onclick="extractUserIngredients();" style="width: 100%;") Submit
                 br
                 br
