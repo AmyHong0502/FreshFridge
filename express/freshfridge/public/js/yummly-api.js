@@ -2,7 +2,6 @@
 // Returns the user's input from every <li class='ingredientLi'>.
   
 function extractUserIngredients() {
-    console.log("EUI called");
     let userInputs = document.getElementsByClassName('ingredientLi');
     let ingredients = [];
 
@@ -10,13 +9,9 @@ function extractUserIngredients() {
     for (let i = 0; i < userInputs.length; i++) {
        
         let ingredient = userInputs[i].innerHTML.replace(pattern, "$1");
-  
-       
         ingredients.push(ingredient);
     }
-    
-    
-  
+
     return ingredients;
 }
 
@@ -30,7 +25,6 @@ function keepIngredients() {
     generateIngredientInputs(data);
 }
 
-
 function generateIngredientInputs(ingredients) {
     let location = document.getElementById('ingredients');
 
@@ -40,14 +34,13 @@ function generateIngredientInputs(ingredients) {
 
     for (let i = 0; i < ingredients.length; i++) {
         let inputElement = document.createElement('input');
-        inputElement.name = 'ingredients';
+        inputElement.name = 'ingredient';
         inputElement.type = 'text';
         inputElement.style = 'display: none;';
         inputElement.value = ingredients[i];
         location.appendChild(inputElement);
     }
 }
-
 
 // Processes initial JSON object and appends it to HTML Elements
 var pageUpdate = 0;
@@ -72,6 +65,7 @@ function showRecipes() {
 
         let recipeName = recipe['recipeName'];
         let thumbnailURL = recipe['imageUrlsBySize'][90];
+
         
         var res = thumbnailURL.replace(/=s90-c/g, "=s240-c");
 
@@ -83,15 +77,6 @@ function showRecipes() {
         div.appendChild(cell);
         pageUpdate++;
     }
-
-    // if (clickCount === 1) {
-    //     let buttonNode = document.createElement("button");
-    //     buttonNode.setAttribute("onClick", "clickMore()");
-    //     buttonNode.setAttribute("value", "showMorebtn");
-    //     buttonNode.setAttribute("class", "btn btn-primary");
-    //     buttonNode.append("Show more");
-    //     moreButton.append(buttonNode);
-    // }
 }
 
 function generateForm(recipeID, recipeDataButton) {
@@ -108,8 +93,6 @@ function generateForm(recipeID, recipeDataButton) {
     recipeIdInputNode.value = recipeID;
     recipeIdInputNode.style = 'display: none;';
 
-    // submitTrigger.setAttribute('onclick', recipeID + '.submit();');
-
     formNode.appendChild(recipeIdInputNode);
     formNode.appendChild(submitButton);
 
@@ -125,17 +108,10 @@ function generateDataButton(imageURL, recipeName) {
     buttonNode.className = 'btn btn-link';
     
 
-    // let res = recipeId.replace(/=s90-c/g, "=s240-c");
-    // ----------------------------------------------
-
-    // imageNode.src = res;
     imageNode.setAttribute('id' , 'ingredientCell');
-
     imageNode.src = imageURL;
     imageNode.alt = recipeName;
     buttonNode.appendChild(imageNode);
-    // ----------------------------------------------
-    // imageNode.setAttribute("onClick", "send_recipeURL(this.id)");
 
     titleNode.append(recipeName);
     titleNode.setAttribute('id' , 'titleNode');
@@ -166,19 +142,6 @@ function processRecipe(body) {
     rowNode.appendChild(cellNode);
 }
 
-
-// Error handling for xhttp requests.
-function handleError(status) {
-    if (status === 400) {
-        console.log('Bad request, often due to missing a required parameter.');
-    } else if (status === 401) {
-        console.log('No valid API key provided.');
-    } else if (status === 404) {
-        console.log('The requested resource doesn\'t exist.');
-    }
-}
-
-
 // Create a new list item when clicking on the "Add" button
 // Adds new list item to array
 // Used at index.pug, not here.
@@ -196,8 +159,7 @@ function listNewIngredient() {
         x.setAttribute("height", "228px");
         document.getElementById("functional").appendChild(x);
         x.onclick = function () {
-            let div = x;
-            div.style.display = "none";
+            x.style.display = "none";
         }
     } else {
         let li = document.createElement("li");
@@ -219,22 +181,15 @@ function listNewIngredient() {
         let closeSpans = document.getElementsByClassName('close');
         for (let i = 0; i < closeSpans.length; i++) {
             closeSpans[i].onclick = function () {
-                console.log("1st method");
                 let div = this.parentElement;
                 div.remove();
-            }
-        }
-
-        for (let i = 0; i < close.length; i++) {
-            close[i].onclick = function() {
-                console.log("second method");
-                let div = this.parentElement;
-                div.remove();
+                generateIngredientInputs(extractUserIngredients());
             }
         }
         storeIngredients();
         generateIngredientInputs(extractUserIngredients());
     }
+
     document.getElementById("myInput").value = "";
 
 }
@@ -272,9 +227,6 @@ function countRecipes() {
 countRecipes();
 showRecipes();
 keepIngredients();
-console.log(pageUpdate);
-
-      
-        
 
 console.log("yummly-api.js included");
+

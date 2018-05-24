@@ -2,6 +2,34 @@
 
 This document is a beginner's guide to use Git with Github.
 
+## New Branch for Each Commit
+
+1. Make a new branch.
+```bash
+git branch name-of-new-branch
+```
+
+2. `checkout` into the new branch.
+```bash
+git checkout name-of-new-branch
+```
+
+3. Work on it.
+
+4. [`add` - `commit` - `push`](https://github.com/AmyHong0502/COMP2910-Group9/blob/master/git-command.md#upload-files). Make sure you're on the new branch before adding files.
+
+5. Nevigate to [our repository](https://github.com/AmyHong0502/COMP2910-Group9).
+
+6. Click `New pull request` button on the right side of your branch. [The buttons are here](https://github.com/AmyHong0502/COMP2910-Group9/branches).
+
+7. Check whether there's a version conflict or not. If it exists, fix it. Talk to others if needed.
+
+8. Confirm `pull request`.
+
+You're done!
+
+---
+
 ## Upload files
 
 Assume you want to upload files named `website/front-01.html`, `back-04.js`, and `website/images/logo-05.png`.
@@ -16,7 +44,7 @@ git status
 
 ```bash
 git add website/front-01.html
-git add app-04.js
+git add back-04.js
 git add website/images/logo-05.png
 ```
 

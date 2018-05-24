@@ -3,7 +3,6 @@ extends layout
 block customCSS
     link(href='/css/recipe.css' rel='stylesheet')
 
-
 block customJS
     script(src='/js/grayscale.min.js')
 
@@ -22,8 +21,10 @@ block content
                         button#btnadd(name="add-to-list" onclick="listNewIngredient();"
                         class="btn btn-large btn-primary" style="width: 50%;") Add
                         form#request-recipe(method='POST' action='/recipe' style="width: 50%;")
-                            input#ingredients(style="display: none;" name='ingredients')
-                            button#btnsubmit(type="submit" class="btn btn-large btn-secondary" onclick="extractUserIngredients();" style="width: 100%;") Submit
+
+                            div#ingredients(style="display: none; name='ingredients'")
+                            button#btnsubmit(type="submit" class="btn btn-large btn-primary" onclick="extractUserIngredients();" style="width: 100%;") Submit
+
                 br
                 br
                 div#myDIV(class="header")

@@ -6,9 +6,6 @@ block customCSS
 block customJS
     script(src='/js/grayscale.min.js')
 
-    // Google Map API
-    script(async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOI4oiKluCgU6OOqlxtHkrgWHzKT5ko8Y&callback=initMap")
-
 block content
     // Intro Header
     header(class="masthead")
@@ -18,8 +15,6 @@ block content
                     div(class="col-lg-10 mx-auto")
                         h1(class="brand-heading") #{title}
                         p(class="intro-text") #{subtitle}
-                        a(href="#about" class="btn btn-circle js-scroll-trigger")
-                            i(class="fa fa-angle-double-down animated")
 
     // Ingredients Section
     section#functional(class="content-section text-center")
@@ -35,8 +30,11 @@ block content
                         button#btnadd(name="add-to-list" onclick="listNewIngredient();"
                         class="btn btn-primary" style="width: 50%;") Add
                         form#request-recipe(method='POST' action='/recipe' style="width: 50%;")
+
                             input#ingredients(style="display: none;" name='ingredients')
                             button#btnsubmit(type="submit" class="btn btn-large btn-secondary" onclick="extractUserIngredients();" style="width: 100%;") Submit
+                            div#ingredients(style="display: none; name='ingredients'")
+                            button#btnsubmit(type="submit" class="btn btn-large btn-primary" onclick="extractUserIngredients();" style="width: 100%;") Submit
                 br
                 br
                 div#myDIV(class="header")
@@ -85,12 +83,27 @@ block content
         div(class="container")
             div(class="row")
                 div(class="col-lg-8 mx-auto")
-                    h2 Contact Us
-                    div#googleMap
-                        ul(class="list-inline banner-social-buttons")
-                            li(class="list-inline-item")
-                                a(href="https://github.com/AmyHong0502/COMP2910-Group9" class="btn btn-default btn-lg")
-                                    i(class="fa fa-github fa-fw")
-                                    span(class="network-name") Github
-
+                    h2 Contact
+                    iframe(width="100%" height="400px" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJNbea5OF2hlQRDfHhEXerrAM&key=AIzaSyBOI4oiKluCgU6OOqlxtHkrgWHzKT5ko8Y&zoom=15" allowfullscreen)
+                    br
+                    br
+                    div(class="contactInfo")
+                        h4(class="contactDetails") Contact Details
+                        p#myContact 3700 Willingdon Ave, Burnaby, BC V5G 3H2
+                        p#myContact Phone: (604) 434-5734
+                        p#myContact Email:  
+                            a(href="mailto:teamdistrict9@gmail.com?Subject=Fresh%20Fridge" class="emailLink")  teamdistrict9@gmail.com
+                        p#myContact Hours: Mon - Fri 8:30AM to 2:30PM
+                    .contactFormContainer
+                            br(style='clear:both')
+                            h4(class="contactDetails") Send Us A Message:
+                            .form-group
+                            input#name.form-control(type='text', name='name', placeholder='Name', required='')
+                            .form-group
+                            input#email.form-control(type='text', name='email', placeholder='Email', required='')
+                            .form-group
+                            textarea#message.form-control(type='textarea', placeholder='Message', maxlength='140', rows='7')
+                            span.help-block
+                            p#characterLeft.help-block You have reached the limit
+                            button#submitMsg.btn.btn-primary.pull-left(type='button', name='submit') Submit
     script(type='text/javascript' src='/js/yummly-api.js')

@@ -74,7 +74,7 @@ block content
     // Ingredients Section
     section#functional(class="content-section text-center")
         div(class="container")
-            div(class="col-lg-10 mx-auto")
+            div#myDivContainer(class="col-lg-10 mx-auto")
                 h2#nameTitle My Fridge
                 div(data-onsuccess="testgetdb" data-theme="dark")
 
@@ -130,7 +130,7 @@ block content
                 div#flip3(class="trigger") Fruits
                 div#panel3(class="toggle")
                     div(class="row")
-                        each caption, imglink in {"apple.png": "Apple", "bananas.png": "Banana", "orange.png": "Orange", "strawberry.png": "Strawberry", "blueberries.png": "Blueberry", "cherries.png": "Cherry", "kiwi.png": "Kiwi", "grapes.png": "Grape", "watermelon.png": "Watermelon", "pineapple.png": "Pineapple", "coconut.png": "Coconut", "peach.png": "Peach", "raspberry.png": "Raspberry", "mango.png": "Mango", "papaya.png": "Papaya", "pomegranate.png": "Pomegranate", "plum.png": "Plum", "lemon.png": "Lemon"}
+                        each caption, imglink in {"apple.png": "Apple", "bananas.png": "Banana", "orange.png": "Orange", "strawberry.png": "Strawberry", "blueberries.png": "Blueberry", "cherries.png": "Cherry", "kiwi.png": "Kiwi", "grapes.png": "Grape", "watermelon.png": "Watermelon", "pineapple.png": "Pineapple", "coconut.png": "Coconut", "peach.png": "Peach", "raspberry.png": "Raspberry", "mango.png": "Mango", "papaya.png": "Papaya", "pomegranate.png": "Grapefruit", "plum.png": "Plum", "lemon.png": "Lemon"}
                             div(class = "column")
                                 figure(class="itemSelector faded foodFigure" caption= caption)
                                     form(method='POST' action='/i/fridge/process')
@@ -158,7 +158,7 @@ block content
                 div#flip5(class="trigger") Grains
                 div#panel5(class="toggle")
                     div(class="row")
-                        each caption, imglink in {"rice.png": "Rice", "spaguetti.png": "Spaguetti", "noodles.png": "Noodles", "cracker.png": "Cracker", "quinoa.png": "Quinoa", "croissant.png": "Croissant", "cereals.png": "Cereals", "oat.png": "Oat", "bread.png": "Bread", "hebrew.png": "Hebrew", "flour.png": "Flour", "tortillas.png": "Tortillas"}
+                        each caption, imglink in {"rice.png": "Rice", "spaguetti.png": "Spaguetti", "noodles.png": "Noodles", "cracker.png": "Cracker", "quinoa.png": "Quinoa", "croissant.png": "Croissant", "cereals.png": "Cereals", "oat.png": "Oat", "bread.png": "Bread", "hebrew.png": "Bagel", "flour.png": "Flour", "tortillas.png": "Tortillas"}
                             div(class = "column")
                                 figure(class="itemSelector faded foodFigure" caption= caption)
                                     form(method='POST' action='/i/fridge/process')
