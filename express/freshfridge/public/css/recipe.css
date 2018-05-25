@@ -298,7 +298,6 @@ img::-moz-selection {
 #ingredientLi {
     position: relative;
     padding-top: 12px;
-    padding-right: 25px;
     background: #eee;
     font-size: 18px;
     transition: 0.2s;
