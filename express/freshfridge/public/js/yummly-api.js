@@ -1,19 +1,22 @@
-let moreButton = $('#moreButton');
 
 // Returns the user's input from every <li class='ingredientLi'>.
+  
 function extractUserIngredients() {
     console.log("EUI called");
     let userInputs = document.getElementsByClassName('ingredientLi');
     let ingredients = [];
 
     let pattern = /(.*)<span.*/;
-
     for (let i = 0; i < userInputs.length; i++) {
+       
         let ingredient = userInputs[i].innerHTML.replace(pattern, "$1");
-        console.log(ingredient);
+  
+       
         ingredients.push(ingredient);
     }
-
+    
+    
+  
     return ingredients;
 }
 
@@ -23,6 +26,7 @@ function keepIngredients() {
 
     data = data.replace(pattern, "$1");
     data = data.split('\",\"');
+    
     generateIngredientInputs(data);
 }
 
@@ -46,6 +50,7 @@ function generateIngredientInputs(ingredients) {
 
 
 // Processes initial JSON object and appends it to HTML Elements
+var pageUpdate = 0;
 function showRecipes() {
     let data = document.getElementById('api-data-string').innerText;
 
@@ -60,18 +65,22 @@ function showRecipes() {
     for (let i = 0; i < data.matches.length; i++) {
         let cell = document.createElement('div');
         cell.className = 'col-lg-3 col-md-4 col-sm-6';
+        
 
         let recipe = data['matches'][i];
 
         let recipeName = recipe['recipeName'];
         let thumbnailURL = recipe['imageUrlsBySize'][90];
-        let thumbnailURL2 = recipe['smallImageUrls'][0];
+        
+        var res = thumbnailURL.replace(/=s90-c/g, "=s240-c");
 
-        let recipeDataButton = generateDataButton(thumbnailURL, recipeName);
+
+        let recipeDataButton = generateDataButton(res, recipeName);
         let formNode = generateForm(recipe['id'], recipeDataButton);
 
         cell.appendChild(formNode);
         div.appendChild(cell);
+        pageUpdate++;
     }
 
     // if (clickCount === 1) {
@@ -169,8 +178,10 @@ function handleError(status) {
 // Create a new list item when clicking on the "Add" button
 // Adds new list item to array
 // Used at index.pug, not here.
+
 function listNewIngredient() {
     let inputValue = document.getElementById("myInput").value;
+    
     if (inputValue === null || inputValue === '') {
         alert("You must write something!");
         return;
@@ -187,6 +198,7 @@ function listNewIngredient() {
     } else {
         let li = document.createElement("li");
         let t = document.createTextNode(inputValue);
+
         li.id = "ingredientLi";
         li.className = "ingredientLi";
         li.appendChild(t);
@@ -216,11 +228,27 @@ function listNewIngredient() {
                 div.remove();
             }
         }
-
+        storeIngredients();
         generateIngredientInputs(extractUserIngredients());
     }
     document.getElementById("myInput").value = "";
+
 }
+
+
+
+var count = 0;
+function storeIngredients() {
+
+userInput[count] = document.getElementById("myInput").value;
+
+count++;
+
+for (var i = 0; i < userInput.length; i++) {
+
+console.log(userInput[i]);
+    }
+} 
 
 function countRecipes() {
     let inputElement = document.createElement("input");
@@ -240,9 +268,9 @@ function countRecipes() {
 countRecipes();
 showRecipes();
 keepIngredients();
+console.log(pageUpdate);
 
-// if (document.getElementById('td') !== undefined) {
-//     generateIngredientInputs(#{ingredients});
-// }
+      
+        
 
 console.log("yummly-api.js included");
