@@ -1,7 +1,7 @@
 function writeFoodList(items) {
     for (let i = 0; i < items.length; i++) {
         let li = document.createElement("li");
-        li.setAttribute("id", "ingredientLi");
+        li.setAttribute("class", "ingredientLi");
 
         let food = items[i];
 
