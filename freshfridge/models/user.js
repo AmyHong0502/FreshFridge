@@ -1,6 +1,5 @@
 let mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    autoIncrement = require('mongoose-auto-increment');
+    Schema = mongoose.Schema;
 
 let UserSchema = new Schema(
     {

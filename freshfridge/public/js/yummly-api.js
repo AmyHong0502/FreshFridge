@@ -1,13 +1,12 @@
-
 // Returns the user's input from every <li class='ingredientLi'>.
-  
+
 function extractUserIngredients() {
     let userInputs = document.getElementsByClassName('ingredientLi');
     let ingredients = [];
 
     let pattern = /(.*)<span.*/;
     for (let i = 0; i < userInputs.length; i++) {
-       
+
         let ingredient = userInputs[i].innerHTML.replace(pattern, "$1");
         ingredients.push(ingredient);
     }
@@ -21,7 +20,7 @@ function keepIngredients() {
 
     data = data.replace(pattern, "$1");
     data = data.split('\",\"');
-    
+
     generateIngredientInputs(data);
 }
 
@@ -43,7 +42,8 @@ function generateIngredientInputs(ingredients) {
 }
 
 // Processes initial JSON object and appends it to HTML Elements
-var pageUpdate = 0;
+let pageUpdate = 0;
+
 function showRecipes() {
     let data = document.getElementById('api-data-string').innerText;
 
@@ -59,15 +59,14 @@ function showRecipes() {
         let cell = document.createElement('div');
         cell.className = 'col-lg-3 col-md-4 col-sm-6';
 
-        
 
         let recipe = data['matches'][i];
 
         let recipeName = recipe['recipeName'];
         let thumbnailURL = recipe['imageUrlsBySize'][90];
 
-        
-        var res = thumbnailURL.replace(/=s90-c/g, "=s240-c");
+
+        let res = thumbnailURL.replace(/=s90-c/g, "=s240-c");
 
 
         let recipeDataButton = generateDataButton(res, recipeName);
@@ -106,15 +105,15 @@ function generateDataButton(imageURL, recipeName) {
 
     buttonNode.type = 'submit';
     buttonNode.className = 'btn btn-link';
-    
 
-    imageNode.setAttribute('id' , 'ingredientCell');
+
+    imageNode.setAttribute('id', 'ingredientCell');
     imageNode.src = imageURL;
     imageNode.alt = recipeName;
     buttonNode.appendChild(imageNode);
 
     titleNode.append(recipeName);
-    titleNode.setAttribute('id' , 'titleNode');
+    titleNode.setAttribute('id', 'titleNode');
     buttonNode.appendChild(titleNode);
 
     return buttonNode;
@@ -123,7 +122,6 @@ function generateDataButton(imageURL, recipeName) {
 // Appends the clicked recipe specifics to the layout
 function processRecipe(body) {
     let imgURL = body['images'][0].hostedLargeUrl;
-    console.log(body['name']);
 
     let imageNode = document.createElement("img");
     imageNode.src = imgURL;
@@ -145,10 +143,9 @@ function processRecipe(body) {
 // Create a new list item when clicking on the "Add" button
 // Adds new list item to array
 // Used at index.pug, not here.
-
 function listNewIngredient() {
     let inputValue = document.getElementById("myInput").value;
-    
+
     if (inputValue === null || inputValue === '') {
         alert("You must write something!");
         return;
@@ -191,11 +188,7 @@ function listNewIngredient() {
     }
 
     document.getElementById("myInput").value = "";
-
 }
-
-
-
 
 
 function countRecipes() {
@@ -203,7 +196,6 @@ function countRecipes() {
     inputElement.type = 'number';
 
     let recipeCount = 0;
-    // let recipeCount = document.getElementsByClassName('className');
 
     inputElement.value = "" + recipeCount;
     inputElement.name = 'recipeCount';
@@ -216,6 +208,3 @@ function countRecipes() {
 countRecipes();
 showRecipes();
 keepIngredients();
-
-console.log("yummly-api.js included");
-

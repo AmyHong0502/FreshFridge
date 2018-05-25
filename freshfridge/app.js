@@ -4,7 +4,6 @@ let path = require('path');
 // var favicon = require('serve-favicon'); // uncomment after placing our favicon in /public
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
-// let bodyParser = require('body-parser');
 
 let indexRouter = require('./routes/index');
 let iRouter = require('./routes/i');
@@ -16,7 +15,6 @@ let app = express();
 
 const request = require('request');
 const each = require('async-each');
-// app.use(bodyParser.urlencoded());
 app.use('/static', express.static('stuff'));
 
 
