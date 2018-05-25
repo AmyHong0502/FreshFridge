@@ -2,6 +2,11 @@
 
 FreshFridge. Save food and save money.
 
+## About the Project & About Us 
+
+* [Descriptions & Demo screenshots](https://github.com/AmyHong0502/FreshFridge/blob/master/about.md)
+* [Project Walkthrough Video](https://youtu.be/ZX7CBKSbEis)
+
 ## Built With
 
 * [Express](https://expressjs.com/) - Web application framework
