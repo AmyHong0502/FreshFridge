@@ -5,8 +5,6 @@ let router = express.Router();
 let fridge_controller = require('../controllers/fridgeController');
 let shoppinglist_controller = require('../controllers/shoppinglistController');
 
-let async = require('async');
-
 // GET /i page
 router.get('/', function (req, res, next) {
     res.render('/', {title: 'FreshFridge'});

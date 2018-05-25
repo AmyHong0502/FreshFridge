@@ -1,5 +1,4 @@
 let Fridge = require('../models/fridge');
-let async = require('async');
 
 // No index: default is fridge_list
 // Display list of all foods in this fridge.

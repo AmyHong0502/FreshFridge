@@ -1,18 +1,18 @@
 // Counter for the current number for shopping lists
-var counter = 0;
+let counter = 0;
 
 // Create a new list when clicking on the "Add" button
 function newElement() {
-    var trigger = document.createElement("div");
+    let trigger = document.createElement("div");
     trigger.setAttribute("class", "trigger");
     trigger.setAttribute("id", "list-header" + counter);
-    var inputValue = document.getElementById("list-name").value;
-    var text = document.createTextNode(inputValue);
+    let inputValue = document.getElementById("list-name").value;
+    let text = document.createTextNode(inputValue);
     trigger.appendChild(text);
-    var toggle = document.createElement("div");
+    let toggle = document.createElement("div");
     toggle.setAttribute("class", "toggle");
     toggle.setAttribute("id", "panel " + counter);
-    var myBreak = document.createElement("br");
+    let myBreak = document.createElement("br");
     myBreak.setAttribute("id", "break" + counter);
     if (inputValue === '') {
         alert("You must write something!");
@@ -31,36 +31,34 @@ function newElement() {
 }
 
 function createRemoveSelected() {
-    var deleteSelectedBtn = document.createElement("button");
+    let deleteSelectedBtn = document.createElement("button");
     deleteSelectedBtn.setAttribute("id", "deleteSelectedmyTable" + counter);
     deleteSelectedBtn.setAttribute("class", "btn btn-danger btn-sm delete-selected");
     deleteSelectedBtn.setAttribute("style", "display: none;");
     deleteSelectedBtn.innerHTML = "Remove";
-
-    var myBreak = document.createAttribute("br");
 
     document.getElementById("panel " + counter).appendChild(deleteSelectedBtn);
 }
 
 // Add Buttons to the Dropdown List
 function addButton() {
-    var itemBtn = document.createElement("button");
-    var itemText = "New Item";
-    var btnText = document.createTextNode(itemText);
+    let itemBtn = document.createElement("button");
+    let itemText = "New Item";
+    let btnText = document.createTextNode(itemText);
     itemBtn.appendChild(btnText);
     itemBtn.setAttribute("class", "btn btn-primary btn-sm add");
     itemBtn.setAttribute("id", "showForm" + counter);
 
-    var editListBtn = document.createElement("button");
-    var textNode = document.createTextNode("Edit");
+    let editListBtn = document.createElement("button");
+    let textNode = document.createTextNode("Edit");
     editListBtn.appendChild(textNode);
     editListBtn.setAttribute("class", "btn btn-primary btn-sm browse");
     editListBtn.setAttribute("id", "browseItem " + counter);
     editListBtn.setAttribute("data-toggle", "modal");
     editListBtn.setAttribute("data-target", "#editListModal");
 
-    var addItemBtn = document.createElement("button");
-    var itemBtnNode = document.createTextNode("Add Item");
+    let addItemBtn = document.createElement("button");
+    let itemBtnNode = document.createTextNode("Add Item");
     addItemBtn.appendChild(itemBtnNode);
     addItemBtn.setAttribute("class", "btn btn-success btn-sm add-Item");
     addItemBtn.setAttribute("id", "addItem " + counter);
@@ -74,29 +72,29 @@ function addButton() {
 
 // Create Table Tags
 function createTable() {
-    var divTable = document.createElement("div");
+    let divTable = document.createElement("div");
     divTable.setAttribute("class", "table-responsive");
 
-    var tableTag = document.createElement("table");
+    let tableTag = document.createElement("table");
     tableTag.setAttribute("class", "table table-borderless");
     tableTag.setAttribute("id", "myTable" + counter);
     tableTag.setAttribute("width", "400");
 
-    var tableHeader = document.createElement("thead");
+    let tableHeader = document.createElement("thead");
 
-    var tableHeadRow = document.createElement("tr");
+    let tableHeadRow = document.createElement("tr");
 
-    var emptyCol1 = document.createElement("th");
+    let emptyCol1 = document.createElement("th");
     emptyCol1.setAttribute("width", "5%");
-    var emptyCol2 = document.createElement("th");
+    let emptyCol2 = document.createElement("th");
     emptyCol2.setAttribute("width", "5%");
 
-    var productCol = document.createElement("th");
+    let productCol = document.createElement("th");
     productCol.setAttribute("class", "product header");
     productCol.setAttribute("width", "50%");
     productCol.innerHTML = "Product";
 
-    var qtyCol = document.createElement("th");
+    let qtyCol = document.createElement("th");
     qtyCol.setAttribute("width", "30%")
     qtyCol.setAttribute("class", "qty header");
     qtyCol.innerHTML = "Qty";
@@ -109,7 +107,7 @@ function createTable() {
 
     tableTag.appendChild(tableHeader);
 
-    var tableBody = document.createElement("tbody");
+    let tableBody = document.createElement("tbody");
     tableBody.setAttribute("id", "tableBody" + counter);
 
     tableTag.appendChild(tableBody);
@@ -120,24 +118,24 @@ function createTable() {
 
 // Create Input Field Text to add an Item
 function itemInput() {
-    var toggleDiv = document.createElement("div");
+    let toggleDiv = document.createElement("div");
     toggleDiv.setAttribute("id", "input-toggle");
     toggleDiv.setAttribute("style", "display:none;");
 
-    var formTag = document.createElement("form");
+    let formTag = document.createElement("form");
 
-    var formDiv = document.createElement("div");
+    let formDiv = document.createElement("div");
     formDiv.setAttribute("class", "form-group");
 
-    var labelTag = document.createElement("label")
+    let labelTag = document.createElement("label")
     labelTag.setAttribute("class", "control-label");
     labelTag.setAttribute("for", "item-name " + counter);
 
-    var labelText = "Product:";
-    var labelTextNode = document.createTextNode(labelText);
+    let labelText = "Product:";
+    let labelTextNode = document.createTextNode(labelText);
     labelTag.appendChild(labelTextNode);
 
-    var inputTag = document.createElement("input");
+    let inputTag = document.createElement("input");
     inputTag.setAttribute("type", "text");
     inputTag.setAttribute("class", "form-control panelInput");
     inputTag.setAttribute("id", "item-name " + counter);
@@ -153,7 +151,7 @@ function itemInput() {
     labelTextNode = document.createTextNode(labelText);
     labelTag.appendChild(labelTextNode);
 
-    var inputTag = document.createElement("input");
+    let inputTag = document.createElement("input");
     inputTag.setAttribute("type", "text");
     inputTag.setAttribute("class", "form-control panelInput");
     inputTag.setAttribute("id", "item-qty " + counter);
@@ -161,38 +159,38 @@ function itemInput() {
     formDiv.appendChild(labelTag);
     formDiv.appendChild(inputTag);
 
-    var amountType = document.createElement("select");
+    let amountType = document.createElement("select");
     amountType.setAttribute("class", "form-control");
     amountType.setAttribute("id", "qty-type" + counter);
 
-    var unitLabel = document.createElement("label");
+    let unitLabel = document.createElement("label");
     unitLabel.setAttribute("class", "control-label");
     unitLabel.setAttribute("for", "item-qty " + counter);
 
     labelTextNode = document.createTextNode("Unit:");
     unitLabel.appendChild(labelTextNode);
 
-    var option1 = document.createElement("option");
+    let option1 = document.createElement("option");
     option1.setAttribute("value", "pcs");
     option1.innerHTML = "pcs";
 
-    var option2 = document.createElement("option");
+    let option2 = document.createElement("option");
     option2.setAttribute("value", "bags");
     option2.innerHTML = "bags";
 
-    var option3 = document.createElement("option");
+    let option3 = document.createElement("option");
     option3.setAttribute("value", "kg");
     option3.innerHTML = "kg";
 
-    var option4 = document.createElement("option");
+    let option4 = document.createElement("option");
     option4.setAttribute("value", "lbs");
     option4.innerHTML = "lbs";
 
-    var option5 = document.createElement("option");
+    let option5 = document.createElement("option");
     option5.setAttribute("value", "mL");
     option5.innerHTML = "mL";
 
-    var option6 = document.createElement("option");
+    let option6 = document.createElement("option");
     option6.setAttribute("value", "oz");
     option6.innerHTML = "oz";
 
@@ -223,24 +221,23 @@ function removeList() {
 function editShoppingList() {
     document.getElementById("edit-close-list").click();
 
-    var newListName = document.getElementById("modal-listName").value;
+    let newListName = document.getElementById("modal-listName").value;
 
     document.getElementById("list-header" + currentPanelButton).innerHTML = newListName;
 }
 
 // The current pannel of the button
-currentPanelButton = 0
+currentPanelButton = 0;
 
 // Get's the current List and set's the currentPanelButton variable
 $(document).ready(function() {
     $(document).on('click', '.browse', function() {
-        var btnID = $(this).attr("id");
-        console.log(btnID);
+        let btnID = $(this).attr("id");
 
-        var splitID = btnID.split(" ");
+        let splitID = btnID.split(" ");
         currentPanelButton = splitID[1];
 
-        var currentListName = document.getElementById("list-header" + currentPanelButton).innerHTML;
+        let currentListName = document.getElementById("list-header" + currentPanelButton).innerHTML;
 
         occupyEditListModal(currentListName);
     });
@@ -253,37 +250,36 @@ function occupyEditListModal(listName) {
 
 // Add's item to the current Shopping List
 function newItemClick(clicked_id) {
-    var buttonId = clicked_id;
-    var buttonSplit = buttonId.split(" ");
-    var buttonNum = buttonSplit[1];
+    let buttonId = clicked_id;
+    let buttonSplit = buttonId.split(" ");
+    let buttonNum = buttonSplit[1];
 
-    var inputText = document.getElementById("item-name " + buttonNum).value;
+    let inputText = document.getElementById("item-name " + buttonNum).value;
 
-    var qtyValue = document.getElementById("item-qty " + buttonNum).value;
+    let qtyValue = document.getElementById("item-qty " + buttonNum).value;
 
-    var e = document.getElementById("qty-type" + buttonNum);
-    var qtyUnit = e.options[e.selectedIndex].text;
+    let e = document.getElementById("qty-type" + buttonNum);
+    let qtyUnit = e.options[e.selectedIndex].text;
 
-    var inputValue = inputText;
-    var qtyInputValue = qtyValue + " " + qtyUnit;
-    console.log(inputText);
+    let inputValue = inputText;
+    let qtyInputValue = qtyValue + " " + qtyUnit;
 
     if (inputValue == "" && qtyValue == "") {
         // alert("Product Cannot be Empty");
     } else {
-        var tableRow = document.createElement("tr");
+        let tableRow = document.createElement("tr");
 
-        var tableCheckBox = document.createElement("td");
+        let tableCheckBox = document.createElement("td");
         tableCheckBox.setAttribute("width", "5%");
 
-        var labelCheckBox = document.createElement("label");
+        let labelCheckBox = document.createElement("label");
         labelCheckBox.setAttribute("class", "containerCheckBox");
 
-        var inputCheckBox = document.createElement("input");
+        let inputCheckBox = document.createElement("input");
         inputCheckBox.setAttribute("type", "checkbox");
         inputCheckBox.setAttribute("class", "checkBox");
 
-        var spanCheckBox = document.createElement("span");
+        let spanCheckBox = document.createElement("span");
         spanCheckBox.setAttribute("class", "checkmark");
         spanCheckBox.setAttribute("id", "myCheckBox");
 
@@ -293,24 +289,24 @@ function newItemClick(clicked_id) {
 
         tableRow.appendChild(tableCheckBox);
 
-        var tableData = document.createElement("td")
+        let tableData = document.createElement("td");
         tableData.setAttribute("width", "50%");
         tableData.setAttribute("class", "listItem");
-        var text = inputValue;
-        var tableHeadTextNode = document.createTextNode(text);
+        let text = inputValue;
+        let tableHeadTextNode = document.createTextNode(text);
         tableData.appendChild(tableHeadTextNode);
 
-        var tableQty = document.createElement("td")
+        let tableQty = document.createElement("td");
         tableQty.setAttribute("width", "30%");
         tableQty.setAttribute("class", "itemQty");
-        var textQty = qtyInputValue;
-        var tableQtyTextNode = document.createTextNode(textQty);
+        let textQty = qtyInputValue;
+        let tableQtyTextNode = document.createTextNode(textQty);
         tableQty.appendChild(tableQtyTextNode);
 
-        var tableEdit = document.createElement("td");
+        let tableEdit = document.createElement("td");
         tableEdit.setAttribute("width", "5%");
 
-        var editButton = document.createElement("input");
+        let editButton = document.createElement("input");
         editButton.setAttribute("type", "image");
         editButton.setAttribute("src", "img\\icons\\pencil.png");
         editButton.setAttribute("id", "editButton");
@@ -333,15 +329,12 @@ function newItemClick(clicked_id) {
 }
 
 // Boolean variable to see if checkboxes are clicked
-var isChecked = false;
+let isChecked = false;
 
 // Checks if any of the checkboxes are clicked
 function checkIfClicked() {
-    console.log("Current Table: " + currentTable);
-
-    var checkBox = document.getElementsByClassName("checkmark");
-    var i;
-    for (i = 0; i < checkBox.length; i++){
+    let checkBox = document.getElementsByClassName("checkmark");
+    for (let i = 0; i < checkBox.length; i++){
         if (checkBox[i].classList.contains("checked")){
             isChecked = true;
             break;
@@ -349,7 +342,7 @@ function checkIfClicked() {
             isChecked = false;
         }
     }
-    console.log("Is Checked: " + isChecked);
+
     if (isChecked) {
         document.getElementById("deleteSelected" + currentTable).setAttribute("style", "");
     } else {
@@ -361,8 +354,8 @@ function checkIfClicked() {
 // BUG DETECTED : Not all checkboxed items are removed
 $(document).ready(function() {
     $(document).on('click', '.delete-selected', function() {
-        var table = document.getElementById(currentTable);
-        for (var i = 1, row; row = table.rows[i]; i++){
+        let table = document.getElementById(currentTable);
+        for (let i = 1, row; row = table.rows[i]; i++){
             if (row.cells[0].getElementsByTagName("label")[0].getElementsByTagName("span")[0].classList.contains("checked")) {
                 row.remove();
             }
@@ -374,7 +367,6 @@ $(document).ready(function() {
 // Toggles the class of the checkbox
 $(document).ready(function() {
     $(document).on('click', '#myCheckBox', function() {
-        console.log("test");
         $(this).toggleClass("checked");
         $(this).parent().parent().click();
         checkIfClicked();
@@ -383,36 +375,28 @@ $(document).ready(function() {
 
 // Occupies the modal box inputs with the data in the table row
 function occupyInput() {
-    console.log("Current Row: " + currentRow);
-    console.log("Current Toggle " + currentToggle);
+    let productName = document.getElementById(currentTable).rows[currentRow].cells[1].innerHTML;
+    let prodQty = document.getElementById(currentTable).rows[currentRow].cells[2].innerHTML;
 
-    var productName = document.getElementById(currentTable).rows[currentRow].cells[1].innerHTML;
-    var prodQty = document.getElementById(currentTable).rows[currentRow].cells[2].innerHTML;
+    let mySplit = prodQty.split(" ");
 
-    var mySplit = prodQty.split(" ");
-
-    var quantity = mySplit[0];
-    var unit = mySplit[1];
-
-    console.log("Unit: " + unit);
+    let quantity = mySplit[0];
+    let unit = mySplit[1];
 
     document.getElementById("modal-prod").value = productName;
-
     document.getElementById("modal-qty").value = quantity;
-
-    var modalSelect = document.getElementById("modal-select").value = unit;
+    document.getElementById("modal-select").value = unit;
 }
 
 // Gets the values inside the modal input text
 function editTableRow() {
     document.getElementById("edit-close").click();
 
-    var productName = document.getElementById("modal-prod").value;
+    let productName = document.getElementById("modal-prod").value;
+    let productQty = document.getElementById("modal-qty").value;
 
-    var productQty = document.getElementById("modal-qty").value;
-
-    var e = document.getElementById("modal-select");
-    var qtyUnit = e.options[e.selectedIndex].text;
+    let e = document.getElementById("modal-select");
+    let qtyUnit = e.options[e.selectedIndex].text;
 
     changeRowValue(productName, productQty, qtyUnit);
 }
@@ -424,17 +408,16 @@ function changeRowValue(name, quantity, unit) {
 }
 
 // The current row of the selected table
-var currentRow = 0;
+let currentRow = 0;
 
 // The current table's ID
-var currentTable = 0;
+let currentTable = 0;
 
 // Get the row of the table on edit click
 $(document).ready(function() {
     $(document).on('click', 'td', function() {
-        var row = $(this).parent().parent().children().index($(this).parent());
+        let row = $(this).parent().parent().children().index($(this).parent());
         currentTable = $(this).parent().parent().parent().attr("id");
-        console.log(currentTable);
         currentRow = row + 1;
     });
 });
@@ -449,17 +432,17 @@ $(document).ready(function() {
 
 // Clicks Add button when pressing enter
 window.onload = function() {
-    var input = document.getElementById("list-name");
+    let input = document.getElementById("list-name");
     input.addEventListener("keyup", function(event) {
         event.preventDefault();
         if (event.keyCode === 13) {
             document.getElementById("btn-add").click();
         }
     });
-}
+};
 
 // The current input for item-name Selected
-var currentToggle = 0;
+let currentToggle = 0;
 
 // Toggle Function for Individual Shopping List
 $(document).ready(function() {
@@ -480,8 +463,8 @@ $(document).ready(function() {
 // Get's the current ID of the input text
 $(document).ready(function() {
     $(document).on('click', '.panelInput', function() {
-        var panelSplit = ($(this).attr('id')).split(" ");
-        var panelNum = panelSplit[1];
+        let panelSplit = ($(this).attr('id')).split(" ");
+        let panelNum = panelSplit[1];
         currentToggle = panelNum;
         panelClick();
     });
@@ -489,7 +472,7 @@ $(document).ready(function() {
 
 // Clicks' button when pressed enter on input
 function panelClick() {
-    var input = document.getElementById("item-qty " + currentToggle);
+    let input = document.getElementById("item-qty " + currentToggle);
     input.addEventListener("keyup", function(event) {
         event.preventDefault();
         if (event.keyCode === 13) {
@@ -501,13 +484,13 @@ function panelClick() {
 // Toggles display of the add item section in each Shopping List
 $(document).ready(function() {
     $(document).on('click', '.add', function() {
-        var buttonNode = document.getElementById(this.id);
-        var buttonText = buttonNode.innerHTML;
-        var nextButton = $(this).next(".browse");
-        var addButton = nextButton.next(".add-Item");
+        let buttonNode = document.getElementById(this.id);
+        let buttonText = buttonNode.innerHTML;
+        let nextButton = $(this).next(".browse");
+        let addButton = nextButton.next(".add-Item");
         addButton.hide();
         if (buttonText === "New Item") {
-            var textNode = document.createTextNode("Done");
+            let textNode = document.createTextNode("Done");
             buttonNode.replaceChild(textNode, buttonNode.childNodes[0]);
             $(this).css("margin-top", "0px");
             nextButton.css("margin-top", "0px");
@@ -516,7 +499,7 @@ $(document).ready(function() {
             addButton.show();
             addButton.css("margin-top", "0px");
         } else {
-            var textNode = document.createTextNode("New Item");
+            let textNode = document.createTextNode("New Item");
             buttonNode.replaceChild(textNode, buttonNode.childNodes[0]);
             $(this).css("margin-top", "20px");
             nextButton.show();
