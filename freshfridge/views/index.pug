@@ -1,0 +1,107 @@
+extends layout
+
+block customCSS
+    link(href='/css/recipe.css' rel='stylesheet')
+
+block customJS
+    script(src='/js/grayscale.min.js')
+
+block content
+    // Intro Header
+    header(class="masthead")
+        div(class="intro-body")
+            div(class="container")
+                div(class="row")
+                    div(class="col-lg-10 mx-auto" style="padding-left: 0px;")
+                        h1(class="brand-heading") #{title}
+                        p(class="intro-text" style="padding-right: 15px;") #{subtitle}
+
+    // Ingredients Section
+    section#functional(class="content-section text-center")
+        div(class="container")
+              div(class="col-lg-11 mx-auto" style="padding-right: 10px;")
+                h2 Search Recipes by 
+                h2 Ingredients 
+                div(class="row input-group input-group-lg header" style="left:18px;margin-top: 20px;")
+                    div(class="col-md-8 col-xs-12" style="padding: 0px;")
+                        input#myInput(type="text" name="add" class="form-control"
+                        placeholder="Enter Ingredients..")
+                    div(class="col-md-4 col-xs-12" style="padding: 0px;")
+                        button#btnadd(name="add-to-list" onclick="listNewIngredient();"
+                        class="btn btn-primary" style="width: 50%;") Add
+                        form#request-recipe(method='POST' action='/recipe' style="width: 50%;")
+                            input#ingredients(style="display: none;" name='ingredients')
+                            button#btnsubmit(type="submit" class="btn btn-large btn-secondary" onclick="extractUserIngredients();" style="width: 100%;") Submit
+                            
+                br
+                br
+                div#myDIV(class="header")
+                    ul#ingredientsUL
+                div#recipes
+                    div#api-recipes(class="row")
+                div#moreButton
+                p#api-data-string(style='display: none;') #{apidata}
+
+    // About Section
+    section#about(class="about-section text-center")
+        div(class="container")
+            div(class="row")
+                div(class="col-lg-10 mx-auto")
+                    h2 about  #{title}
+                    p.
+                        Our goal is to provide users with alternate methods of using the food rather than throwing it out.
+                        This not only <b>helps save money</b> but <b>reduces food waste</b> as well.
+                        Let's work hard to decrease the amount of food waste.
+
+    // The Team Section
+    section#team(class="team-section text-center")
+        div(class="container")
+            div(class="row")
+                div(class="col-lg-10 mx-auto")
+                    h2 The Team
+                    p <b>Known as District9</b>
+                    span(style="float: left; font-size: 9pt; text-align: center; width: 19%; margin-right: 1%; margin-bottom: 0.5em;")
+                        img(src="/img/Caleb.png" style="width: 100%")
+                        p This is Caleb. He's our full-stack developer.
+                    span(style="float: left; font-size: 9pt; text-align: center; width: 19%; margin-right: 1%; margin-bottom: 0.5em;")
+                        img(src="/img/Amy.png" style="width: 100%")
+                        p This is Amy. She's a back-end master.
+                    span(style="float: left; font-size: 9pt; text-align: center; width: 19%; margin-right: 1%; margin-bottom: 0.5em;")
+                        img(src="/img/Viktor.png" style="width: 100%")
+                        p This is Viktor. He worked on the front-end and graphics.
+                    span(style="float: left; font-size: 9pt; text-align: center; width: 19%; margin-right: 1%; margin-bottom: 0.5em;")
+                        img(src="/img/Jas.png" style="width: 100%")
+                        p This is Jas. She worked on the front-end and styling.
+                    span(style="float: left; font-size: 9pt; text-align: center; width: 19%; margin-right: 1%; margin-bottom: 0.5em;")
+                        img(src="/img/Jonah.png" style="width: 100%")
+                        p This is Jonah. He also worked on the front-end.
+
+    // Contact Section
+    section#contact(class="contact-section text-center")
+        div(class="container")
+            div(class="row")
+                div(class="col-lg-8 mx-auto")
+                    h2 Contact Us
+                    iframe(width="100%" height="400px" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJNbea5OF2hlQRDfHhEXerrAM&key=AIzaSyBOI4oiKluCgU6OOqlxtHkrgWHzKT5ko8Y&zoom=15" allowfullscreen)
+                    br
+                    br
+                    div(class="contactInfo")
+                        h4(class="contactDetails") Contact Details
+                        p#myContact 3700 Willingdon Ave, Burnaby, BC V5G 3H2
+                        p#myContact Phone: (604) 434-5734
+                        p#myContact Email:  
+                            a(href="mailto:teamdistrict9@gmail.com?Subject=Fresh%20Fridge" class="emailLink")  teamdistrict9@gmail.com
+                        p#myContact Hours: Mon - Fri 8:30AM to 2:30PM
+                    .contactFormContainer
+                            br(style='clear:both')
+                            h4(class="contactDetails") Send Us A Message:
+                            .form-group
+                            input#name.form-control(type='text', name='name', placeholder='Name', required='')
+                            .form-group
+                            input#email.form-control(type='text', name='email', placeholder='Email', required='')
+                            .form-group
+                            textarea#message.form-control(type='textarea', placeholder='Message', maxlength='140', rows='7')
+                            span.help-block
+                            p#characterLeft.help-block You have reached the limit
+                            button#submitMsg.btn.btn-primary.pull-left(type='button', name='submit') Submit
+    script(type='text/javascript' src='/js/yummly-api.js')

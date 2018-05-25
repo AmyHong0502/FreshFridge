@@ -1,0 +1,200 @@
+extends layout
+
+block customCSS
+    link(href='/css/recipe-detail.css' rel='stylesheet')
+
+block content
+    p#api-response(style='display: none;') #{apidata}
+
+    div(class='container')
+        div(class="col-lg-10 mx-auto")
+            section#basics
+
+            br
+            br
+
+            section#recipe-info
+
+            div(class="row")
+                button(class="btn col align-self-end" onclick="goBack()") Go Back
+
+            br
+            br
+
+            section#poweredByYummly
+
+            br
+            br
+
+            script.
+                function goBack() {
+                    window.history.back();
+                }
+
+                function printBasics(name, imageURL, source) {
+                    let basics = document.getElementById('basics');
+
+                    let row = document.createElement('div');
+                    row.className = 'row';
+
+                    let leftCol = document.createElement('div');
+                    let rightCol = document.createElement('div');
+                    leftCol.className = 'col-md-6';
+                    rightCol.className = 'col-md-6';
+                    rightCol.style = "position: relative; min-height: 100px;";
+                    let linebreak = document.createElement('br');
+
+                    rightCol.appendChild(linebreak);
+                    rightCol.appendChild(linebreak);
+
+                    let image = document.createElement('img');
+                    image.src = imageURL;
+                    image.alt = name;
+                    image.style = "width: 100%;";
+
+                    let recipeName = document.createElement('h3');
+                    recipeName.innerText = name;
+                    recipeName.style = "width: 100%;";
+
+                    let referenceSite = document.createElement('h5');
+                    referenceSite.innerText = "From: ";
+                    referenceSite.className = "float-right";
+
+                    let srchref = document.createElement('a');
+                    let srcRedirect = document.createElement('button');
+
+                    srchref.innerText = source['sourceDisplayName'];
+                    srchref.href = 'http://' + source['sourceSiteUrl'];
+                    srchref.target = "_blank";
+
+                    let anchor = document.createElement('a');
+                    anchor.href = source['sourceRecipeUrl'];
+                    anchor.innerText = "Redirect to this recipe";
+                    anchor.target = "_blank";
+
+                    let span = document.createElement('span');
+                    span.appendChild(anchor);
+                    srcRedirect.appendChild(span);
+                    srcRedirect.className = 'btn';
+                    srcRedirect.style = "width: 100%; position: absolute; bottom: 0; right: 0px; margin: 0;";
+
+                    referenceSite.appendChild(srchref);
+
+                    leftCol.appendChild(image);
+                    rightCol.appendChild(referenceSite);
+                    rightCol.appendChild(srcRedirect);
+
+                    row.appendChild(leftCol);
+                    row.appendChild(rightCol);
+
+                    basics.appendChild(recipeName);
+                    basics.appendChild(row);
+                }
+
+                function printRecipeInfo(ingredientLines, numOfServings, cookingTime, flavors, rating) {
+                    let field = document.getElementById('recipe-info');
+                    let info = document.createElement('table');
+
+                    info.appendChild(generateIngredientsRow(ingredientLines));
+                    info.appendChild(generateRowWithNumber("Number of Servings", numOfServings));
+                    info.appendChild(generateRowWithNumber("Total Cooking Time", cookingTime));
+                    info.appendChild(generateFlavorsRow(flavors));
+                    info.appendChild(generateRowWithNumber("Rating", rating));
+
+                    field.appendChild(info);
+                }
+
+                function generateIngredientsRow(ingredientLines) {
+                    let row = document.createElement('tr');
+                    let leftCell = document.createElement('td');
+                    let rightCell = document.createElement('td');
+
+                    let ingredientP = document.createElement('p');
+                    ingredientP.innerText = "Ingredients";
+                    ingredientP.style = "font-weight: 700;";
+                    leftCell.appendChild(ingredientP);
+                    row.appendChild(leftCell);
+
+                    let ingredientOl = document.createElement('ol');
+                    for (let i = 0; i < ingredientLines.length; i++) {
+                        let ingredient = document.createElement('li');
+                        ingredient.innerText = ingredientLines[i];
+                        ingredientOl.appendChild(ingredient);
+                    }
+                    rightCell.appendChild(ingredientOl);
+                    row.appendChild(rightCell);
+
+                    return row;
+                }
+
+                function generateRowWithNumber(contentsInText, contentsInNumber) {
+                    let row = document.createElement('tr');
+                    let leftCell = document.createElement('td');
+                    let rightCell = document.createElement('td');
+
+                    let text = document.createElement('p');
+                    text.innerText = contentsInText;
+                    text.style = "font-weight: 700;";
+                    leftCell.appendChild(text);
+                    row.appendChild(leftCell);
+
+                    let number = document.createElement('p');
+                    number.innerText = contentsInNumber;
+                    rightCell.appendChild(number);
+                    row.appendChild(rightCell);
+
+                    return row;
+                }
+
+                function generateFlavorsRow(flavors) {
+                    let row = document.createElement('tr');
+                    let leftCell = document.createElement('td');
+                    let rightCell = document.createElement('td');
+
+                    let text = document.createElement('p');
+                    text.innerText = "Flavours";
+                    text.style = "font-weight: 700;";
+                    leftCell.appendChild(text);
+                    row.appendChild(leftCell);
+
+                    let flavorUl = document.createElement('ul');
+                    for (let flavor in flavors) {
+                        let listItem = document.createElement('li');
+                        listItem.innerText = flavor + ": " + flavors[flavor];
+                        flavorUl.appendChild(listItem);
+                    }
+                    rightCell.appendChild(flavorUl);
+                    row.appendChild(rightCell);
+
+                    return row;
+                }
+
+                function generateYummlys(attribution) {
+                    let field = document.getElementById('poweredByYummly');
+
+                    let text = document.createElement('p');
+                    text.className = 'text-muted';
+                    text.style = 'font-size: 0.8em; float: right;';
+                    text.innerText = attribution['text'];
+
+                    field.appendChild(text);
+                }
+
+                let data = JSON.parse(document.getElementById('api-response').innerText);
+
+                let image = data['images']['0']['hostedLargeUrl'];
+                let name = data['name'];
+                let source = data['source'];
+                printBasics(name, image, source);
+
+                let ingredients = data['ingredientLines'];
+                let numOfServings = data['numberOfServings'];
+                let totalTime = data['totalTime'];
+                let flavors = data['flavors'];
+                let rating = data['rating'];
+                printRecipeInfo(ingredients, numOfServings, totalTime, flavors, rating);
+
+                let attribution = data['attribution'];
+                generateYummlys(attribution);
+
+
