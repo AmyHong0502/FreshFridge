@@ -186,7 +186,7 @@ function listNewIngredient() {
                 generateIngredientInputs(extractUserIngredients());
             }
         }
-        storeIngredients();
+
         generateIngredientInputs(extractUserIngredients());
     }
 
@@ -196,18 +196,7 @@ function listNewIngredient() {
 
 
 
-var count = 0;
-function storeIngredients() {
 
-userInput[count] = document.getElementById("myInput").value;
-
-count++;
-
-for (var i = 0; i < userInput.length; i++) {
-
-console.log(userInput[i]);
-    }
-} 
 
 function countRecipes() {
     let inputElement = document.createElement("input");

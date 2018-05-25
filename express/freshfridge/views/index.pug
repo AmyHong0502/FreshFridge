@@ -12,14 +12,14 @@ block content
         div(class="intro-body")
             div(class="container")
                 div(class="row")
-                    div(class="col-lg-10 mx-auto")
+                    div(class="col-lg-10 mx-auto" style="padding-left: 0px;")
                         h1(class="brand-heading") #{title}
-                        p(class="intro-text") #{subtitle}
+                        p(class="intro-text" style="padding-right: 15px;") #{subtitle}
 
     // Ingredients Section
     section#functional(class="content-section text-center")
         div(class="container")
-              div(class="col-lg-11 mx-auto")
+              div(class="col-lg-11 mx-auto" style="padding-right: 10px;")
                 h2 Search Recipes by 
                 h2 Ingredients 
                 div(class="row input-group input-group-lg header" style="left:18px;margin-top: 20px;")
@@ -30,11 +30,9 @@ block content
                         button#btnadd(name="add-to-list" onclick="listNewIngredient();"
                         class="btn btn-primary" style="width: 50%;") Add
                         form#request-recipe(method='POST' action='/recipe' style="width: 50%;")
-
                             input#ingredients(style="display: none;" name='ingredients')
                             button#btnsubmit(type="submit" class="btn btn-large btn-secondary" onclick="extractUserIngredients();" style="width: 100%;") Submit
-                            div#ingredients(style="display: none; name='ingredients'")
-                            button#btnsubmit(type="submit" class="btn btn-large btn-primary" onclick="extractUserIngredients();" style="width: 100%;") Submit
+                            
                 br
                 br
                 div#myDIV(class="header")
@@ -49,7 +47,7 @@ block content
         div(class="container")
             div(class="row")
                 div(class="col-lg-10 mx-auto")
-                    h2 about #{title}
+                    h2 about  #{title}
                     p.
                         Our goal is to provide users with alternate methods of using the food rather than throwing it out.
                         This not only <b>helps save money</b> but <b>reduces food waste</b> as well.
