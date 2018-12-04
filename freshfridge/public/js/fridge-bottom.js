@@ -17,15 +17,6 @@ function writeFoodList(items) {
             span.appendChild(txt);
 
             li.appendChild(span);
-
-            console.log("Called writeFoodList");
-
-            // for (i = 0; i < close.length; i++) {
-            //     close[i].onclick = function() {
-            //         let div = this.parentElement;
-            //         div.style.display = "none";
-            //     }
-            // }
         }
     }
 }
