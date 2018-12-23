@@ -20,7 +20,7 @@ FreshFridge. Save food and save money.
 
 | URL                                      | Contents                                       |
 |------------------------------------------|------------------------------------------------|
-| [freshfridge.tk](http://freshfridge.tk/) | Default, home page.                            |
+| [freshfridge2910.herokuapp.com](https://freshfridge2910.herokuapp.com/) | Default, home page.                            |
 |                                          | Search Recipes (redirects to /recipe)          |
 |                                          | About FreshFridge & our team                   |
 |                                          | Contact Us                                     |
